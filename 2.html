@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Пока сайт на хостинге 000webhost эта строчка убирает вотермарку --><style>img[alt="www.000webhost.com"] {display: none;}</style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <title>Главная</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside class="sidebar">
+            <a href="/0" class="a-lesson">
+                <div class="div-number-lesson">
+                    <p class="number-lesson">0</p>
+                </div>
+                <h2 class="name-lesson">Введение в Python</h2>
+            </a>
+            <a href="/1" class="a-lesson">
+                <div class="div-number-lesson">
+                    <p class="number-lesson">1</p>
+                </div>
+                <h2 class="name-lesson">Переменные</h2>
+            </a>
+            <a href="/2" class="a-lesson">
+                <div class="div-number-lesson">
+                    <p class="number-lesson">2</p>
+                </div>
+                <h2 class="name-lesson">Вывод и ввод текста</h2>
+            </a>
+            <a href="/3" class="a-lesson">
+                <div class="div-number-lesson">
+                    <p class="number-lesson">3</p>
+                </div>
+                <h2 class="name-lesson">Условный оператор</h2>
+            </a>
+            <a href="/4" class="a-lesson">
+                <div class="div-number-lesson">
+                    <span class="number-lesson">4</span>
+                </div>
+                <span class="name-lesson">Циклы</span>
+            </a>
+            <a href="/settings" class="a-settings">
+                <div class="div-img-settings">
+                    <img src="img/icon-settings.svg" alt="settings button">
+                </div>
+                <span class="name-settings" id="after-img">Настройки</span>
+            </a>
+            <a class="button-menu">
+                <div class="div-img-menu">
+                    <img src="img/icon-menu.svg" alt="menu button">
+                </div>
+                <span class="name-menu" id="after-img">Меню</span>
+            </a>
+        </aside>
+        <div class="sections">
+        <header>
+            <div class="top-header"></div>
+            <div class="shadow-header">
+                <div class="container-header">
+                    <p class="theme-p">Тема: Переменные</p>
+                    <div class="div-a">
+                        <a href="#install-python" class="header-a">Типы переменных</a>
+                        <a href="#print" class="header-a">Объявление переменных</a>
+                    </div>
+                </div>
+                <div class="account-button"> <!-- Сейчас авторизация не работает -->
+                    <img src="img/icon-account.svg" alt="account icon" class="img-icon-account">
+                </div>
+            </div>
+        </header>
+        <section class="warning">
+            <p class="p-warning">Сайт в данный момент не оптимизирован под устройства с шириной экрана менее 320 пикселей</p>
+        </section>
+        <section class="lesson">
+            <h1>Переменные</h1>
+            <p class="p-lesson">Приветствую всех начинающих программистов! Сегодня мы продожим изучать Python и поговорим о переменных.</p>
+            <p class="p-lesson">Переменная — это место, где вы можете хранить значение в вашей программе. Вы можете cчитать переменную коробкой, в которую вы можете положить что-то для использования позже. В математике вы наверняка уже встречали переменные, когда решали уравнения с буквами x или a, эти буквы и есть переменные.</p>
+            <p class="p-lesson">Есть несколько правил, которые нужно знать, когда вы создаете переменные:</p>
+            <p class="p-lesson">Нельзя использовать зарезервированные слова Python в качестве имен переменных. Например, вы не можете назвать переменную "if" или "while", потому что они имеют специальное значение в Python.</p>
+            <p class="p-lesson">Имена переменных должны начинаться с буквы или символа подчеркивания "_". Они могут содержать буквы, цифры и символ подчеркивания, но не могут начинаться с цифр. Например, вы можете назвать переменную "a1" или "_a", но не "1a".</p>
+            <p class="p-lesson">Имена переменных чувствительны к регистру. То есть переменные "a" и "A" будут считаться разными переменными.</p>
+            <p class="p-lesson">Тип переменной определяется значением, которое вы ей присваиваете. Например, если вы присвоите переменной значение целого числа, то она будет иметь тип "int".</p>
+            <ul class="p-lesson">
+                <li>int (целое число)</li>
+                <li>float (число с плавающей запятой)</li>
+                <li>bool (логический тип данных)</li>
+                <li>str (строка)</li>
+                <li>list (список)</li>
+                <li>tuple (кортеж)</li>
+                <li>set (множество)</li>
+                <li>dict (словарь)</li>
+            </ul>
+            <p class="p-lesson">Чтобы создать переменную, вы можете использовать знак равенства "=" и присвоить ей значение. Например, вот как мы можем создать переменную с именем "x" и присвоить ей значение 5:</p>
+            <div class="code-lesson">
+                <code id="code-1">x = 5</code>
+                <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <img src="img/icon-copy.svg" alt="copy code">
+                </button>
+            </div>
+            <p class="p-lesson">Также можно присвоить одно значение нескольким переменным. Например:</p>
+            <div class="code-lesson">
+                <code id="code-1">y = z = 10</code>
+                <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <img src="img/icon-copy.svg" alt="copy code">
+                </button>
+            </div>
+            <p class="p-lesson">Здесь мы создаем две переменные "y" и "z" и присваиваем им обеим значение 10.</p>
+            <p class="p-lesson">Мы также можем присвоить разные значения нескольким переменным в одной строке:</p>
+            <div class="code-lesson">
+                <code id="code-1">a, b, c = 1, 2, 3</code>
+                <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <img src="img/icon-copy.svg" alt="copy code">
+                </button>
+            </div>
+            <p class="p-lesson">Также мы можем использовать переменные в выражениях:</p>
+            <div class="code-lesson">
+                <code id="code-1">x = 5<br/>
+                    y = 10<br/>
+                    z = x + y</code>
+                <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <img src="img/icon-copy.svg" alt="copy code">
+                </button>
+            </div>
+            <p class="p-lesson">Здесь мы создаем переменные "x" и "y" и присваиваем им значения 5 и 10 соответственно. Затем мы создаем переменную "z" и присваиваем ей сумму.</p>
+            <p class="p-lesson">В Python есть несколько основных операций, которые используются почти в каждой программе:</p>
+            <ul class="p-lesson">
+                <li>+ (сложение)</li>
+                <li>- (вычитание)</li>
+                <li>* (умножение)</li>
+                <li>** (возведение в степень)</li>
+                <li>/ (разделить)</li>
+                <li>// (деление без остатка)</li>
+                <li>% (остаток от деления)</li>
+            </ul>
+            <p class="p-lesson">Кроме того, в Python есть специальный тип переменных - логический тип (bool). Он может иметь только два значения: True и False. Эти значения часто используются в условных операторах и других выражениях, которые оцениваются как истинные или ложные.</p>
+            <div class="code-lesson">
+                <code id="code-1">x = True y = False</code>
+                <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <img src="img/icon-copy.svg" alt="copy code">
+                </button>
+            </div>
+            <p class="p-lesson">Также можно присваивать одно значение нескольким переменным:</p>
+            <div class="code-lesson">
+                <code id="code-1">x = y = z = 0</code>
+                <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <img src="img/icon-copy.svg" alt="copy code">
+                </button>
+            </div>
+            <p class="p-lesson">В следующем уроке мы рассмотрим условные операторы, которые позволяют выполнять различные действия в зависимости от значения переменных.</p>
+        </section>
+        <footer>
+            <p class="email">e-mail: <a href="mailto:startsevd6@gmail.com" class="email-a">startsevd6@gmail.com</a></p>
+        </footer>
+        </div>
+    </div>
+
+
+</body></html>

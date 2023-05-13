@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Пока сайт на хостинге 000webhost эта строчка убирает вотермарку --><style>img[alt="www.000webhost.com"] {display: none;}</style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <title>Главная</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside class="sidebar">
+            <a href="/0" class="a-lesson">
+                <div class="div-number-lesson">
+                    <p class="number-lesson">0</p>
+                </div>
+                <h2 class="name-lesson">Введение в Python</h2>
+            </a>
+            <a href="2.html" class="a-lesson">
+                <div class="div-number-lesson">
+                    <p class="number-lesson">1</p>
+                </div>
+                <h2 class="name-lesson">Переменные</h2>
+            </a>
+            <a href="/2" class="a-lesson">
+                <div class="div-number-lesson">
+                    <p class="number-lesson">2</p>
+                </div>
+                <h2 class="name-lesson">Вывод и ввод текста</h2>
+            </a>
+            <a href="/3" class="a-lesson">
+                <div class="div-number-lesson">
+                    <p class="number-lesson">3</p>
+                </div>
+                <h2 class="name-lesson">Условный оператор</h2>
+            </a>
+            <a href="/4" class="a-lesson">
+                <div class="div-number-lesson">
+                    <span class="number-lesson">4</span>
+                </div>
+                <span class="name-lesson">Циклы</span>
+            </a>
+            <a href="/settings" class="a-settings">
+                <div class="div-img-settings">
+                    <img src="img/icon-settings.svg" alt="settings button">
+                </div>
+                <span class="name-settings" id="after-img">Настройки</span>
+            </a>
+            <a class="button-menu">
+                <div class="div-img-menu">
+                    <img src="img/icon-menu.svg" alt="menu button">
+                </div>
+                <span class="name-menu" id="after-img">Меню</span>
+            </a>
+        </aside>
+        <div class="sections">
+        <header>
+            <div class="top-header"></div>
+            <div class="shadow-header">
+                <div class="container-header">
+                    <p class="theme-p">Тема: Введение в Python</p>
+                    <div class="div-a">
+                        <a href="#install-python" class="header-a">Установка Python</a>
+                        <a href="#print" class="header-a">print()</a>
+                    </div>
+                </div>
+                <div class="account-button"> <!-- Сейчас авторизация не работает -->
+                    <img src="img/icon-account.svg" alt="account icon" class="img-icon-account">
+                </div>
+            </div>
+        </header>
+        <section class="warning">
+            <p class="p-warning">Сайт в данный момент не оптимизирован под устройства с шириной экрана менее 320 пикселей</p>
+        </section>
+        <section class="lesson">
+            <h1>Введение в Python</h1>
+            <p class="p-lesson">Приветствую тебя, дорогой ученик! Сегодня мы начинаем наш курс "Python для начинающих", и я буду твоим гидом в мире программирования на Python.</p>
+            <p class="p-lesson">Python — это высокоуровневый, интерпретируемый язык программирования, который прост в изучении и использовании. Python используется для разработки различных приложений, от простых скриптов до сложных веб-приложений и научных вычислений.</p>
+            <h2 id="install-python">Установка Python</h2>
+            <p class="p-lesson">Для написания программ на Python нам нужен текстовый редактор или интегрированная среда разработки (IDE). Некоторые популярные IDE для Python включают в себя PyCharm, IDLE, Sublime Text, Visual Studio Code и другие. Мы будем использовать IDLE для наших упражнений.</p>
+            <p class="p-lesson">Чтобы начать программировать на Python, нам нужно установить его на компьютер. Python можно загрузить с официального сайта <a href="https://www.python.org/downloads/" class="a-in-lesson">python.org</a> и установить на свой компьютер. После установки Python, мы можем начать писать программы на Python.</p>
+            <figure>
+                <img src="img/site-python.png" alt="site python" class="img-lesson" style="max-width: 1903px;">
+                <figcaption class="figcaption-lesson">После перехода на сайт, вам нужно будет выбрать версию, которую вы хотите установить</figcaption>
+            </figure>
+            <figure>
+                <img src="img/open-installer-idle.png" alt="open installer idle" class="img-lesson" style="max-width: 654px;">
+                <figcaption class="figcaption-lesson">Откройте установщик, не забудьте поставить галочку на пункте "Add python.exe to PATH", нажмите на кнопку "Install Now"</figcaption>
+            </figure>
+            <figure>
+                <img src="img/installed-python.png" alt="installed python" class="img-lesson" style="max-width: 654px;">
+                <figcaption class="figcaption-lesson">Если вы видите это окно, то вы сделали всё правильно и успешно установили Python</figcaption>
+            </figure>
+            <p class="p-lesson">Когда вы открываете IDLE, вы увидите окно интерактивной оболочки Python (Python Shell), где вы можете сразу начать писать код и видеть результаты его выполнения. Но тот код, который вы напишете не сохранится.</p>
+            <figure class="figure-to-line">
+                <img src="img/idle-new-file.png" alt="idle new file" class="img-lesson" style="max-width: 330px;">
+                <figcaption class="figcaption-lesson" style="max-width: 330px;">Откройте новый файл в IDLE, нажав на кнопку "New File"</figcaption>
+            </figure>
+            <figure class="figure-to-line">
+                <img src="img/idle-save-file.png" alt="idle save file" class="img-lesson" style="max-width: 330px;">
+                <figcaption class="figcaption-lesson" style="max-width: 330px;">Сохраните этот файл, нажав на кнопку "Save", не оставляйте название файла пустым</figcaption>
+            </figure>
+            <h2 id="print">print()</h2>
+            <p class="p-lesson">Для начала давайте попробуем написать нашу первую программу на Python. Например, мы можем написать самую простую программу, которая печатает "Hello, world!" на экране:</p>    
+            <div class="code-lesson">
+                <code id="code-1">print("Hello, world!")</code>
+                <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <img src="img/icon-copy.svg" alt="copy code">
+                </button>
+            </div>
+            <p></p>
+            <figure class="figure-to-line">
+                <img src="img/idle-first-program.png" alt="idle first program" class="img-lesson" style="max-width: 330px;">
+                <figcaption class="figcaption-lesson" style="max-width: 330px;">Напишите свою первую программу в IDLE, используя код сверху</figcaption>
+            </figure>
+            <figure class="figure-to-line">
+                <img src="img/idle-first-run.png" alt="idle first run" class="img-lesson" style="max-width: 330px;">
+                <figcaption class="figcaption-lesson" style="max-width: 330px;">Запустите её, и вы увидите результат выполнения</figcaption>
+            </figure>
+            <p class="p-lesson">Когда вы набираете этот код в интерактивной оболочке Python и нажимаете Enter, вы увидите, что программа выводит на экран строку "Hello, world!".</p>   
+            <p class="p-lesson">Таким образом, мы начали наше знакомство с Python. В следующем уроке мы будем изучать переменные Python, которые помогут нам создавать более сложные программы и решать интересные задачи.</p>
+        </section>
+        <footer>
+            <p class="email">e-mail: <a href="mailto:startsevd6@gmail.com" class="email-a">startsevd6@gmail.com</a></p>
+        </footer>
+        </div>
+    </div>
+
+
+</body></html>

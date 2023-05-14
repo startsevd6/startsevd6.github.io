@@ -21,7 +21,7 @@ aside {
     z-index: 1;
 }
 
-.warning { 
+.warning {
     display: none;
     background-color: #eae7ce;
     margin-top: 110px;
@@ -33,7 +33,8 @@ aside {
     margin: 0 auto;
 }
 
-.a-lesson, .a-settings {
+.a-lesson,
+.a-settings {
     display: block;
     height: 60px;
     text-decoration: none;
@@ -48,7 +49,9 @@ aside {
     display: none;
 }
 
-.a-lesson:hover, .a-settings:hover, .button-menu:hover {
+.a-lesson:hover,
+.a-settings:hover,
+.button-menu:hover {
     background-color: #EDF0F1;
 }
 
@@ -60,7 +63,8 @@ aside {
     height: 18px;
 }
 
-.div-img-settings, .div-img-menu {
+.div-img-settings,
+.div-img-menu {
     display: inline-flex;
     width: 20px;
     padding: 20px;
@@ -76,7 +80,9 @@ aside {
     color: #000;
 }
 
-.name-lesson, .name-settings, .name-menu {
+.name-lesson,
+.name-settings,
+.name-menu {
     margin: 0;
     padding: 20px;
     font-family: 'Montserrat';
@@ -86,7 +92,8 @@ aside {
     display: block;
 }
 
-.name-settings, .name-menu {
+.name-settings,
+.name-menu {
     position: relative;
     left: -18px;
     top: -5px;
@@ -117,7 +124,7 @@ header {
 
 .shadow-header {
     height: 50px;
-    background: linear-gradient(0deg,rgba(236,240,241,0),#ecf0f1 50px);
+    background: linear-gradient(0deg, rgba(236, 240, 241, 0), #ecf0f1 50px);
 }
 
 .container-header {
@@ -268,7 +275,8 @@ footer {
     border-radius: 12px;
 }
 
-.email, .email-a {
+.email,
+.email-a {
     font-family: 'Montserrat';
     font-weight: 500;
     font-size: 16px;
@@ -329,7 +337,9 @@ footer {
         transform: translateX(230px);
     }
 
-    .a-lesson.extension, .a-settings.extension, .button-menu.extension {
+    .a-lesson.extension,
+    .a-settings.extension,
+    .button-menu.extension {
         width: 290px;
     }
 
@@ -349,7 +359,8 @@ footer {
         padding: 24px 25px;
     }
 
-    .name-lesson, #after-img {
+    .name-lesson,
+    #after-img {
         display: none;
     }
 
@@ -357,7 +368,8 @@ footer {
         display: block;
     }
 
-    #after-img.visible, .name-settings.visible {
+    #after-img.visible,
+    .name-settings.visible {
         display: inline-block;
     }
 
@@ -417,6 +429,7 @@ footer {
     .wrapper {
         width: 100vw;
     }
+
     .container-header {
         height: 100px;
         border-radius: 0 0 7px 7px;
@@ -444,7 +457,7 @@ footer {
 
     .p-warning {
         font-family: 'Inter', sans-serif;
-        font-weight: 400;  
+        font-weight: 400;
     }
 
     .div-a {

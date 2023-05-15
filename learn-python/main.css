@@ -37,8 +37,14 @@ a:hover {
     background-color: #6195C3;
 }
 
+section {
+    margin: 0 auto;
+    max-width: 1105px;
+}
+
 span {
-    margin-top: 264px;
+    display: block;
+    padding-top: 264px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -48,8 +54,29 @@ span {
 }
 
 h1 {
-    margin-top: 100px;
-    font-weight: 700;
+    margin-top: 31px;
+    font-family: 'Montserrat';
+    font-size: 80px;
+    line-height: 89px;
+    font-weight: 500;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+h2, p {
+    margin: 223px 0 0;
+}
+
+p {
+    margin-left: 128px;
+    display: inline-block;
+}
+
+footer {
+    height: 223px;
 }
 
 /*

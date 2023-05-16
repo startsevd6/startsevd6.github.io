@@ -252,20 +252,38 @@ figure {
     background: #EBECEE;
 }
 
+.pre {
+    page-break-inside: avoid;
+    font-size: 13px;
+    line-height: 20px;
+    word-break: break-all;
+    word-wrap: break-word;
+    white-space: pre;
+}
+
+.pre code {
+    padding: 0;
+    color: inherit;
+    white-space: pre;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border: 0;
+}
+
 code {
     font-family: 'Source Code Pro', monospace;
     font-size: 14px;
     padding: 10px;
 }
 
-.copy-code-lesson-1 {
+.copy-code-lesson {
     float: right;
     margin-top: -10px;
-    border: 0;
     padding: 0;
     height: 42px;
     border-radius: 10px;
     cursor: pointer;
+    border: 0;
 }
 
 footer {

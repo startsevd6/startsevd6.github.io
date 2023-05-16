@@ -63,18 +63,22 @@ $('document').ready(function () {
     });
 
     // Функция для копирования кода
-    new ClipboardJS('.copy-code-lesson-1', {
-        text: function () {
-            try {
-                const codeElement = document.querySelector('#code-1');
-                return codeElement.innerText;
-            } catch {
-                alert('Ошибка: не удалось найти текст для копирования');
+    // Получите все кнопки с классом "copy-code-button"
+    const copyCodeButtons = document.querySelectorAll('.copy-code-lesson');
+
+    // Переберите каждую кнопку и настройте ClipboardJS для неё
+    copyCodeButtons.forEach(function (button) {
+        new ClipboardJS(button, {
+            text: function (trigger) {
+                try {
+                    const codeElement = trigger.getAttribute('data-clipboard-target');
+                    return document.querySelector(codeElement).innerText;
+                } catch {
+                    alert('Ошибка: не удалось найти текст для копирования');
+                }
             }
-        }
-    }).on('error', function (e) {
-        alert('Ошибка: не удалось скопировать текст');
-    })
+        });
+    });
 
     // Плавный переход к блоку текста
     $('a[href^="#"]').on('click', function (event) {

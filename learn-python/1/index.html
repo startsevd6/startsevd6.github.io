@@ -34,8 +34,8 @@
                     <div class="container-header">
                         <p class="theme-p">Тема: Переменные</p>
                         <div class="div-a">
-                            <a href="#install-python" class="header-a">Типы переменных</a>
-                            <a href="#print" class="header-a">Объявление переменных</a>
+                            <a href="#variable-types" class="header-a">Типы переменных</a>
+                            <a href="#mathematical-operations" class="header-a">Действия</a>
                         </div>
                     </div>
                     <div class="account-button"> <!-- Сейчас авторизация не работает -->
@@ -56,16 +56,20 @@
                     математике вы наверняка уже встречали переменные, когда решали уравнения с буквами x или a, эти
                     буквы и есть переменные.</p>
                 <p class="p-lesson">Есть несколько правил, которые нужно знать, когда вы создаете переменные:</p>
-                <p class="p-lesson">Нельзя использовать зарезервированные слова Python в качестве имен переменных.
+                <ul>
+                    <li class="p-lesson">Нельзя использовать зарезервированные слова Python в качестве имен переменных.
                     Например, вы не можете назвать переменную "if" или "while", потому что они имеют специальное
-                    значение в Python.</p>
-                <p class="p-lesson">Имена переменных должны начинаться с буквы или символа подчеркивания "_". Они могут
+                    значение в Python</li>
+                    <li class="p-lesson">Имена переменных должны начинаться с буквы или символа подчеркивания "_". Они могут
                     содержать буквы, цифры и символ подчеркивания, но не могут начинаться с цифр. Например, вы можете
-                    назвать переменную "a1" или "_a", но не "1a".</p>
-                <p class="p-lesson">Имена переменных чувствительны к регистру. То есть переменные "a" и "A" будут
-                    считаться разными переменными.</p>
+                    назвать переменную "a1" или "_a", но не "1a".</li>
+                    <li class="p-lesson">Имена переменных чувствительны к регистру. То есть переменные "a" и "A" будут
+                    считаться разными переменными.</li>
+                </ul>
+                <h2 id="variable-types">Типы переменных</h2>
                 <p class="p-lesson">Тип переменной определяется значением, которое вы ей присваиваете. Например, если вы
                     присвоите переменной значение целого числа, то она будет иметь тип "int".</p>
+                <p class="p-lesson">Вот некоторые типы данных, которые мы будем изучать в этом курсе</p>
                 <ul class="p-lesson">
                     <li>int (целое число)</li>
                     <li>float (число с плавающей запятой)</li>
@@ -80,33 +84,36 @@
                     значение. Например, вот как мы можем создать переменную с именем "x" и присвоить ей значение 5:</p>
                 <div class="code-lesson">
                     <code id="code-1">x = 5</code>
-                    <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <button class="copy-code-lesson" id="button-copy-code-1" data-clipboard-target="#code-1">
                         <img src="/learn-python/img/icon-copy.svg" alt="copy code">
                     </button>
                 </div>
                 <p class="p-lesson">Также можно присвоить одно значение нескольким переменным. Например:</p>
                 <div class="code-lesson">
-                    <code id="code-1">y = z = 10</code>
-                    <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <code id="code-2">y = z = 10</code>
+                    <button class="copy-code-lesson" id="button-copy-code-2" data-clipboard-target="#code-2">
                         <img src="/learn-python/img/icon-copy.svg" alt="copy code">
                     </button>
                 </div>
                 <p class="p-lesson">Здесь мы создаем две переменные "y" и "z" и присваиваем им обеим значение 10.</p>
                 <p class="p-lesson">Мы также можем присвоить разные значения нескольким переменным в одной строке:</p>
                 <div class="code-lesson">
-                    <code id="code-1">a, b, c = 1, 2, 3</code>
-                    <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <code id="code-3">a, b, c = 1, 2, 3</code>
+                    <button class="copy-code-lesson" id="button-copy-code-3" data-clipboard-target="#code-3">
                         <img src="/learn-python/img/icon-copy.svg" alt="copy code">
                     </button>
                 </div>
+                <h2 id="mathematical-operations">Действия</h2>
                 <p class="p-lesson">Также мы можем использовать переменные в выражениях:</p>
                 <div class="code-lesson">
-                    <code id="code-1">x = 5<br/>
-                    y = 10<br/>
-                    z = x + y</code>
-                    <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <button class="copy-code-lesson" id="button-copy-code-4" data-clipboard-target="#code-4">
                         <img src="/learn-python/img/icon-copy.svg" alt="copy code">
                     </button>
+                    <code class="pre" id="code-4">
+    x = 5
+    y = 10
+    z = x + y
+                </code>
                 </div>
                 <p class="p-lesson">Здесь мы создаем переменные "x" и "y" и присваиваем им значения 5 и 10
                     соответственно. Затем мы создаем переменную "z" и присваиваем ей сумму.</p>
@@ -125,21 +132,21 @@
                     может иметь только два значения: True и False. Эти значения часто используются в условных операторах
                     и других выражениях, которые оцениваются как истинные или ложные.</p>
                 <div class="code-lesson">
-                    <code id="code-1">x = True y = False</code>
-                    <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <code id="code-5">x = True y = False</code>
+                    <button class="copy-code-lesson" id="button-copy-code-5" data-clipboard-target="#code-5">
                         <img src="/learn-python/img/icon-copy.svg" alt="copy code">
                     </button>
                 </div>
                 <p class="p-lesson">Также можно присваивать одно значение нескольким переменным:</p>
                 <div class="code-lesson">
-                    <code id="code-1">x = y = z = 0</code>
-                    <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
+                    <code id="code-6">x = y = z = 0</code>
+                    <button class="copy-code-lesson" id="button-copy-code-6" data-clipboard-target="#code-6">
                         <img src="/learn-python/img/icon-copy.svg" alt="copy code">
                     </button>
                 </div>
                 <p class="p-lesson">В следующем уроке мы рассмотрим условные операторы, которые позволяют выполнять
                     различные действия в зависимости от значения переменных.</p>
-            </section>
+            </section> 
             <include id="include-footer"></include>
         </div>
     </div>

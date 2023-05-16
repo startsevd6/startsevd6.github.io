@@ -9,6 +9,16 @@ $('document').ready(function () {
     const aSettings = $('.a-settings');
     const buttonMenu = $('.button-menu');
 
+    // Подгружаем aside из отдельного файла
+    $("#include-aside").load('/learn-python/aside.html'), function () {
+        alert("Загрузка боковой панели не удалась");
+    };
+
+    // Подгружаем footer из отдельного файла
+    $("#include-footer").load('/learn-python/footer.html'), function () {
+        alert("Загрузка нижнего блока сайта не удалась");
+    };
+
     // Расширяем сайдбар при нажатии на кнопку
     $(".button-menu").on("click", function () {
         // если сайдбар сжат, то расширяем, если нет, то сжимаем
@@ -34,15 +44,6 @@ $('document').ready(function () {
             nameMenu.removeClass('visible');
             afterImg.removeClass('visible');
         }
-
-        // текст кнопок появляется после анимации
-        /*nameLesson.one('transitionend', function() {
-            nameLesson.toggleClass('visible');
-        });
-    
-        afterImg.one('transitionend', function() {
-            afterImg.toggleClass('visible');
-        });*/
     });
 
     // Возвращам ширину сайдбару, если ширина окна стала больше

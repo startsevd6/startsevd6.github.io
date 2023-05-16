@@ -11,7 +11,7 @@
     </style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/learn-python/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -20,56 +20,13 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="../../learn-python/script.js"></script>
     <title>Главная</title>
 </head>
 
 <body>
     <div class="wrapper">
-        <aside class="sidebar">
-            <a href="1.html" class="a-lesson">
-                <div class="div-number-lesson">
-                    <p class="number-lesson">0</p>
-                </div>
-                <h2 class="name-lesson">Введение в Python</h2>
-            </a>
-            <a href="2.html" class="a-lesson">
-                <div class="div-number-lesson">
-                    <p class="number-lesson">1</p>
-                </div>
-                <h2 class="name-lesson">Переменные</h2>
-            </a>
-            <a href="/2" class="a-lesson">
-                <div class="div-number-lesson">
-                    <p class="number-lesson">2</p>
-                </div>
-                <h2 class="name-lesson">Вывод и ввод текста</h2>
-            </a>
-            <a href="/3" class="a-lesson">
-                <div class="div-number-lesson">
-                    <p class="number-lesson">3</p>
-                </div>
-                <h2 class="name-lesson">Условный оператор</h2>
-            </a>
-            <a href="/4" class="a-lesson">
-                <div class="div-number-lesson">
-                    <span class="number-lesson">4</span>
-                </div>
-                <span class="name-lesson">Циклы</span>
-            </a>
-            <a href="/settings" class="a-settings">
-                <div class="div-img-settings">
-                    <img src="img/icon-settings.svg" alt="settings button">
-                </div>
-                <span class="name-settings" id="after-img">Настройки</span>
-            </a>
-            <a class="button-menu">
-                <div class="div-img-menu">
-                    <img src="img/icon-menu.svg" alt="menu button">
-                </div>
-                <span class="name-menu" id="after-img">Меню</span>
-            </a>
-        </aside>
+        <include id="include-aside"></include>
         <div class="sections">
             <header>
                 <div class="top-header"></div>
@@ -82,7 +39,7 @@
                         </div>
                     </div>
                     <div class="account-button"> <!-- Сейчас авторизация не работает -->
-                        <img src="img/icon-account.svg" alt="account icon" class="img-icon-account">
+                        <img src="/learn-python/img/icon-account.svg" alt="account icon" class="img-icon-account">
                     </div>
                 </div>
             </header>
@@ -141,7 +98,7 @@
                 <div class="code-lesson">
                     <code id="code-1">print("Hello, world!")</code>
                     <button class="copy-code-lesson-1" id="button-copy-code-1" data-clipboard-target="#code-1">
-                        <img src="img/icon-copy.svg" alt="copy code">
+                        <img src="/learn-python/img/icon-copy.svg" alt="copy code">
                     </button>
                 </div>
                 <p></p>
@@ -156,16 +113,13 @@
                     <figcaption class="figcaption-lesson" style="max-width: 330px;">Запустите её, и вы увидите результат
                         выполнения</figcaption>
                 </figure>
-                <p class="p-lesson">Когда вы набираете этот код в интерактивной оболочке Python и нажимаете Enter, вы
+                <p class="p-lesson">Когда вы набираете этот код в интерактивной оболочке Python и нажимаете F5, вы
                     увидите, что программа выводит на экран строку "Hello, world!".</p>
                 <p class="p-lesson">Таким образом, мы начали наше знакомство с Python. В следующем уроке мы будем
                     изучать переменные Python, которые помогут нам создавать более сложные программы и решать интересные
                     задачи.</p>
             </section>
-            <footer>
-                <p class="email">e-mail: <a href="mailto:startsevd6@gmail.com" class="email-a">startsevd6@gmail.com</a>
-                </p>
-            </footer>
+            <include id="include-footer"></indlude>
         </div>
     </div>
 

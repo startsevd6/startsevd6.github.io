@@ -86,7 +86,7 @@ $(document).ready(function () {
     const nameSettings = $('.name-settings');
     const nameMenu = $('.name-menu');
     const afterImg = $('#after-img');
-    // созда1м отдельные функции addClasses() и removeClasses() чтобы не дублировать код
+    // создаём отдельные функции addClasses() и removeClasses() чтобы не дублировать код
     function addClasses() {
         aLesson.addClass('extension');
         aPython.addClass('extension');

@@ -9,26 +9,32 @@ $(document).on('click', '.button-menu', function () {
     const sections = $('.sections');
 
     const aLesson = $('.a-lesson');
+    const aPython = $('.a-python');
     const aSettings = $('.a-settings');
     const buttonMenu = $('.button-menu');
     const nameLesson = $('.name-lesson');
+    const nameSettings = $('.name-settings');
     const nameMenu = $('.name-menu');
     const afterImg = $('#after-img');
 
     function addClasses() {
         aLesson.addClass('extension');
+        aPython.addClass('extension');
         aSettings.addClass('extension');
         buttonMenu.addClass('extension');
         nameLesson.addClass('visible');
+        nameSettings.addClass('visible');
         nameMenu.addClass('visible');
         afterImg.addClass('visible');
     }
 
     function removeClasses() {
         aLesson.removeClass('extension');
+        aPython.addClass('extension');
         aSettings.removeClass('extension');
         buttonMenu.removeClass('extension');
         nameLesson.removeClass('visible');
+        nameSettings.removeClass('visible');
         nameMenu.removeClass('visible');
         afterImg.removeClass('visible');
     }
@@ -51,7 +57,7 @@ $(document).on('click', '.button-menu', function () {
     }
 });
 
-$(document).ready(function () { 
+$(document).ready(function () {
     const includeAside = $('#include-aside');
     const includeFooter = $('#include-footer');
 
@@ -71,28 +77,34 @@ $(document).ready(function () {
 
     const aside = $('aside');
     const sections = $('.sections');
-
+    
     const aLesson = $('.a-lesson');
+    const aPython = $('.a-python');
     const aSettings = $('.a-settings');
     const buttonMenu = $('.button-menu');
     const nameLesson = $('.name-lesson');
+    const nameSettings = $('.name-settings');
     const nameMenu = $('.name-menu');
     const afterImg = $('#after-img');
     // созда1м отдельные функции addClasses() и removeClasses() чтобы не дублировать код
     function addClasses() {
         aLesson.addClass('extension');
+        aPython.addClass('extension');
         aSettings.addClass('extension');
         buttonMenu.addClass('extension');
         nameLesson.addClass('visible');
+        nameSettings.addClass('visible');
         nameMenu.addClass('visible');
         afterImg.addClass('visible');
     }
 
     function removeClasses() {
         aLesson.removeClass('extension');
+        aPython.addClass('extension');
         aSettings.removeClass('extension');
         buttonMenu.removeClass('extension');
         nameLesson.removeClass('visible');
+        nameSettings.removeClass('visible');
         nameMenu.removeClass('visible');
         afterImg.removeClass('visible');
     }
@@ -109,10 +121,12 @@ $(document).ready(function () {
                 removeClasses();
             } else {
                 if (sectionsIsShifted == true) {
-                    sections.addClass('shifted');aside.addClass('open');
+                    sections.addClass('shifted'); 
+                    aside.addClass('open');
                 }
                 setTimeout(function () {
-                    sections.addClass('animate');aside.addClass('animate');
+                    sections.addClass('animate'); 
+                    aside.addClass('animate');
                 }, 500);
                 addClasses();
             }

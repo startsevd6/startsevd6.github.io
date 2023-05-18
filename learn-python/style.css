@@ -34,15 +34,16 @@ aside {
 }
 
 .a-lesson,
-.a-settings {
+.a-settings,
+.a-python {
     display: block;
     height: 60px;
     text-decoration: none;
     border-radius: 5px;
 }
 
-.a-settings {
-    margin-top: 321px;
+.a-python {
+    margin-top: 261px;
 }
 
 .button-menu {
@@ -51,6 +52,7 @@ aside {
 
 .a-lesson:hover,
 .a-settings:hover,
+.a-python:hover,
 .button-menu:hover {
     background-color: #EDF0F1;
 }
@@ -169,6 +171,7 @@ header {
 .account-button {
     float: right;
     height: 26px;
+    max-width: 26px;
     background: #3AB497;
     padding: 12px;
     border-radius: 7px;
@@ -317,8 +320,8 @@ footer {
         margin-right: 4%;
     }
 
-    .a-settings {
-        margin-top: max(calc(100vh - 370px), 5px);
+    .a-python {
+        margin-top: max(calc(100vh - 430px), 5px);
     }
 }
 
@@ -349,12 +352,13 @@ footer {
 
     .a-lesson.extension,
     .a-settings.extension,
+    .a-python.extension
     .button-menu.extension {
         width: 290px;
     }
 
-    .a-settings {
-        margin-top: max(calc(100vh - 430px), 5px);
+    .a-python {
+        margin-top: max(calc(100vh - 490px), 5px);
     }
 
     .div-number-lesson {

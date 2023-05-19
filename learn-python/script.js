@@ -77,7 +77,7 @@ $(document).ready(function () {
 
     const aside = $('aside');
     const sections = $('.sections');
-    
+
     const aLesson = $('.a-lesson');
     const aPython = $('.a-python');
     const aSettings = $('.a-settings');
@@ -121,11 +121,11 @@ $(document).ready(function () {
                 removeClasses();
             } else {
                 if (sectionsIsShifted == true) {
-                    sections.addClass('shifted'); 
+                    sections.addClass('shifted');
                     aside.addClass('open');
                 }
                 setTimeout(function () {
-                    sections.addClass('animate'); 
+                    sections.addClass('animate');
                     aside.addClass('animate');
                 }, 500);
                 addClasses();
@@ -158,4 +158,19 @@ $(document).ready(function () {
             }, 1000);
         }
     });
+
+    // Проверяем, является ли устройство сенсорным
+    function isTouchDevice() {
+        return 'ontouchstart' in window || navigator.maxTouchPoints;
+    }
+
+    // Отключаем hover-эффекты на устройствах с сенсорным экраном
+    if (isTouchDevice()) {
+        document.addEventListener('DOMContentLoaded', function () {
+            var elements = document.querySelectorAll(':hover');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].classList.remove('hover-class'); // Замените 'hover-class' на ваш класс hover-эффекта
+            }
+        });
+    }
 });

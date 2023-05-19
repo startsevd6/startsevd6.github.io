@@ -137,9 +137,14 @@ header {
     float: left;
 }
 
+.header-p {
+    display: inline-block;
+    height: 50px;
+}
+
 .theme-p {
     float: left;
-    margin: 13px;
+    padding: 13px;
     font-family: 'Montserrat';
     font-weight: 500;
     font-size: 20px;
@@ -247,6 +252,14 @@ figure {
     border-radius: 10px;
 }
 
+.pre-code-lesson {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-radius: 10px;
+    background: #EBECEE;
+}
+
 .code-lesson {
     display: inline-block;
     margin-bottom: 20px;
@@ -352,8 +365,7 @@ footer {
 
     .a-lesson.extension,
     .a-settings.extension,
-    .a-python.extension
-    .button-menu.extension {
+    .a-python.extension .button-menu.extension {
         width: 290px;
     }
 
@@ -444,27 +456,38 @@ footer {
         width: 100vw;
     }
 
+    header {
+        top: -50px;
+    }
+
     .container-header {
         height: 100px;
         border-radius: 0 0 7px 7px;
     }
 
+    .header-p {
+        display: block;
+    }
+
     .theme-p {
         width: 100vw;
-        margin: 13px 0;
+        padding: 13px 0;
         float: left;
         text-align: center;
     }
 
     .div-a {
-        width: 293px;
-        margin: 0 calc((100vw - 293px) / 2);
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        float: unset;
+        margin: 0 auto;
     }
 }
 
 @media (max-width: 320px) {
     .theme-p {
-        margin: 13px;
+        padding: 13px;
         line-height: 2;
         text-align: left;
     }

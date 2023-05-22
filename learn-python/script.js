@@ -46,12 +46,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <span class="name-settings" id="after-img">Настройки</span>
             </a>
-            <a class="button-menu">
+            <button class="button-menu">
                 <div class="div-img-menu">
                     <img src="/learn-python/img/icon-menu.svg" alt="menu button">
                 </div>
                 <span class="name-menu" id="after-img">Меню</span>
-            </a>
+            </button>
         </aside>`;
     const footerContent = `
         <footer>
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelector('.sections');
 
     document.addEventListener('click', function (event) {
-        let target = event.target.closest('a.button-menu');
+        let target = event.target.closest('button.button-menu');
 
         if (target) {
             if (aside.offsetWidth === 80) {
@@ -276,5 +276,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('resize', resizeHandler);
 
+    // Возвращаем aside в исходное состояние после загрузки страницы 
     resizeHandler();
 });

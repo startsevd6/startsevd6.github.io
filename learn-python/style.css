@@ -263,7 +263,8 @@ table {
     margin-bottom: 20px;
 }
 
-.code-lesson, .pre-code-lesson {
+.code-lesson,
+.pre-code-lesson {
     display: inline-block;
     margin-bottom: 20px;
     border-radius: 10px;
@@ -288,16 +289,20 @@ code {
     float: right;
     padding: 0;
     height: 42px;
-    border-radius: 10px;   
+    border-radius: 10px;
     border: 0;
     cursor: pointer;
 }
 
-.copy-code-img, .copy-code-img-success {
+.copy-code-img,
+.copy-code-img-success {
     display: none;
+    width: 42px;
+    height: 42px;
 }
 
-.copy-code-img.visible, .copy-code-img-success.visible {
+.copy-code-img.visible,
+.copy-code-img-success.visible {
     display: inline-block;
 }
 
@@ -411,6 +416,7 @@ footer {
 
     .button-menu {
         display: inline-block;
+        text-align: left;
         border: 0;
         padding: 0;
         background: #fff;

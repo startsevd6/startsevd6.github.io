@@ -248,239 +248,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Расширяем aside обратно, если разрешение экрана подходит
-    function resizeHandler() {
-        if (window.innerWidth >= 935 || window.innerWidth <= 1200) {
-            aside.classList.remove('open');
-            aside.classList.remove('animate');
-            toggleClasses(sections, 'shifted', false);
-            removeClasses();
-        } else {
-            if (sectionsIsShifted) {
-                toggleClasses(sections, 'shifted', true);
-                aside.classList.add('open');
-            }
-
-            setTimeout(function () {
-                sections.classList.add('animate');
-                aside.classList.add('animate');
-            }, 500);
-            addClasses();
-        }
-    }
-
     let debounceTimeout;
 
-    window.addEventListener('resize', function () {
+    function resizeHandler() {
         clearTimeout(debounceTimeout);
-        debounceTimeout = setTimeout(resizeHandler, 100);
-    });
+
+        debounceTimeout = setTimeout(function () {
+            if (window.innerWidth >= 950 && window.innerWidth <= 1200 && sectionsIsShifted) {
+                sections.classList.remove('animate');
+                sections.classList.add('shifted');
+                aside.classList.remove('animate');
+                aside.classList.add('open');
+                addClasses();
+
+                setTimeout(function () {
+                    sections.classList.add('animate');
+                    aside.classList.add('animate');
+                }, 500);
+            } else if (window.innerWidth <= 950 || window.innerWidth >= 1200) {
+                aside.classList.remove('animate');
+                aside.classList.remove('open');
+                sections.classList.remove('shifted');
+                removeClasses();
+            }
+        }, 10);
+    }
+
+    window.addEventListener('resize', resizeHandler);
 
     resizeHandler();
 });
-
-
-// код с использованием jquery
-/*let sectionsIsShifted = false;
-
-// расширяем сайдбар при нажатии на кнопку
-$(document).on('click', '.button-menu', function () {
-    // объявляем локальные переменные и функции, т.к. кнопка подружается асинхронно
-    const aside = $('aside');
-    const sections = $('.sections');
-
-    const aLesson = $('.a-lesson');
-    const aPython = $('.a-python');
-    const aSettings = $('.a-settings');
-    const buttonMenu = $('.button-menu');
-    const nameLesson = $('.name-lesson');
-    const nameSettings = $('.name-settings');
-    const nameMenu = $('.name-menu');
-    const afterImg = $('#after-img');
-
-    function addClasses() {
-        aLesson.addClass('extension');
-        aPython.addClass('extension');
-        aSettings.addClass('extension');
-        buttonMenu.addClass('extension');
-        nameLesson.addClass('visible');
-        nameSettings.addClass('visible');
-        nameMenu.addClass('visible');
-        afterImg.addClass('visible');
-    }
-
-    function removeClasses() {
-        aLesson.removeClass('extension');
-        aPython.addClass('extension');
-        aSettings.removeClass('extension');
-        buttonMenu.removeClass('extension');
-        nameLesson.removeClass('visible');
-        nameSettings.removeClass('visible');
-        nameMenu.removeClass('visible');
-        afterImg.removeClass('visible');
-    }
-
-    // если сайдбар сжат, то расширяем, если нет, то сжимаем
-    if (aside.width() === 70) {
-        aside.addClass('animate');
-        aside.toggleClass('open');
-        sections.addClass('animate');
-        sections.addClass('shifted');
-        sectionsIsShifted = true;
-        setTimeout(function () {
-            addClasses();
-        }, 500);
-    } else {
-        aside.removeClass('open');
-        sections.removeClass('shifted');
-        sectionsIsShifted = false;
-        removeClasses();
-    }
-});
-
-
-$(document).ready(function () {
-    // подгружаем aside из отдельного файла
-    const includeAside = $('#include-aside');
-    includeAside.load('/learn-python/aside.html', function (response, status, xhr) {
-        if (status === "error") {
-            alert("Загрузка боковой панели не удалась");
-        }
-    });
-
-    // подгружаем footer из отдельного файла
-    const includeFooter = $('#include-footer');
-    includeFooter.load('/learn-python/footer.html', function (response, status, xhr) {
-        if (status === "error") {
-            alert("Загрузка нижнего блока сайта не удалась");
-        }
-    });
-
-    // вставка блоков кода на страницу
-    let includeId = 'include-copy-code-button-';
-    const numberOfBlocks = document.querySelectorAll(`[id^="${includeId}"]`).length;
-
-    for (let i = 1; i <= numberOfBlocks; i++) {
-        
-        let buttonId = `${includeId}${i}`;
-        let includeButtonCopyCode = document.getElementById(buttonId);
-        let codeBlock = `
-        <button class="copy-code-lesson" id="button-copy-code-${i}" data-clipboard-target="#code-${i}">
-            <img class="copy-code-img visible" id="code-${i}-img" src="/learn-python/img/icon-copy.svg" alt="copy code">
-            <img class="copy-code-img-success" id="code-${i}-success" src="/learn-python/img/icon-success.svg" alt="copy code">
-        </button>
-        `;
-
-        if (includeButtonCopyCode) {
-            includeButtonCopyCode.innerHTML = codeBlock;
-        } else {
-            console.error(`Элемент с идентификатором ${buttonId} не найден.`);
-        }
-    }
-
-    const aside = $('aside');
-    const sections = $('.sections');
-
-    const aLesson = $('.a-lesson');
-    const aPython = $('.a-python');
-    const aSettings = $('.a-settings');
-    const buttonMenu = $('.button-menu');
-    const nameLesson = $('.name-lesson');
-    const nameSettings = $('.name-settings');
-    const nameMenu = $('.name-menu');
-    const afterImg = $('#after-img');
-
-    function addClasses() {
-        aLesson.addClass('extension');
-        aPython.addClass('extension');
-        aSettings.addClass('extension');
-        buttonMenu.addClass('extension');
-        nameLesson.addClass('visible');
-        nameSettings.addClass('visible');
-        nameMenu.addClass('visible');
-        afterImg.addClass('visible');
-    }
-
-    function removeClasses() {
-        aLesson.removeClass('extension');
-        aPython.addClass('extension');
-        aSettings.removeClass('extension');
-        buttonMenu.removeClass('extension');
-        nameLesson.removeClass('visible');
-        nameSettings.removeClass('visible');
-        nameMenu.removeClass('visible');
-        afterImg.removeClass('visible');
-    }
-
-
-    // возвращам ширину сайдбару, если ширина окна стала больше
-    let debounceTimeout;
-
-    $(window).resize(function () {
-        clearTimeout(debounceTimeout);
-        debounceTimeout = setTimeout(function () {
-            if ($(window).width() >= 1200 || $(window).width() <= 935) {
-                aside.removeClass('open');
-                aside.removeClass('animate');
-                sections.removeClass('shifted');
-                removeClasses();
-            } else {
-                if (sectionsIsShifted == true) {
-                    sections.addClass('shifted');
-                    aside.addClass('open');
-                }
-
-                setTimeout(function () {
-                    sections.addClass('animate');
-                    aside.addClass('animate');
-                }, 500);
-                addClasses();
-            }
-        }, 100);
-    });
-
-
-    // функция для копирования кода
-    const copyCodeButtons = document.querySelectorAll('.copy-code-lesson');
-
-    copyCodeButtons.forEach(function (button) {
-        new ClipboardJS(button, {
-            text: function (trigger) {
-                try {
-                    const codeElement = trigger.getAttribute('data-clipboard-target');
-                    const copyCodeImg = $(`${codeElement}-img`);
-                    const copyCodeImgSuccess = $(`${codeElement}-success`);
-
-                    copyCodeImg.removeClass('visible');
-                    copyCodeImgSuccess.addClass('visible');
-                    setTimeout(function () {
-                        copyCodeImgSuccess.removeClass('visible');
-                        copyCodeImg.addClass('visible');
-                    }, 2750);
-                    return document.querySelector(codeElement).innerText;
-                } catch {
-                    alert('Ошибка: не удалось найти текст для копирования');
-                }
-            }
-        });
-    });
-
-
-    // плавный переход к блоку текста
-    $('a[href^="#"]').on('click', function (event) {
-        let target = $(this.getAttribute('href'));
-        let windowHeightTop;
-
-        if ($(window).width() > 950) {
-            windowHeightTop = 1500;
-        } else {
-            windowHeightTop = 50;
-        }
-
-        if (target.length) {
-            event.preventDefault();
-            $('html, body').animate({
-                scrollTop: target.offset().top - windowHeightTop
-            }, 1000);
-        }
-    });
-});*/

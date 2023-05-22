@@ -25,7 +25,7 @@ aside {
     display: none;
     background-color: #eae7ce;
     margin-top: 110px;
-    padding: 50px;
+    padding: 50px 25px;
 }
 
 .wrapper {
@@ -252,18 +252,20 @@ figure {
     border-radius: 10px;
 }
 
-.pre-code-lesson {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 10px 0;
-    border-radius: 10px;
-    background: #EBECEE;
+table,
+th,
+td {
+    border: solid 1px #ececea;
+    border-collapse: collapse;
 }
 
-.code-lesson {
+table {
+    margin-bottom: 20px;
+}
+
+.code-lesson, .pre-code-lesson {
     display: inline-block;
     margin-bottom: 20px;
-    padding-top: 10px;
     border-radius: 10px;
     background: #EBECEE;
 }
@@ -276,6 +278,7 @@ figure {
 }
 
 code {
+    display: inline-block;
     font-family: 'Source Code Pro', monospace;
     font-size: 14px;
     padding: 10px;
@@ -283,12 +286,19 @@ code {
 
 .copy-code-lesson {
     float: right;
-    margin-top: -10px;
     padding: 0;
     height: 42px;
-    border-radius: 10px;
-    cursor: pointer;
+    border-radius: 10px;   
     border: 0;
+    cursor: pointer;
+}
+
+.copy-code-img, .copy-code-img-success {
+    display: none;
+}
+
+.copy-code-img.visible, .copy-code-img-success.visible {
+    display: inline-block;
 }
 
 footer {
@@ -470,7 +480,7 @@ footer {
     }
 
     .theme-p {
-        width: 100vw;
+        width: calc(100vw - 26px);
         padding: 13px 0;
         float: left;
         text-align: center;
@@ -482,6 +492,19 @@ footer {
         width: 100%;
         float: unset;
         margin: 0 auto;
+    }
+
+    .lesson {
+        padding: 50px 25px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .theme-p,
+    .header-a {
+        height: 24px;
+        font-size: 18px;
     }
 }
 
@@ -504,6 +527,10 @@ footer {
 }
 
 @media (max-width: 319px) {
+    .theme-p {
+        font-size: 16px;
+    }
+
     .warning {
         display: block;
     }

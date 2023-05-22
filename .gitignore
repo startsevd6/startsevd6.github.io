@@ -1,4 +1,5 @@
 ### VisualStudioCode ###
+.vscode/launch.json
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

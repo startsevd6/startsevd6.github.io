@@ -21,6 +21,7 @@
 <body>
     <div class="wrapper">
         <include id="include-aside"></include>
+
         <div class="sections">
             <header>
                 <div class="top-header"></div>
@@ -39,10 +40,12 @@
                     </div>
                 </div>
             </header>
+
             <section class="warning">
                 <p class="p-warning">Сайт в данный момент не оптимизирован под устройства с шириной экрана менее 320
                     пикселей</p>
             </section>
+
             <section class="lesson">
                 <article>
                     <h1>Переменные</h1>
@@ -68,37 +71,72 @@
                             будут
                             считаться разными переменными.</li>
                     </ul>
+
                     <h2 id="variable-types">Типы переменных</h2>
                     <p class="p-lesson">Тип переменной определяется значением, которое вы ей присваиваете. Например,
                         если вы
                         присвоите переменной значение целого числа, то она будет иметь тип "int".</p>
                     <p class="p-lesson">Вот некоторые типы данных, которые мы будем изучать в этом курсе</p>
-                    <ul class="p-lesson">
-                        <li>int (целое число)</li>
-                        <li>float (число с плавающей запятой)</li>
-                        <li>bool (логический тип данных)</li>
-                        <li>str (строка)</li>
-                        <li>list (список)</li>
-                        <li>tuple (кортеж)</li>
-                        <li>set (множество)</li>
-                        <li>dict (словарь)</li>
-                    </ul>
+                    <table class="p-lesson">
+                        <tbody>
+                            <tr>
+                                <th style="width: 150px">Тип переменной</th>
+                                <th style="width: 200px">Назначение</th>
+                            </tr>
+                            <tr>
+                                <td>int</td>
+                                <td>целое число</td>
+                            </tr>
+                            <tr>
+                                <td>float</td>
+                                <td>вещественное число</td>
+                            </tr>
+                            <tr>
+                                <td>bool</td>
+                                <td>логический тип данных</td>
+                            </tr>
+                            <tr>
+                                <td>str</td>
+                                <td>строка</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="p-lesson">
+                        <tbody>
+                            <tr>
+                                <th style="width: 150px">Тип коллекции</th>
+                                <th style="width: 120px">Назначение</th>
+                            </tr>
+                            <tr>
+                                <td>list</td>
+                                <td>список</td>
+                            </tr>
+                            <tr>
+                                <td>tuple</td>
+                                <td>кортеж</td>
+                            </tr>
+                            <tr>
+                                <td>set</td>
+                                <td>множество</td>
+                            </tr>
+                            <tr>
+                                <td>dict</td>
+                                <td>словарь</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <p class="p-lesson">Чтобы создать переменную, вы можете использовать знак равенства "=" и присвоить
                         ей
                         значение. Например, вот как мы можем создать переменную с именем "x" и присвоить ей значение 5:
                     </p>
                     <div class="code-lesson">
                         <code id="code-1">x = 5</code>
-                        <button class="copy-code-lesson" id="button-copy-code-1" data-clipboard-target="#code-1">
-                            <img src="/learn-python/img/icon-copy.svg" alt="copy code">
-                        </button>
+                        <include id="include-copy-code-button-1"></include>
                     </div>
                     <p class="p-lesson">Также можно присвоить одно значение нескольким переменным. Например:</p>
                     <div class="code-lesson">
                         <code id="code-2">y = z = 10</code>
-                        <button class="copy-code-lesson" id="button-copy-code-2" data-clipboard-target="#code-2">
-                            <img src="/learn-python/img/icon-copy.svg" alt="copy code">
-                        </button>
+                        <include id="include-copy-code-button-2"></include>
                     </div>
                     <p class="p-lesson">Здесь мы создаем две переменные "y" и "z" и присваиваем им обеим значение 10.
                     </p>
@@ -106,56 +144,78 @@
                     </p>
                     <div class="code-lesson">
                         <code id="code-3">a, b, c = 1, 2, 3</code>
-                        <button class="copy-code-lesson" id="button-copy-code-3" data-clipboard-target="#code-3">
-                            <img src="/learn-python/img/icon-copy.svg" alt="copy code">
-                        </button>
+                        <include id="include-copy-code-button-3"></include>
                     </div>
+
                     <h2 id="mathematical-operations">Действия</h2>
                     <p class="p-lesson">Также мы можем использовать переменные в выражениях:</p>
                     <div class="pre-code-lesson">
-                        <button class="copy-code-lesson" id="button-copy-code-4" data-clipboard-target="#code-4">
-                            <img src="/learn-python/img/icon-copy.svg" alt="copy code">
-                        </button>
-                        <code class="pre" id="code-4"> x = 5 
-  y = 10 
-  z = x + y   </code>
+                        <code class="pre" id="code-4">x = 5 
+y = 10 
+z = x + y</code>
+                        <include id="include-copy-code-button-4"></include>
                     </div>
                     <p class="p-lesson">Здесь мы создаем переменные "x" и "y" и присваиваем им значения 5 и 10
                         соответственно. Затем мы создаем переменную "z" и присваиваем ей сумму.</p>
                     <p class="p-lesson">В Python есть несколько основных операций, которые используются почти в каждой
                         программе:</p>
-                    <ul class="p-lesson">
-                        <li>+ (сложение)</li>
-                        <li>- (вычитание)</li>
-                        <li>* (умножение)</li>
-                        <li>** (возведение в степень)</li>
-                        <li>/ (разделить)</li>
-                        <li>// (деление без остатка)</li>
-                        <li>% (остаток от деления)</li>
-                    </ul>
+                    <table class="p-lesson">
+                        <tbody>
+                            <tr>
+                                <th style="min-width: 150px">Математическая операция</th>
+                                <th style="min-width: 120px">Назначение</th>
+                            </tr>
+                            <tr>
+                                <td>+</td>
+                                <td>сложение</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>вычитание</td>
+                            </tr>
+                            <tr>
+                                <td>*</td>
+                                <td>умножение</td>
+                            </tr>
+                            <tr>
+                                <td>**</td>
+                                <td>возведение в степень</td>
+                            </tr>
+                            <tr>
+                                <td>/</td>
+                                <td>деление</td>
+                            </tr>
+                            <tr>
+                                <td>//</td>
+                                <td>деление без остатка</td>
+                            </tr>
+                            <tr>
+                                <td>%</td>
+                                <td>остаток от деления</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <p class="p-lesson">Кроме того, в Python есть специальный тип переменных - логический тип (bool). Он
                         может иметь только два значения: True и False. Эти значения часто используются в условных
                         операторах
                         и других выражениях, которые оцениваются как истинные или ложные.</p>
                     <div class="pre-code-lesson">
-                        <code class="pre" id="code-5"> x = True 
-  y = False</code>
-                        <button class="copy-code-lesson" id="button-copy-code-5" style="margin-top: -28px;" data-clipboard-target="#code-5">
-                            <img src="/learn-python/img/icon-copy.svg" alt="copy code">
-                        </button>
+                        <code class="pre" id="code-5">x = True 
+y = False</code>
+                        <include id="include-copy-code-button-5"></include>
                     </div>
                     <p class="p-lesson">Также можно присваивать одно значение нескольким переменным:</p>
                     <div class="code-lesson">
                         <code id="code-6">x = y = z = 0</code>
-                        <button class="copy-code-lesson" id="button-copy-code-6" data-clipboard-target="#code-6">
-                            <img src="/learn-python/img/icon-copy.svg" alt="copy code">
-                        </button>
+                        <include id="include-copy-code-button-6"></include>
                     </div>
                     <p class="p-lesson">В следующем уроке мы рассмотрим условные операторы, которые позволяют выполнять
                         различные действия в зависимости от значения переменных.</p>
                 </article>
             </section>
+
             <include id="include-footer"></include>
+
         </div>
     </div>
 </body>

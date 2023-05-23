@@ -224,7 +224,8 @@ h2 {
 }
 
 .a-in-lesson:hover {
-    color: #3a7ab4;
+    background-color: rgba(58, 122, 180, 0.2);
+    border-radius: 3px;
     text-decoration: underline;
 }
 
@@ -295,14 +296,16 @@ code {
 }
 
 .copy-code-img,
-.copy-code-img-success {
+.copy-code-img-success,
+.copy-code-img-unsuccess {
     display: none;
     width: 42px;
     height: 42px;
 }
 
 .copy-code-img.visible,
-.copy-code-img-success.visible {
+.copy-code-img-success.visible,
+.copy-code-img-unsuccess.visible {
     display: inline-block;
 }
 
@@ -327,7 +330,8 @@ footer {
 }
 
 .email-a:hover {
-    color: #3a7ab4;
+    background-color: rgba(58, 122, 180, 0.2);
+    border-radius: 3px;
     text-decoration: underline;
 }
 

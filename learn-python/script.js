@@ -184,7 +184,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let codeBlock = `
         <button class="copy-code-lesson" id="button-copy-code-${i}" data-clipboard-target="#code-${i}">
             <img class="copy-code-img visible" id="code-${i}-img" src="/learn-python/img/icon-copy.svg" alt="copy code">
-            <img class="copy-code-img-success" id="code-${i}-success" src="/learn-python/img/icon-success.svg" alt="copy code">
+            <img class="copy-code-img-success" id="code-${i}-success" src="/learn-python/img/icon-success.svg" alt="successful copy code">
+            <img class="copy-code-img-unsuccess" id="code-${i}-unsuccess" src="/learn-python/img/icon-unsuccess.svg" alt="unseccessful copy code">
         </button>
         `;
 
@@ -215,7 +216,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     }, 2750);
                     return document.querySelector(codeElement).innerText;
                 } catch {
-                    alert('Ошибка: не удалось найти текст для копирования');
+                    const codeButton = button.getAttribute('data-clipboard-target');
+                    const copyCodeImg = document.querySelector(`${codeButton}-img`);
+                    const copyCodeImgSuccess = document.querySelector(`${codeButton}-success`);
+                    const copyCodeImgUnsuccess = document.querySelector(`${codeButton}-unsuccess`);
+
+                    copyCodeImg.classList.remove('visible');
+                    copyCodeImgSuccess.classList.remove('visible');
+                    copyCodeImgUnsuccess.classList.add('visible');
+                    setTimeout(function () {
+                        copyCodeImgUnsuccess.classList.remove('visible');
+                        copyCodeImg.classList.add('visible');
+                    }, 2750);
+                    setTimeout(function() {
+                        alert('Ошибка: не удалось найти текст для копирования');
+                    }, 10);
                 }
             }
         });

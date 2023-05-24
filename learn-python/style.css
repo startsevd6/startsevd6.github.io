@@ -1,5 +1,5 @@
 body {
-    background: #EDF0F1;
+    background: #edf0f1;
     margin: 0;
     padding: 0;
 }
@@ -19,6 +19,13 @@ aside {
     background-color: #fff;
     border-radius: 12px;
     z-index: 1;
+}
+
+button {
+    border: 0;
+    padding: 0;
+    background: #ffffff;
+    cursor: pointer;
 }
 
 .warning {
@@ -54,7 +61,7 @@ aside {
 .a-settings:hover,
 .a-python:hover,
 .button-menu:hover {
-    background-color: #EDF0F1;
+    background-color: #edf0f1;
 }
 
 .div-number-lesson {
@@ -77,7 +84,7 @@ aside {
     margin: 0;
     font-family: 'Montserrat';
     font-weight: 700;
-    font-size: 14px;
+    font-size: 0.875rem;
     justify-content: center;
     color: #000;
 }
@@ -89,8 +96,8 @@ aside {
     padding: 20px;
     font-family: 'Montserrat';
     font-weight: 500;
-    font-size: 16px;
-    color: #1A1A1A;
+    font-size: 1rem;
+    color: #1a1a1a;
     display: block;
 }
 
@@ -125,73 +132,68 @@ header {
 }
 
 .shadow-header {
-    height: 50px;
+    display: flex;
     background: linear-gradient(0deg, rgba(236, 240, 241, 0), #ecf0f1 50px);
 }
 
 .container-header {
-    background-color: #3A7AB4;
+    display: inline-flex;
     width: max(calc(100% - 85px), 700px);
-    height: 50px;
+    background-color: #3a7ab4;
     border-radius: 7px;
-    float: left;
 }
 
 .header-p {
     display: inline-block;
-    height: 50px;
+}
+
+.theme-p,
+.header-a {
+    padding: 13px;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 24px;
+    color: #fff;
 }
 
 .theme-p {
     float: left;
-    padding: 13px;
-    font-family: 'Montserrat';
-    font-weight: 500;
-    font-size: 20px;
-    color: #fff;
 }
 
 .div-a {
-    float: right;
-    height: 50px;
-    margin-right: 16px;
+    margin: 0 16px 0 auto;
 }
 
 .header-a {
     display: inline-block;
-    padding: 13px;
-    font-family: 'Montserrat';
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
     text-decoration: none;
-    background-color: #3A7AB4;
-    color: #FFFFFF;
+    background-color: #3a7ab4;
 }
 
 .header-a:hover {
-    background-color: #6195C3;
+    background-color: #6195c3;
 }
 
 .account-button {
     float: right;
     height: 26px;
     max-width: 26px;
-    background: #3AB497;
+    background: #3ab497;
     padding: 12px;
     border-radius: 7px;
     margin: 0 0 0 35px;
 }
 
 .account-button:hover {
-    background-color: #66C5AE;
+    background-color: #66c5ae;
 }
 
 .lesson {
     display: inline-block;
     margin-top: 60px;
     padding: 50px;
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 12px;
 }
 
@@ -199,7 +201,7 @@ h1 {
     font-family: 'Montserrat';
     margin: 0;
     padding-bottom: 20px;
-    font-size: 30px;
+    font-size: 1.875rem;
 }
 
 h2 {
@@ -207,7 +209,7 @@ h2 {
     margin: 0;
     padding: 50px 0 30px;
     color: rgba(0, 0, 0, .95);
-    font-size: 26px;
+    font-size: 1.625rem;
 }
 
 .p-lesson {
@@ -219,7 +221,7 @@ h2 {
 }
 
 .a-in-lesson {
-    color: #2B5B87;
+    color: #2b5b87;
     text-decoration: none;
 }
 
@@ -242,10 +244,10 @@ figure {
 .figcaption-lesson {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 0.875rem;
     width: 100%;
     padding-bottom: 20px;
-    color: #1A1A1A;
+    color: #1a1a1a;
 }
 
 .img-lesson {
@@ -261,7 +263,14 @@ td {
 }
 
 table {
+    display: inline-table;
     margin-bottom: 20px;
+}
+
+th,
+td {
+    min-width: 160px;
+    padding: 5px;
 }
 
 .code-lesson,
@@ -269,7 +278,7 @@ table {
     display: inline-block;
     margin-bottom: 20px;
     border-radius: 10px;
-    background: #EBECEE;
+    background: #ebecee;
 }
 
 .pre {
@@ -281,18 +290,16 @@ table {
 
 code {
     display: inline-block;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 14px;
+    font-family: 'Source code Pro', monospace;
+    font-size: 0.875rem;
     padding: 10px;
 }
 
 .copy-code-lesson {
     float: right;
-    padding: 0;
     height: 42px;
     border-radius: 10px;
-    border: 0;
-    cursor: pointer;
+    background: #f5f6f7;
 }
 
 .copy-code-img,
@@ -309,10 +316,52 @@ code {
     display: inline-block;
 }
 
+.nav-footer {
+    margin: 25px;
+}
+
+.nav-a-left, .nav-a-right {
+    display: inline-block;
+    padding: 13px;
+    text-decoration: none;
+}
+
+.nav-a-left:hover, .nav-a-right:hover {
+    background-color: #edf0f1;
+    border-radius: 7px;
+}
+
+.nav-a-right {
+    float: right;
+}
+
+.nav-img-left, .nav-img-right {
+    height: 24px;
+    width: 52px;
+}
+
+.nav-div-img-left, .nav-div-img-right {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.nav-img-right {
+    transform: rotate(180deg);
+}
+
+.nav-theme-left, .nav-theme-right {
+    vertical-align: middle;
+    padding: 0 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: rgba(0, 0, 0, 0.9);
+}
+
 footer {
     margin: 60px 0 60px;
     padding: 50px;
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 12px;
 }
 
@@ -320,19 +369,35 @@ footer {
 .email-a {
     font-family: 'Montserrat';
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1rem;
     color: #000;
     text-decoration: none;
 }
 
 .email-a {
-    color: #2B5B87;
+    color: #2b5b87;
 }
 
 .email-a:hover {
     background-color: rgba(58, 122, 180, 0.2);
     border-radius: 3px;
     text-decoration: underline;
+}
+
+.open-menu {
+    display: none;
+    position: fixed;
+    top: calc(100% - 60px);
+    left: calc(100% - 60px);
+    height: 50px;
+    padding: 19px 15px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .1), 0 0 2px rgba(0, 0, 0, .05);
+    border-radius: 10px;
+}
+
+.open-menu-img {
+    width: 20px;
+    height: 12px;
 }
 
 @media (max-width: 1700px) {
@@ -421,11 +486,7 @@ footer {
     .button-menu {
         display: inline-block;
         text-align: left;
-        border: 0;
-        padding: 0;
-        background: #fff;
         border-radius: 10px;
-        cursor: pointer;
     }
 
     .sections {
@@ -451,8 +512,20 @@ footer {
         display: none;
     }
 
+    .button-menu {
+        display: block;
+    }
+
     .sections {
         margin: 0;
+    }
+
+    .nav-footer {
+        margin: 0;
+    }
+
+    .open-menu {
+        display: block;
     }
 }
 
@@ -481,6 +554,7 @@ footer {
     }
 
     .container-header {
+        display: block;
         height: 100px;
         border-radius: 0 0 7px 7px;
     }
@@ -490,18 +564,15 @@ footer {
     }
 
     .theme-p {
+        position: relative;
         width: calc(100vw - 26px);
-        padding: 13px 0;
+        padding: 13px;
         float: left;
         text-align: center;
     }
 
     .div-a {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        float: unset;
-        margin: 0 auto;
+        margin: 0 16px;
     }
 
     .lesson {
@@ -514,7 +585,37 @@ footer {
     .theme-p,
     .header-a {
         height: 24px;
-        font-size: 18px;
+        font-size: 1.125rem;
+    }
+
+    .header-a {
+        padding: 13px 7px;
+        font-size: 1rem;
+    }
+
+    th,
+    td {
+        min-width: 0;
+    }
+
+    .nav-a-left, .nav-a-right {
+        display: block;
+    }
+
+    .nav-a-right {
+        float: none;
+    }
+
+    .nav-div-img-left, .nav-div-img-right {
+        display: block;
+        width: 52px;
+        margin: 0 auto;
+    }
+
+    .nav-theme-left, .nav-theme-right {
+        display: block;
+        padding: 10px 0;
+        text-align: center;
     }
 }
 
@@ -522,7 +623,6 @@ footer {
     .theme-p {
         padding: 13px;
         line-height: 2;
-        text-align: left;
     }
 
     .p-warning {
@@ -531,14 +631,14 @@ footer {
     }
 
     .div-a {
-        margin: 0;
+        margin: 0 16px;
         float: left;
     }
 }
 
 @media (max-width: 319px) {
     .theme-p {
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     .warning {

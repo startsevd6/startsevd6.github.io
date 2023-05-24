@@ -91,7 +91,78 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    // Изменение класса всем определённым блокам на странице
+    //-----------------------------------------------------------------------------
+    // Подгружаем блок с навигацией в конце урока
+    const includeNav = document.getElementById('include-nav');
+    console.log()
+    let navBlock = `
+        <div class="nav-footer">
+            <a href="/learn-python/0/" class="nav-a-left">
+                <div class="nav-div-img-left">
+                    <img class="nav-img-left" src="/learn-python/img/icon-arrow.svg" alt="arrow left">
+                </div>
+                <span class="nav-theme-left">0: Введение в Python</span>
+            </a>
+            <a href="/learn-python/2/" class="nav-a-right">
+                <span class="nav-theme-right">2: Условный оператор</span>
+                <div class="nav-div-img-right">
+                    <img class="nav-img-right" src="/learn-python/img/icon-arrow.svg" alt="arrow right">
+                </div>
+            </a>
+        </div>
+    `;
+
+    try {
+        includeNav.innerHTML = navBlock;
+
+        if (!includeNav.innerHTML.trim()) {
+            throw new Error('Ошибка: Загрузка навигации в конце урока не удалась');
+        }
+    } catch (error) {
+        alert('Ошибка: Загрузка навигации в конце урока не удалась');
+    }
+
+    /*
+        // Подгружаем footer после загрузки всей страницы
+        const includeFooter = document.getElementById('include-footer');
+    
+    try {
+        includeFooter.innerHTML = footerContent;
+    
+        if (!includeFooter.innerHTML.trim()) {
+            throw new Error('Ошибка: Загрузка нижнего блока не удалась');
+        }
+    } catch (error) {
+        alert('Ошибка: Загрузка нижнего блока не удалась');
+    }
+    
+    
+    // Вставка блоков кода на страницу
+    const includeId = 'include-copy-code-button-';
+    const numberOfBlocks = document.querySelectorAll(`[id^="${includeId}"]`).length;
+    
+    for (let i = 1; i <= numberOfBlocks; i++) {
+        let buttonId = includeId + i;
+        let includeButtonCopyCode = document.getElementById(buttonId);
+        let codeBlock = `
+            <button class="copy-code-lesson" id="button-copy-code-${i}" data-clipboard-target="#code-${i}">
+                <img class="copy-code-img visible" id="code-${i}-img" src="/learn-python/img/icon-copy.svg" alt="copy code">
+                <img class="copy-code-img-success" id="code-${i}-success" src="/learn-python/img/icon-success.svg" alt="successful copy code">
+                <img class="copy-code-img-unsuccess" id="code-${i}-unsuccess" src="/learn-python/img/icon-unsuccess.svg" alt="unseccessful copy code">
+            </button>
+            `;
+    
+        if (includeButtonCopyCode) {
+            includeButtonCopyCode.innerHTML = codeBlock;
+        } else {
+            alert(`Ошибка: Кнопка с идентификатором #${buttonId} не найдена.`);
+        }
+    }
+    */
+    //-----------------------------------------------------------------------------
+
+
+    // Функция изменения класса всем определённым блокам на странице
     function toggleClasses(elements, className, add) {
         if (Array.isArray(elements) || elements instanceof NodeList || elements instanceof HTMLCollection) {
             elements.forEach(function (element) {
@@ -111,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    // Массовое изменение класса определённым блокам
+    // Функция массового изменения класса определённым блокам
     const aLesson = document.querySelectorAll('.a-lesson');
     const aPython = document.querySelectorAll('.a-python');
     const aSettings = document.querySelectorAll('.a-settings');
@@ -228,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         copyCodeImgUnsuccess.classList.remove('visible');
                         copyCodeImg.classList.add('visible');
                     }, 2750);
-                    setTimeout(function() {
+                    setTimeout(function () {
                         alert('Ошибка: не удалось найти текст для копирования');
                     }, 10);
                 }
@@ -291,6 +362,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('resize', resizeHandler);
 
-    // Возвращаем aside в исходное состояние после загрузки страницы 
+    // Возвращаем aside в исходное состояние сразу после загрузки страницы 
     resizeHandler();
 });

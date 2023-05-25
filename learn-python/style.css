@@ -5,6 +5,7 @@ body {
 }
 
 p {
+    padding: 0;
     margin: 0;
 }
 
@@ -295,6 +296,20 @@ code {
     padding: 10px;
 }
 
+.popup-code {
+    display: none;
+    position: absolute;
+    width: max-content;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 7px;
+    background: #f5f6f7;
+}
+
+.popup-code.visible {
+    display: block;
+}
+
 .copy-code-lesson {
     float: right;
     height: 42px;
@@ -320,13 +335,15 @@ code {
     margin: 25px;
 }
 
-.nav-a-left, .nav-a-right {
+.nav-a-left,
+.nav-a-right {
     display: inline-block;
     padding: 13px;
     text-decoration: none;
 }
 
-.nav-a-left:hover, .nav-a-right:hover {
+.nav-a-left:hover,
+.nav-a-right:hover {
     background-color: #edf0f1;
     border-radius: 7px;
 }
@@ -335,12 +352,14 @@ code {
     float: right;
 }
 
-.nav-img-left, .nav-img-right {
+.nav-img-left,
+.nav-img-right {
     height: 24px;
     width: 52px;
 }
 
-.nav-div-img-left, .nav-div-img-right {
+.nav-div-img-left,
+.nav-div-img-right {
     display: inline-flex;
     vertical-align: middle;
 }
@@ -349,7 +368,8 @@ code {
     transform: rotate(180deg);
 }
 
-.nav-theme-left, .nav-theme-right {
+.nav-theme-left,
+.nav-theme-right {
     vertical-align: middle;
     padding: 0 20px;
     font-family: 'Montserrat', sans-serif;
@@ -598,7 +618,8 @@ footer {
         min-width: 0;
     }
 
-    .nav-a-left, .nav-a-right {
+    .nav-a-left,
+    .nav-a-right {
         display: block;
     }
 
@@ -606,13 +627,15 @@ footer {
         float: none;
     }
 
-    .nav-div-img-left, .nav-div-img-right {
+    .nav-div-img-left,
+    .nav-div-img-right {
         display: block;
         width: 52px;
         margin: 0 auto;
     }
 
-    .nav-theme-left, .nav-theme-right {
+    .nav-theme-left,
+    .nav-theme-right {
         display: block;
         padding: 10px 0;
         text-align: center;

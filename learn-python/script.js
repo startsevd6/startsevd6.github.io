@@ -1,5 +1,7 @@
 // сайт в альфа версии
 
+let numberOfArticles = 1;
+
 document.addEventListener('DOMContentLoaded', function () {
     // Объявляем переменные блоков, которые потом будем вставлять на страницу
     const asideContent = `
@@ -8,25 +10,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="div-number-lesson">
                     <p class="number-lesson">0</p>
                 </div>
-                <h2 class="name-lesson">Введение в Python</h2>
+                <span class="name-lesson">Введение в Python</span>
             </a>
             <a href="/learn-python/1/" class="a-lesson">
                 <div class="div-number-lesson">
                     <p class="number-lesson">1</p>
                 </div>
-                <h2 class="name-lesson">Переменные</h2>
+                <span class="name-lesson">Переменные</span>
             </a>
             <a href="/learn-python/2/" class="a-lesson">
                 <div class="div-number-lesson">
                     <p class="number-lesson">2</p>
                 </div>
-                <h2 class="name-lesson">Вывод и ввод текста</h2>
+                <span class="name-lesson">Вывод и ввод текста</span>
             </a>
             <a href="/learn-python/3/" class="a-lesson">
                 <div class="div-number-lesson">
                     <p class="number-lesson">3</p>
                 </div>
-                <h2 class="name-lesson">Условный оператор</h2>
+                <span class="name-lesson">Условный оператор</span>
             </a>
             <a href="/learn-python/4/" class="a-lesson">
                 <div class="div-number-lesson">
@@ -91,26 +93,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    //-----------------------------------------------------------------------------
     // Подгружаем блок с навигацией в конце урока
     const includeNav = document.getElementById('include-nav');
-    console.log()
+
     let navBlock = `
-        <div class="nav-footer">
-            <a href="/learn-python/0/" class="nav-a-left">
+        <div class="nav-footer">`;
+    if (currentArticleNumber - 1 >= 0) {
+        const previousArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber - 1].outerText;
+        navBlock += `
+            <a href="/learn-python/${currentArticleNumber - 1}/" class="nav-a-left">
                 <div class="nav-div-img-left">
                     <img class="nav-img-left" src="/learn-python/img/icon-arrow.svg" alt="arrow left">
                 </div>
-                <span class="nav-theme-left">0: Введение в Python</span>
+                <span class="nav-theme-left">${currentArticleNumber - 1}: ${previousArticleTitle}</span>
             </a>
-            <a href="/learn-python/2/" class="nav-a-right">
-                <span class="nav-theme-right">2: Условный оператор</span>
+        `;
+    }
+    if (currentArticleNumber + 1 <= numberOfArticles) {
+        const nextArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber + 1].outerText;
+        navBlock += `
+            <a href="/learn-python/${currentArticleNumber + 1}/" class="nav-a-right">
+                <span class="nav-theme-right">${currentArticleNumber + 1}: ${nextArticleTitle}</span>
                 <div class="nav-div-img-right">
                     <img class="nav-img-right" src="/learn-python/img/icon-arrow.svg" alt="arrow right">
                 </div>
             </a>
-        </div>
-    `;
+        `;
+    }
+    navBlock += `</div>`;
 
     try {
         includeNav.innerHTML = navBlock;
@@ -121,45 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (error) {
         alert('Ошибка: Загрузка навигации в конце урока не удалась');
     }
-
-    /*
-        // Подгружаем footer после загрузки всей страницы
-        const includeFooter = document.getElementById('include-footer');
-    
-    try {
-        includeFooter.innerHTML = footerContent;
-    
-        if (!includeFooter.innerHTML.trim()) {
-            throw new Error('Ошибка: Загрузка нижнего блока не удалась');
-        }
-    } catch (error) {
-        alert('Ошибка: Загрузка нижнего блока не удалась');
-    }
-    
-    
-    // Вставка блоков кода на страницу
-    const includeId = 'include-copy-code-button-';
-    const numberOfBlocks = document.querySelectorAll(`[id^="${includeId}"]`).length;
-    
-    for (let i = 1; i <= numberOfBlocks; i++) {
-        let buttonId = includeId + i;
-        let includeButtonCopyCode = document.getElementById(buttonId);
-        let codeBlock = `
-            <button class="copy-code-lesson" id="button-copy-code-${i}" data-clipboard-target="#code-${i}">
-                <img class="copy-code-img visible" id="code-${i}-img" src="/learn-python/img/icon-copy.svg" alt="copy code">
-                <img class="copy-code-img-success" id="code-${i}-success" src="/learn-python/img/icon-success.svg" alt="successful copy code">
-                <img class="copy-code-img-unsuccess" id="code-${i}-unsuccess" src="/learn-python/img/icon-unsuccess.svg" alt="unseccessful copy code">
-            </button>
-            `;
-    
-        if (includeButtonCopyCode) {
-            includeButtonCopyCode.innerHTML = codeBlock;
-        } else {
-            alert(`Ошибка: Кнопка с идентификатором #${buttonId} не найдена.`);
-        }
-    }
-    */
-    //-----------------------------------------------------------------------------
 
 
     // Функция изменения класса всем определённым блокам на странице
@@ -291,7 +262,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     const copyCodeImg = document.querySelector(`${codeButton}-img`);
                     const copyCodeImgSuccess = document.querySelector(`${codeButton}-success`);
                     const copyCodeImgUnsuccess = document.querySelector(`${codeButton}-unsuccess`);
-
+                    /*const copyCodeErrorBlock = `
+                        <div class="popup-code">
+                            <span class="p-lesson">Ошибка: не удалось скопировать код</span>
+                        </div>
+                    `;
+                    console.log(copyCodeImg.getBoundingClientRect());*/
                     copyCodeImg.classList.remove('visible');
                     copyCodeImgSuccess.classList.remove('visible');
                     copyCodeImgUnsuccess.classList.add('visible');

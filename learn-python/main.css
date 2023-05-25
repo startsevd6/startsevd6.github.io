@@ -26,8 +26,8 @@ a {
     padding: 13px;
     font-family: 'Montserrat';
     font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
     text-decoration: none;
     background-color: #3A7AB4;
     color: #FFFFFF;
@@ -48,7 +48,7 @@ span {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1rem;
 
     color: #3A7AB4;
 }
@@ -57,8 +57,8 @@ h1 {
     margin-top: 31px;
     text-transform: uppercase;
     font-family: 'Montserrat';
-    font-size: 80px;
-    line-height: 89px;
+    font-size: 5rem;
+    line-height: 5.5625rem;
     font-weight: 500;
 }
 
@@ -73,8 +73,8 @@ p {
 }
 
 p {
-    margin-left: 128px;
     display: inline-block;
+    margin-left: 128px;
 }
 
 footer {
@@ -92,7 +92,7 @@ footer {
 
     h1 {
         line-height: 110.9%;
-        font-size: 64px;
+        font-size: 4rem;
     }
 }
 
@@ -108,17 +108,17 @@ footer {
     }
 
     h1 {
-        font-size: 56px;
+        font-size: 3.5rem;
     }
 }
 
 @media (max-width: 705px) {
     h1 {
-        font-size: 48px;
+        font-size: 3rem;
     }
 
     h2 {
-        font-size: 20px;
+        font-size: 1.25rem;
     }
 
     p {
@@ -128,7 +128,7 @@ footer {
 
 @media (max-width: 605px) {
     h1 {
-        font-size: 40px;
+        font-size: 2.5rem;
     }
 }
 
@@ -140,20 +140,19 @@ footer {
     }
 
     h1 {
-        font-size: 32px;
+        font-size: 2rem;
     }
 
     h2 {
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     p {
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 }
 
 @media (max-width: 465px) {
-
     .div-left,
     .div-right {
         margin: 0;
@@ -176,6 +175,6 @@ footer {
 
 @media (max-width: 320px) {
     h1 {
-        font-size: 27px;
+        font-size: 1.6875rem;
     }
 }

@@ -242,32 +242,68 @@ document.addEventListener('DOMContentLoaded', function () {
     // Копирование кода из блока
     const copyCodeButtons = document.querySelectorAll('.copy-code-lesson');
 
+    function showResultBlock(codeElement, copyCodeImg, message) {
+        const copyCodeResultBlock = document.createElement('div');
+        console.log(copyCodeResultBlock);
+        copyCodeResultBlock.className = 'popup-copy-code';
+        copyCodeResultBlock.innerHTML = `<span class="p-lesson">${message}</span>`;
+
+        let buttonRect = copyCodeImg.getBoundingClientRect();
+        let resultBlockTop = buttonRect.top + window.scrollY - 52;
+
+        let offsetY = 52;
+        if (window.innerWidth > 950 && window.innerWidth <= 1200) {
+            offsetY += 108;
+        } else if (window.innerWidth <= 950) {
+            offsetY -= 12;
+        }
+
+        if (buttonRect.left + window.screenX - offsetY + 128 > window.innerWidth) {
+            offsetY += 47;
+        }
+
+        let resultBlockLeft = buttonRect.left + window.screenX - offsetY;
+        copyCodeResultBlock.style.top = `${resultBlockTop}px`;
+        copyCodeResultBlock.style.left = `${resultBlockLeft}px`;
+        copyCodeResultBlock.classList.add('visible');
+        if (codeElement) {
+            const parentElement = document.querySelector(codeElement).parentNode;
+            parentElement.insertAdjacentElement('beforeBegin', copyCodeResultBlock);
+        }
+        setTimeout(function () {
+            copyCodeResultBlock.classList.remove('visible');
+        }, 2750);
+    }
+
     copyCodeButtons.forEach(function (button) {
         new ClipboardJS(button, {
             text: function (trigger) {
                 try {
                     const codeElement = trigger.getAttribute('data-clipboard-target');
-                    const copyCodeImg = document.querySelector(`${codeElement}-img`);
-                    const copyCodeImgSuccess = document.querySelector(`${codeElement}-success`);
+                    console.log(document.querySelector(codeElement).innerText);
+                    if (document.querySelector(codeElement).innerText) {
+                        const copyCodeImg = document.querySelector(`${codeElement}-img`);
+                        const copyCodeImgSuccess = document.querySelector(`${codeElement}-success`);
+                        showResultBlock(codeElement, copyCodeImg, 'Скопировано!');
 
-                    copyCodeImg.classList.remove('visible');
-                    copyCodeImgSuccess.classList.add('visible');
-                    setTimeout(function () {
-                        copyCodeImgSuccess.classList.remove('visible');
-                        copyCodeImg.classList.add('visible');
-                    }, 2750);
-                    return document.querySelector(codeElement).innerText;
-                } catch {
-                    const codeButton = button.getAttribute('data-clipboard-target');
+                        copyCodeImg.classList.remove('visible');
+                        copyCodeImgSuccess.classList.add('visible');
+                        setTimeout(function () {
+                            copyCodeImgSuccess.classList.remove('visible');
+                            copyCodeImg.classList.add('visible');
+                        }, 2750);
+                        return document.querySelector(codeElement).innerText;
+                    }
+                } catch (error) {
+                    console.log('text copy error', error);
+                    return;
+                    /*
+                    const codeButton = '#' + button.getAttribute('id').substring(12);
                     const copyCodeImg = document.querySelector(`${codeButton}-img`);
                     const copyCodeImgSuccess = document.querySelector(`${codeButton}-success`);
                     const copyCodeImgUnsuccess = document.querySelector(`${codeButton}-unsuccess`);
-                    /*const copyCodeErrorBlock = `
-                        <div class="popup-code">
-                            <span class="p-lesson">Ошибка: не удалось скопировать код</span>
-                        </div>
-                    `;
-                    console.log(copyCodeImg.getBoundingClientRect());*/
+                    showResultBlock(false, copyCodeImg, 'Не удалось найти текст для копирования');
+
                     copyCodeImg.classList.remove('visible');
                     copyCodeImgSuccess.classList.remove('visible');
                     copyCodeImgUnsuccess.classList.add('visible');
@@ -278,6 +314,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     setTimeout(function () {
                         alert('Ошибка: не удалось найти текст для копирования');
                     }, 10);
+                    return 'text copy error';*/
                 }
             }
         });

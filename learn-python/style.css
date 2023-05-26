@@ -296,7 +296,7 @@ code {
     padding: 10px;
 }
 
-.popup-code {
+.popup-copy-code {
     display: none;
     position: absolute;
     width: max-content;
@@ -306,7 +306,7 @@ code {
     background: #f5f6f7;
 }
 
-.popup-code.visible {
+.popup-copy-code.visible {
     display: block;
 }
 
@@ -315,6 +315,11 @@ code {
     height: 42px;
     border-radius: 10px;
     background: #f5f6f7;
+}
+
+.copy-code-img:hover {
+    border-radius: 10px;
+    background: #ebecee;
 }
 
 .copy-code-img,
@@ -338,7 +343,7 @@ code {
 .nav-a-left,
 .nav-a-right {
     display: inline-block;
-    padding: 13px;
+    padding: 23px 13px;
     text-decoration: none;
 }
 

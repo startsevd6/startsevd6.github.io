@@ -304,6 +304,7 @@ code {
     padding: 10px;
     border-radius: 7px;
     background: #f5f6f7;
+    z-index: 10;
 }
 
 .popup-copy-code.visible {

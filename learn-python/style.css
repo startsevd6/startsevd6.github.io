@@ -297,18 +297,20 @@ code {
 }
 
 .popup-copy-code {
-    display: none;
     position: absolute;
     width: max-content;
     margin: 5px 0;
     padding: 10px;
     border-radius: 7px;
     background: #f5f6f7;
+    user-select: none;
     z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .popup-copy-code.visible {
-    display: block;
+    opacity: 1;
 }
 
 .copy-code-lesson {

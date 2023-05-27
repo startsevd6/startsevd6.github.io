@@ -55,14 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 <span class="name-menu" id="after-img">Меню</span>
             </button>
         </aside>`;
-    const footerContent = `
-        <footer>
-            <p class="email">e-mail: 
-                <a href="mailto:startsevd6@gmail.com" class="email-a">
-                    startsevd6@gmail.com
-                </a>
-            </p>
-        </footer>`;
 
 
     // Подгружаем aside после загрузки всей страницы
@@ -77,6 +69,16 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (error) {
         alert('Ошибка: Загрузка боковой панели не удалась');
     }
+
+
+    const footerContent = `
+        <footer>
+            <p class="email">e-mail: 
+                <a href="mailto:startsevd6@gmail.com" class="email-a">
+                    startsevd6@gmail.com
+                </a>
+            </p>
+        </footer>`;
 
 
     // Подгружаем footer после загрузки всей страницы
@@ -241,6 +243,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Копирование кода из блока
     const copyCodeButtons = document.querySelectorAll('.copy-code-lesson');
+    let lastCopyTime = 0;
+    let lastCopiedBlockNumber = 0;
+    let lastCopyCodeImg = null;
+    let lastCopyCodeImgSuccess = null;
 
     function showResultBlock(codeElement, copyCodeImg, message) {
         const copyCodeResultBlock = document.createElement('div');
@@ -250,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let buttonRect = copyCodeImg.getBoundingClientRect();
         let resultBlockTop = buttonRect.top + window.scrollY - 52;
 
-        let offsetY = 52;
+        let offsetY = 52; // изменяем переменную offsetY в зависимости от ширины экрана и размера текста самого блока
         if (window.innerWidth > 950 && window.innerWidth <= 1200) {
             offsetY += 108;
         } else if (window.innerWidth <= 950) {
@@ -275,10 +281,14 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             document.body.insertAdjacentElement('beforeBegin', copyCodeResultBlock);
         }
+        console.log(copyCodeResultBlock);
         setTimeout(function () {
             copyCodeResultBlock.classList.remove('visible');
         }, 2750);
-    }
+        setTimeout(function () {
+            copyCodeResultBlock.remove();
+        }, 3050);
+    };
 
     copyCodeButtons.forEach(function (button) {
         new ClipboardJS(button, {
@@ -287,6 +297,26 @@ document.addEventListener('DOMContentLoaded', function () {
                     const codeElement = trigger.getAttribute('data-clipboard-target');
                     const copyCodeImg = document.querySelector(`${codeElement}-img`);
                     const copyCodeImgSuccess = document.querySelector(`${codeElement}-success`);
+                    console.log(0, codeElement.substring(codeElement.length - 1));
+                    if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber === codeElement.substring(codeElement.length - 1)) {
+                        console.log(2);
+                        const copyCodeResultBlock = document.querySelector('span.p-lesson');
+                        copyCodeResultBlock.innerText = 'Уже скопировано!';
+                        lastCopyTime = Date.now();
+                        return;
+                    } else if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber != codeElement.substring(codeElement.length - 1)) {
+                        console.log(3);
+                        const copyCodeResultBlock = document.querySelector('.popup-copy-code');
+                        copyCodeResultBlock.remove();
+                        lastCopyCodeImgSuccess.classList.remove('visible');
+                        lastCopyCodeImg.classList.add('visible');
+                        console.log(3.1, copyCodeResultBlock, lastCopyCodeImg, lastCopyCodeImgSuccess);
+                        lastCopyTime = Date.now();
+                    }
+                    lastCopyTime = Date.now();
+                    lastCopiedBlockNumber = codeElement.substring(codeElement.length - 1);
+                    lastCopyCodeImg = copyCodeImg;
+                    lastCopyCodeImgSuccess = copyCodeImgSuccess;
                     showResultBlock(codeElement, copyCodeImg, 'Скопировано!');
 
                     copyCodeImg.classList.remove('visible');
@@ -318,6 +348,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
 
 
     // Плавный переход к блоку текста

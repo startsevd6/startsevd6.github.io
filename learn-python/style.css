@@ -19,7 +19,7 @@ aside {
     padding: 5px;
     background-color: #fff;
     border-radius: 12px;
-    z-index: 1;
+    z-index: 10;
 }
 
 button {
@@ -27,6 +27,16 @@ button {
     padding: 0;
     background: #ffffff;
     cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+figure {
+    margin: 0;
 }
 
 .warning {
@@ -83,6 +93,8 @@ button {
 .number-lesson {
     display: flex;
     margin: 0;
+    -webkit-user-select: none;
+    user-select: none;
     font-family: 'Montserrat';
     font-weight: 700;
     font-size: 0.875rem;
@@ -93,13 +105,15 @@ button {
 .name-lesson,
 .name-settings,
 .name-menu {
+    display: block;
     margin: 0;
     padding: 20px;
+    -webkit-user-select: none;
+    user-select: none;
     font-family: 'Montserrat';
     font-weight: 500;
     font-size: 1rem;
     color: #1a1a1a;
-    display: block;
 }
 
 .name-settings,
@@ -125,6 +139,7 @@ button {
 header {
     position: sticky;
     top: 0;
+    z-index: 5;
 }
 
 .top-header {
@@ -232,12 +247,8 @@ h2 {
     text-decoration: underline;
 }
 
-figure {
-    margin: 0;
-}
-
 .figure-to-line {
-    display: inline-block;
+    display: inline-table;
     float: none;
     padding-right: 30px;
 }
@@ -246,7 +257,6 @@ figure {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 0.875rem;
-    width: 100%;
     padding-bottom: 20px;
     color: #1a1a1a;
 }
@@ -303,8 +313,9 @@ code {
     padding: 10px;
     border-radius: 7px;
     background: #f5f6f7;
+    -webkit-user-select: none;
     user-select: none;
-    z-index: 10;
+    z-index: 3;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -380,6 +391,8 @@ code {
 .nav-theme-right {
     vertical-align: middle;
     padding: 0 20px;
+    -webkit-user-select: none;
+    user-select: none;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 1.125rem;

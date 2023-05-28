@@ -1,9 +1,5 @@
-// сайт в альфа версии
-
-let numberOfArticles = 1;
-
 document.addEventListener('DOMContentLoaded', function () {
-    // Объявляем переменные блоков, которые потом будем вставлять на страницу
+    // Объявляем переменную блока, который потом будем вставлять на страницу
     const asideContent = `
         <aside class="sidebar">
             <a href="/learn-python/0/" class="a-lesson">
@@ -71,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
+    // Объявляем переменную блока, который потом будем вставлять на страницу
     const footerContent = `
         <footer>
             <p class="email">e-mail: 
@@ -95,14 +92,15 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    // Подгружаем блок с навигацией в конце урока
-    const includeNav = document.getElementById('include-nav');
+    // Функция подгрузки блока с навигацией в конце урока
+    async function loadNav() {
+        const includeNav = document.getElementById('include-nav');
 
-    let navBlock = `
+        let navBlock = `
         <div class="nav-footer">`;
-    if (currentArticleNumber - 1 >= 0) {
-        const previousArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber - 1].outerText;
-        navBlock += `
+        if (currentArticleNumber - 1 >= 0) {
+            const previousArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber - 1].outerText;
+            navBlock += `
             <a href="/learn-python/${currentArticleNumber - 1}/" class="nav-a-left">
                 <div class="nav-div-img-left">
                     <img class="nav-img-left" src="/learn-python/img/icon-arrow.svg" alt="arrow left">
@@ -110,29 +108,37 @@ document.addEventListener('DOMContentLoaded', function () {
                 <span class="nav-theme-left">${currentArticleNumber - 1}: ${previousArticleTitle}</span>
             </a>
         `;
-    }
-    if (currentArticleNumber + 1 <= numberOfArticles) {
-        const nextArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber + 1].outerText;
-        navBlock += `
-            <a href="/learn-python/${currentArticleNumber + 1}/" class="nav-a-right">
-                <span class="nav-theme-right">${currentArticleNumber + 1}: ${nextArticleTitle}</span>
-                <div class="nav-div-img-right">
-                    <img class="nav-img-right" src="/learn-python/img/icon-arrow.svg" alt="arrow right">
-                </div>
-            </a>
-        `;
-    }
-    navBlock += `</div>`;
-
-    try {
-        includeNav.innerHTML = navBlock;
-
-        if (!includeNav.innerHTML.trim()) {
-            throw new Error('Ошибка: Загрузка навигации в конце урока не удалась');
         }
-    } catch (error) {
-        alert('Ошибка: Загрузка навигации в конце урока не удалась');
-    }
+        let xhr = new XMLHttpRequest();
+        xhr.open('HEAD', `/learn-python/${currentArticleNumber + 1}/index.html`, false);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const nextArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber + 1].outerText;
+                    navBlock += `
+                    <a href="/learn-python/${currentArticleNumber + 1}/" class="nav-a-right">
+                        <span class="nav-theme-right">${currentArticleNumber + 1}: ${nextArticleTitle}</span>
+                        <div class="nav-div-img-right">
+                            <img class="nav-img-right" src="/learn-python/img/icon-arrow.svg" alt="arrow right">
+                        </div>
+                    </a>
+                `;
+                }
+            }
+        };
+        xhr.send();
+        navBlock += `</div>`;
+
+        try {
+            includeNav.innerHTML = navBlock;
+
+            if (!includeNav.innerHTML.trim()) {
+                throw new Error('Ошибка: Загрузка навигации в конце урока не удалась');
+            }
+        } catch (error) {
+            alert('Ошибка: Загрузка навигации в конце урока не удалась');
+        }
+    };
 
 
     // Функция изменения класса всем определённым блокам на странице
@@ -218,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    // Вставка блоков кода на страницу
+    // Вставка кнопок копирования кода на страницу
     const includeId = 'include-copy-code-button-';
     const numberOfBlocks = document.querySelectorAll(`[id^="${includeId}"]`).length;
 
@@ -236,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (includeButtonCopyCode) {
             includeButtonCopyCode.innerHTML = codeBlock;
         } else {
-            alert(`Ошибка: Кнопка с идентификатором #${buttonId} не найдена.`);
+            alert(`Ошибка: Кнопка копирования кода с идентификатором #${buttonId} не найдена.`);
         }
     }
 
@@ -277,11 +283,10 @@ document.addEventListener('DOMContentLoaded', function () {
         copyCodeResultBlock.classList.add('visible');
         if (codeElement) {
             const parentElement = document.querySelector(codeElement).parentNode;
-            parentElement.insertAdjacentElement('beforeBegin', copyCodeResultBlock);
+            parentElement.insertAdjacentElement('beforebegin', copyCodeResultBlock);
         } else {
-            document.body.insertAdjacentElement('beforeBegin', copyCodeResultBlock);
+            document.body.insertAdjacentElement('beforebegin', copyCodeResultBlock);
         }
-        console.log(copyCodeResultBlock);
         setTimeout(function () {
             copyCodeResultBlock.classList.remove('visible');
         }, 2750);
@@ -297,20 +302,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     const codeElement = trigger.getAttribute('data-clipboard-target');
                     const copyCodeImg = document.querySelector(`${codeElement}-img`);
                     const copyCodeImgSuccess = document.querySelector(`${codeElement}-success`);
-                    console.log(0, codeElement.substring(codeElement.length - 1));
                     if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber === codeElement.substring(codeElement.length - 1)) {
-                        console.log(2);
                         const copyCodeResultBlock = document.querySelector('span.p-lesson');
                         copyCodeResultBlock.innerText = 'Уже скопировано!';
                         lastCopyTime = Date.now();
                         return;
                     } else if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber != codeElement.substring(codeElement.length - 1)) {
-                        console.log(3);
                         const copyCodeResultBlock = document.querySelector('.popup-copy-code');
                         copyCodeResultBlock.remove();
                         lastCopyCodeImgSuccess.classList.remove('visible');
                         lastCopyCodeImg.classList.add('visible');
-                        console.log(3.1, copyCodeResultBlock, lastCopyCodeImg, lastCopyCodeImgSuccess);
                         lastCopyTime = Date.now();
                     }
                     lastCopyTime = Date.now();
@@ -405,6 +406,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.addEventListener('resize', resizeHandler);
 
-    // Возвращаем aside в исходное состояние сразу после загрузки страницы 
-    resizeHandler();
+    resizeHandler(); // Возвращаем aside в исходное состояние сразу после загрузки страницы 
+    loadNav(); // Добавляем блок с навигацией в конце урока
 });

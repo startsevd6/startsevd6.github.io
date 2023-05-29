@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Объявляем переменную блока, который потом будем вставлять на страницу
+    // Объявляем переменные блоков, которые потом будем вставлять на страницу
     const asideContent = `
         <aside class="sidebar">
             <a href="/learn-python/0/" class="a-lesson">
@@ -51,23 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 <span class="name-menu" id="after-img">Меню</span>
             </button>
         </aside>`;
-
-
-    // Подгружаем aside после загрузки всей страницы
-    const includeAside = document.getElementById('include-aside');
-
-    try {
-        includeAside.innerHTML = asideContent;
-
-        if (!includeAside.innerHTML.trim()) {
-            throw new Error('Ошибка: Загрузка боковой панели не удалась');
-        }
-    } catch (error) {
-        alert('Ошибка: Загрузка боковой панели не удалась');
-    }
-
-
-    // Объявляем переменную блока, который потом будем вставлять на страницу
     const footerContent = `
         <footer>
             <p class="email">e-mail: 
@@ -78,18 +61,23 @@ document.addEventListener('DOMContentLoaded', function () {
         </footer>`;
 
 
-    // Подгружаем footer после загрузки всей страницы
-    const includeFooter = document.getElementById('include-footer');
+    // Функция подгрузки блока после загрузки всей страницы
+    function loadContent(includeBlock, content) {
+        const includeContent = document.getElementById('include-' + includeBlock);
+        let nameBlock = includeBlock;
+        try {
+            includeContent.innerHTML = content;
 
-    try {
-        includeFooter.innerHTML = footerContent;
-
-        if (!includeFooter.innerHTML.trim()) {
-            throw new Error('Ошибка: Загрузка нижнего блока не удалась');
+            if (!includeContent.innerHTML.trim()) {
+                throw new Error(`Ошибка: Загрузка ${nameBlock} не удалась`);
+            }
+        } catch (error) {
+            alert('Ошибка: Загрузка'+ nameBlock +'не удалась');
         }
-    } catch (error) {
-        alert('Ошибка: Загрузка нижнего блока не удалась');
-    }
+    };
+
+    loadContent('aside', asideContent); // Загружаем aside
+    loadContent('footer', footerContent); // Загружаем footer
 
 
     // Функция подгрузки блока с навигацией в конце урока
@@ -129,15 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.send();
         navBlock += `</div>`;
 
-        try {
-            includeNav.innerHTML = navBlock;
-
-            if (!includeNav.innerHTML.trim()) {
-                throw new Error('Ошибка: Загрузка навигации в конце урока не удалась');
-            }
-        } catch (error) {
-            alert('Ошибка: Загрузка навигации в конце урока не удалась');
-        }
+        loadContent('nav', navBlock); // Загружаем nav
     };
 
 
@@ -260,23 +240,23 @@ document.addEventListener('DOMContentLoaded', function () {
         copyCodeResultBlock.innerHTML = `<span class="p-lesson">${message}</span>`;
 
         let buttonRect = copyCodeImg.getBoundingClientRect();
-        let resultBlockTop = buttonRect.top + window.scrollY - 52;
-
+        
         let offsetY = 52; // изменяем переменную offsetY в зависимости от ширины экрана и размера текста самого блока
         if (window.innerWidth > 950 && window.innerWidth <= 1200) {
             offsetY += 108;
         } else if (window.innerWidth <= 950) {
             offsetY -= 12;
         }
-
+        
         if (buttonRect.left + window.screenX - offsetY + 128 > window.innerWidth) {
             offsetY += 47;
         }
-
+        
         if (offsetY < 60 && !codeElement) {
             offsetY = 0;
         }
-
+        
+        let resultBlockTop = buttonRect.top + window.scrollY - 52;
         let resultBlockLeft = buttonRect.left + window.screenX - offsetY;
         copyCodeResultBlock.style.top = `${resultBlockTop}px`;
         copyCodeResultBlock.style.left = `${resultBlockLeft}px`;
@@ -351,7 +331,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-
     // Плавный переход к блоку текста
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
 
@@ -404,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 10);
     }
 
-    window.addEventListener('resize', resizeHandler);
+    window.addEventListener('resize', resizeHandler); // Выполняем функцию resizeHandler при изменении размера экрана
 
     resizeHandler(); // Возвращаем aside в исходное состояние сразу после загрузки страницы 
     loadNav(); // Добавляем блок с навигацией в конце урока

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Переменная — это место, где вы можете хранить значение в вашей программе. Вы можете cчитать переменную коробкой, в которую вы можете положить что-то для использования позже. В математике вы наверняка уже встречали переменные, когда решали уравнения с буквами x или a, эти буквы и есть переменные.">
+    <link rel="stylesheet" href="/learn-python/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500;700&family=Source+Code+Pro&display=swap"
+        rel="stylesheet">
+    <script type="text/javascript" src="../../learn-python/clipboard.min.js"></script>
+    <script type="text/javascript" src="../../learn-python/script.js" defer></script>
+    <title>Переменные</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <include id="include-aside"></include>
+
+        <div class="sections">
+            <header>
+                <div class="top-header"></div>
+                <div class="shadow-header">
+                    <div class="container-header">
+                        <div class="header-p">
+                            <p class="theme-p">Тема: Переменные</p>
+                        </div>
+                        <div class="div-a">
+                            <a href="#variable-types" class="header-a">Типы переменных</a>
+                            <a href="#mathematical-operations" class="header-a">Действия</a>
+                        </div>
+                    </div>
+                    <div class="account-button"> <!-- Сейчас авторизация не работает -->
+                        <img src="/learn-python/img/icon-account.svg" alt="account icon" class="img-icon-account">
+                    </div>
+                </div>
+            </header>
+
+            <section class="warning">
+                <p class="p-warning">Сайт в данный момент не оптимизирован под устройства с шириной экрана менее 320
+                    пикселей</p>
+            </section>
+
+            <section class="lesson">
+                <article>
+                    <h1>Ввод и вывод данных</h1>
+                    <p class="p-lesson">Привет! В этом уроке мы поговорим о вводе и выводе текста в Python.</p>
+                    <p class="p-lesson">Ввод текста означает получение данных от пользователя, а вывод текста - отображение данных на экране. Для этих целей мы будем использовать функции input() и print().</p>
+                    <p class="p-lesson">Уже в первом уроке мы использовали функцию print() для вывода текста на экран. Например:</p>
+                    <div class="code-lesson">
+                        <code id="code-1">print('Hello, world!')</code>
+                        <include id="include-copy-code-button-1"></include>
+                    </div>
+                    <p class="p-lesson">Здесь мы передали строку "Hello, world!" в качестве аргумента функции print(). Она отобразит эту строку на экране.</p>
+                    <p class="p-lesson">Функция input() используется для получения ввода от пользователя. Например:</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-2">name = input()
+print('Привет, ' + name + '!')</code>
+                        <include id="include-copy-code-button-2"></include>
+                    </div>
+                    <p class="p-lesson">Здесь мы использовали функцию input() для запроса имени у пользователя. Функция input() ожидает ввода от пользователя, который затем сохраняется в переменной name. Затем мы использовали эту переменную для вывода приветствия на экран.</p>
+                    <p class="p-lesson">Функция input() также может принимать строку-приглашение для пользователя. Эта строка отображается перед ожиданием ввода. Например:</p>
+                    <div class="code-lesson">
+                        <code id="code-3">age = input('Введите ваш возраст: ')</code>
+                        <include id="include-copy-code-button-3"></include>
+                    </div>
+                    <p class="p-lesson">Помимо этого, функция print() имеет дополнительные параметры, такие как sep и end. Параметр sep позволяет указать разделитель между значениями, которые нужно вывести. Параметр end позволяет указать, какой символ должен быть добавлен в конце строки вывода. По умолчанию sep равен пробелу, а end равен символу новой строки.</p>
+                    <p class="p-lesson">Пример с параметрами sep и end:</p>
+                    <div class="code-lesson">
+                        <code id="code-4">print("Hello", "world", sep=", ", end="!")</code>
+                        <include id="include-copy-code-button-4"></include>
+                    </div>
+                    <p class="p-lesson">В этом примере мы используем разделитель ", " между словами "Hello" и "world", а в конце строки добавляем восклицательный знак.</p>
+                    <p class="p-lesson">Чтобы принять ввод в разных типах данных, мы можем использовать функции преобразования типов, такие как int(), float(), и str(). Например:</p>
+                    <div class="code-lesson">
+                        <code id="code-5">age = int(input("Введите ваш возраст: "))</code>
+                        <include id="include-copy-code-button-5"></include>
+                    </div>
+                    <p class="p-lesson">В этом примере мы сначала принимаем возраст от пользователя с помощью функции input(), а затем преобразуем полученное значение в целое число с помощью функции int().</p>
+                    <p class="p-lesson">Также мы можем присваивать значения нескольким переменным сразу, используя метод .split(). Например:</p>
+                    <div class="code-lesson">
+                        <code id="code-6">name, age = input("Введите ваше имя и возраст через пробел: ").split()</code>
+                        <include id="include-copy-code-button-6"></include>
+                    </div>
+                    <p class="p-lesson">В этом примере мы принимаем имя и возраст от пользователя, разделенные пробелом, и присваиваем их соответственно переменным name и age.</p>
+                    <p class="p-lesson">В следующем уроке мы рассмотрим условные операторы и научимся выполнять различные действия в зависимости от условий.</p>
+                </article>
+                <script>let currentArticleNumber = 2;</script>
+                <include id="include-nav"></include>
+            </section>
+
+            <include id="include-footer"></include>
+
+        </div>
+    </div>
+    <button class="open-menu">
+        <img class="open-menu-img" src="/learn-python/img/icon-menu.svg" alt="button open menu">
+    </button>
+</body>
+
+</html>

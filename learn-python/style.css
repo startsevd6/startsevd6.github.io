@@ -469,7 +469,7 @@ footer {
     }
 
     aside.animate {
-        transition: width .5s ease;
+        transition: width 0.5s ease;
     }
 
     aside.open {
@@ -481,11 +481,12 @@ footer {
     }
 
     .sections.shifted {
+        overflow-x: hidden;
         transform: translateX(230px);
     }
 
     .sections.animate {
-        transition: transform .5s ease;
+        transition: transform 0.5s ease;
     }
 
     .a-lesson.extension,
@@ -550,7 +551,20 @@ footer {
     }
 
     aside {
-        display: none;
+        display: block;
+        transform: translateX(calc(-4% - 300px));
+    }
+
+    aside.animate {
+        transition: transform 0.5s ease;
+    }
+
+    aside.visible {
+        transform: translateX(0);
+    }
+
+    .a-python {
+        margin-top: max(calc(100vh - 430px), 5px);
     }
 
     .button-menu {
@@ -559,6 +573,10 @@ footer {
 
     .sections {
         margin: 0;
+    }
+
+    .sections.shifted {
+        transform: translateX(calc(4% + 300px));
     }
 
     .nav-footer {

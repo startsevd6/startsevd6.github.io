@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 throw new Error(`Ошибка: Загрузка ${nameBlock} не удалась`);
             }
         } catch (error) {
-            alert('Ошибка: Загрузка'+ nameBlock +'не удалась');
+            alert('Ошибка: Загрузка' + nameBlock + 'не удалась');
         }
     };
 
@@ -81,44 +81,56 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Функция подгрузки блока с навигацией в конце урока
-    async function loadNav() {
-        const includeNav = document.getElementById('include-nav');
+    let isNavLoaded = false;
 
+    function loadNav() {
         let navBlock = `
         <div class="nav-footer">`;
         if (currentArticleNumber - 1 >= 0) {
             const previousArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber - 1].outerText;
             navBlock += `
-            <a href="/learn-python/${currentArticleNumber - 1}/" class="nav-a-left">
-                <div class="nav-div-img-left">
-                    <img class="nav-img-left" src="/learn-python/img/icon-arrow.svg" alt="arrow left">
-                </div>
-                <span class="nav-theme-left">${currentArticleNumber - 1}: ${previousArticleTitle}</span>
-            </a>
-        `;
+                <a href="/learn-python/${currentArticleNumber - 1}/" class="nav-a-left">
+                    <div class="nav-div-img-left">
+                        <img class="nav-img-left" src="/learn-python/img/icon-arrow.svg" alt="arrow left">
+                    </div>
+                    <span class="nav-theme-left">${currentArticleNumber - 1}: ${previousArticleTitle}</span>
+                </a>
+            `;
         }
         let xhr = new XMLHttpRequest();
-        xhr.open('HEAD', `/learn-python/${currentArticleNumber + 1}/index.html`, false);
+        xhr.open('HEAD', `/learn-python/${currentArticleNumber + 1}/`, true);
         xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    const nextArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber + 1].outerText;
-                    navBlock += `
+            if (xhr.status === 200) {
+                const nextArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber + 1].outerText;
+                navBlock += `
                     <a href="/learn-python/${currentArticleNumber + 1}/" class="nav-a-right">
                         <span class="nav-theme-right">${currentArticleNumber + 1}: ${nextArticleTitle}</span>
                         <div class="nav-div-img-right">
                             <img class="nav-img-right" src="/learn-python/img/icon-arrow.svg" alt="arrow right">
                         </div>
                     </a>
+                </div>
                 `;
+                try {
+                    if (!isNavLoaded) {
+                        loadContent('nav', navBlock); // Загружаем nav
+                        isNavLoaded = true;
+                        return;
+                    }
+                } catch (error) {
+                    console.log('Ошибка: Подгрузить nav не удалось');
                 }
+            } else if (xhr.status === 404) {
+                console.log('Следующей страницы (№' + (currentArticleNumber + 1) + ') нет');
+            } else {
+                console.log('Произошла ошибка при выполнении запроса на сервер, готовность:', xhr.readyState, 'статус:', xhr.status);
             }
         };
         xhr.send();
-        navBlock += `</div>`;
-
         loadContent('nav', navBlock); // Загружаем nav
     };
+
+    loadNav(); // Добавляем блок с навигацией в конце урока
 
 
     // Функция изменения класса всем определённым блокам на странице
@@ -203,6 +215,62 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Функция открытия меню для мобильных устройств
+    document.querySelector('button.open-menu').addEventListener('click', function () {
+        if (!sectionsIsShifted) {
+            aside.classList.add('visible');
+            aside.classList.add('animate');
+            aside.classList.add('open');
+            toggleClasses(sections, 'animate', true);
+            toggleClasses(sections, 'shifted', true);
+            sectionsIsShifted = true;
+        } else {
+            aside.classList.add('animate');
+            aside.classList.remove('visible');
+            toggleClasses(sections, 'animate', true);
+            toggleClasses(sections, 'shifted', false);
+            sectionsIsShifted = false;
+        }
+    });
+
+
+    // Расширяем aside обратно, если разрешение экрана подходит
+    let debounceTimeout;
+
+    function resizeHandler() {
+        clearTimeout(debounceTimeout);
+
+        debounceTimeout = setTimeout(function () {
+            if (window.innerWidth >= 950 && window.innerWidth <= 1200 && sectionsIsShifted) {
+                sections.classList.remove('animate');
+                sections.classList.add('shifted');
+                aside.classList.remove('animate');
+                aside.classList.add('open');
+
+                setTimeout(function () {
+                    sections.classList.add('animate');
+                    aside.classList.add('animate');
+                }, 500);
+            } else if (window.innerWidth <= 950) {
+                aside.classList.remove('animate');
+                aside.classList.remove('open');
+                sections.classList.remove('shifted');
+                addClasses();
+                setTimeout(function () {
+                    aside.classList.add('animate');
+                }, 500);
+            } else if (window.innerWidth >= 1200) {
+                aside.classList.remove('animate');
+                aside.classList.remove('open');
+                sections.classList.remove('shifted');
+                removeClasses();
+            }
+        }, 10);
+    }
+
+    window.addEventListener('resize', resizeHandler); // Выполняем функцию resizeHandler при изменении размера экрана
+    resizeHandler(); // Возвращаем aside в исходное состояние сразу после загрузки страницы 
+
 
     // Вставка кнопок копирования кода на страницу
     const includeId = 'include-copy-code-button-';
@@ -240,22 +308,22 @@ document.addEventListener('DOMContentLoaded', function () {
         copyCodeResultBlock.innerHTML = `<span class="p-lesson">${message}</span>`;
 
         let buttonRect = copyCodeImg.getBoundingClientRect();
-        
+
         let offsetY = 52; // изменяем переменную offsetY в зависимости от ширины экрана и размера текста самого блока
         if (window.innerWidth > 950 && window.innerWidth <= 1200) {
             offsetY += 108;
         } else if (window.innerWidth <= 950) {
             offsetY -= 12;
         }
-        
+
         if (buttonRect.left + window.screenX - offsetY + 128 > window.innerWidth) {
             offsetY += 47;
         }
-        
+
         if (offsetY < 60 && !codeElement) {
             offsetY = 0;
         }
-        
+
         let resultBlockTop = buttonRect.top + window.scrollY - 52;
         let resultBlockLeft = buttonRect.left + window.screenX - offsetY;
         copyCodeResultBlock.style.top = `${resultBlockTop}px`;
@@ -354,37 +422,4 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-
-
-    // Расширяем aside обратно, если разрешение экрана подходит
-    let debounceTimeout;
-
-    function resizeHandler() {
-        clearTimeout(debounceTimeout);
-
-        debounceTimeout = setTimeout(function () {
-            if (window.innerWidth >= 950 && window.innerWidth <= 1200 && sectionsIsShifted) {
-                sections.classList.remove('animate');
-                sections.classList.add('shifted');
-                aside.classList.remove('animate');
-                aside.classList.add('open');
-                addClasses();
-
-                setTimeout(function () {
-                    sections.classList.add('animate');
-                    aside.classList.add('animate');
-                }, 500);
-            } else if (window.innerWidth <= 950 || window.innerWidth >= 1200) {
-                aside.classList.remove('animate');
-                aside.classList.remove('open');
-                sections.classList.remove('shifted');
-                removeClasses();
-            }
-        }, 10);
-    }
-
-    window.addEventListener('resize', resizeHandler); // Выполняем функцию resizeHandler при изменении размера экрана
-
-    resizeHandler(); // Возвращаем aside в исходное состояние сразу после загрузки страницы 
-    loadNav(); // Добавляем блок с навигацией в конце урока
 });

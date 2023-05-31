@@ -7,7 +7,7 @@ header {
     width: 1105px;
     height: 50px;
     margin: 31px auto;
-    background: #3A7AB4;
+    background: #3a7ab4;
     border-radius: 7px;
 }
 
@@ -29,12 +29,12 @@ a {
     font-size: 1.125rem;
     line-height: 1.5rem;
     text-decoration: none;
-    background-color: #3A7AB4;
-    color: #FFFFFF;
+    background-color: #3a7ab4;
+    color: #ffffff;
 }
 
 a:hover {
-    background-color: #6195C3;
+    background-color: #6195c3;
 }
 
 section {
@@ -50,7 +50,7 @@ span {
     font-weight: 400;
     font-size: 1rem;
 
-    color: #3A7AB4;
+    color: #3a7ab4;
 }
 
 h1 {

@@ -51,6 +51,10 @@ figure {
     margin: 0 auto;
 }
 
+.wrapper:not(:first-child) {
+    overflow: hidden;
+}
+
 .a-lesson,
 .a-settings,
 .a-python {
@@ -234,6 +238,10 @@ h2 {
     padding-bottom: 20px;
     line-height: 1.5;
     color: rgba(0, 0, 0, .9);
+}
+
+.p-lesson:last-child {
+    padding-bottom: 0;
 }
 
 .a-in-lesson {

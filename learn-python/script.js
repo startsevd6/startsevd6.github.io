@@ -68,15 +68,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Функция подгрузки блока после загрузки всей страницы
     function loadContent(includeBlock, content) {
         const includeContent = document.getElementById('include-' + includeBlock);
-        let nameBlock = includeBlock;
         try {
             includeContent.innerHTML = content;
 
             if (!includeContent.innerHTML.trim()) {
-                throw new Error(`Ошибка: Загрузка ${nameBlock} не удалась`);
+                throw new Error(`Ошибка: Загрузка ${includeBlock} не удалась`);
             }
         } catch (error) {
-            alert('Ошибка: Загрузка', nameBlock, 'не удалась');
+            alert('Ошибка: Загрузка блока', includeBlock, 'не удалась');
         }
     };
 
@@ -224,23 +223,26 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
     if (isOpenMenuLoaded && window.innerWidth <= 950) {
-        // Функция открытия меню для мобильных устройств
-        document.querySelector('button.open-menu').addEventListener('click', function () {
-            if (!sectionsIsShifted) {
-                aside.classList.add('visible');
-                aside.classList.add('animate');
-                aside.classList.add('open');
-                toggleClasses(sections, 'animate', true);
-                toggleClasses(sections, 'shifted', true);
-                sectionsIsShifted = true;
-            } else {
-                aside.classList.add('animate');
-                aside.classList.remove('visible');
-                toggleClasses(sections, 'animate', true);
-                toggleClasses(sections, 'shifted', false);
-                sectionsIsShifted = false;
-            }
-        });
+        const elementOpenMenu = document.querySelector('button.open-menu');
+        if (elementOpenMenu != null) {
+            // Функция открытия меню для мобильных устройств
+            elementOpenMenu.addEventListener('click', function () {
+                if (!sectionsIsShifted) {
+                    aside.classList.add('visible');
+                    aside.classList.add('animate');
+                    aside.classList.add('open');
+                    toggleClasses(sections, 'animate', true);
+                    toggleClasses(sections, 'shifted', true);
+                    sectionsIsShifted = true;
+                } else {
+                    aside.classList.add('animate');
+                    aside.classList.remove('visible');
+                    toggleClasses(sections, 'animate', true);
+                    toggleClasses(sections, 'shifted', false);
+                    sectionsIsShifted = false;
+                }
+            });
+        }
     }
 
 
@@ -251,21 +253,27 @@ document.addEventListener('DOMContentLoaded', function () {
         clearTimeout(debounceTimeout);
 
         debounceTimeout = setTimeout(function () {
-            if (window.innerWidth >= 950 && window.innerWidth <= 1200 && sectionsIsShifted) {
-                sections.classList.remove('animate');
-                sections.classList.add('shifted');
-                aside.classList.remove('animate');
-                aside.classList.add('open');
-
-                setTimeout(function () {
-                    sections.classList.add('animate');
-                    aside.classList.add('animate');
-                }, 500);
+            if (window.innerWidth >= 950 && window.innerWidth <= 1200) {
+                if (sectionsIsShifted) {
+                    sections.classList.remove('animate');
+                    sections.classList.add('shifted');
+                    aside.classList.remove('animate');
+                    aside.classList.add('open');
+                    setTimeout(function () {
+                        sections.classList.add('animate');
+                        aside.classList.add('animate');
+                    }, 500);
+                }
+                removeClasses();
             } else if (window.innerWidth <= 950) {
+                if (!isOpenMenuLoaded) {
+                    loadContent('open-menu', openMenuContent); // Загружаем кнопку открытия меню, если ширина экрана изменилась
+                    isOpenMenuLoaded = true;
+                }
+                addClasses();
                 aside.classList.remove('animate');
                 aside.classList.remove('open');
                 sections.classList.remove('shifted');
-                addClasses();
                 setTimeout(function () {
                     aside.classList.add('animate');
                 }, 500);

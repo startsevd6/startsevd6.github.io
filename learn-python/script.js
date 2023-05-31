@@ -59,6 +59,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 </a>
             </p>
         </footer>`;
+    const openMenuContent = `
+        <button class="open-menu">
+            <img class="open-menu-img" src="/learn-python/img/icon-menu.svg" alt="button open menu">
+        </button>`;
 
 
     // Функция подгрузки блока после загрузки всей страницы
@@ -72,12 +76,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 throw new Error(`Ошибка: Загрузка ${nameBlock} не удалась`);
             }
         } catch (error) {
-            alert('Ошибка: Загрузка' + nameBlock + 'не удалась');
+            alert('Ошибка: Загрузка', nameBlock, 'не удалась');
         }
     };
 
     loadContent('aside', asideContent); // Загружаем aside
     loadContent('footer', footerContent); // Загружаем footer
+    let isOpenMenuLoaded = false;
+    if (!isOpenMenuLoaded && window.innerWidth <= 950) {
+        loadContent('open-menu', openMenuContent); // Загружаем кнопку открытия меню
+        isOpenMenuLoaded = true;
+    }
 
 
     // Функция подгрузки блока с навигацией в конце урока
@@ -214,24 +223,25 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
-
-    // Функция открытия меню для мобильных устройств
-    document.querySelector('button.open-menu').addEventListener('click', function () {
-        if (!sectionsIsShifted) {
-            aside.classList.add('visible');
-            aside.classList.add('animate');
-            aside.classList.add('open');
-            toggleClasses(sections, 'animate', true);
-            toggleClasses(sections, 'shifted', true);
-            sectionsIsShifted = true;
-        } else {
-            aside.classList.add('animate');
-            aside.classList.remove('visible');
-            toggleClasses(sections, 'animate', true);
-            toggleClasses(sections, 'shifted', false);
-            sectionsIsShifted = false;
-        }
-    });
+    if (isOpenMenuLoaded && window.innerWidth <= 950) {
+        // Функция открытия меню для мобильных устройств
+        document.querySelector('button.open-menu').addEventListener('click', function () {
+            if (!sectionsIsShifted) {
+                aside.classList.add('visible');
+                aside.classList.add('animate');
+                aside.classList.add('open');
+                toggleClasses(sections, 'animate', true);
+                toggleClasses(sections, 'shifted', true);
+                sectionsIsShifted = true;
+            } else {
+                aside.classList.add('animate');
+                aside.classList.remove('visible');
+                toggleClasses(sections, 'animate', true);
+                toggleClasses(sections, 'shifted', false);
+                sectionsIsShifted = false;
+            }
+        });
+    }
 
 
     // Расширяем aside обратно, если разрешение экрана подходит

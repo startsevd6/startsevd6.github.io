@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Условный оператор позволяет программе выполнять различные действия в зависимости от условий. Он позволяет ветвить программу и выбирать, какой код должен быть выполнен в определенных ситуациях.">
+    <link rel="stylesheet" href="/learn-python/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500;700&family=Source+Code+Pro&display=swap"
+        rel="stylesheet">
+    <script type="text/javascript" src="../../learn-python/clipboard.min.js"></script>
+    <script type="text/javascript" src="../../learn-python/script.js" defer></script>
+    <title>Условный оператор</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <include id="include-aside"></include>
+
+        <div class="sections">
+            <header>
+                <div class="top-header"></div>
+                <div class="shadow-header">
+                    <div class="container-header">
+                        <div class="header-p">
+                            <p class="theme-p">Тема: Ввод и выыод данных</p>
+                        </div>
+                        <div class="div-a">
+                            <a href="#print" class="header-a">Вывод</a>
+                            <a href="#input" class="header-a">Ввод</a>
+                        </div>
+                    </div>
+                    <div class="account-button"> <!-- Сейчас авторизация не работает -->
+                        <img src="/learn-python/img/icon-account.svg" alt="account icon" class="img-icon-account">
+                    </div>
+                </div>
+            </header>
+
+            <section class="warning">
+                <p class="p-warning">Сайт в данный момент не оптимизирован под устройства с шириной экрана менее 320
+                    пикселей</p>
+            </section>
+
+            <section class="lesson">
+                <article>
+                    <p class="p-lesson">Привет! Сегодня мы поговорим об условном операторе в Python.</p>
+                    <p class="p-lesson">Условный оператор позволяет программе выполнять различные действия в зависимости
+                        от условий. Он позволяет ветвить программу и выбирать, какой код должен быть выполнен в
+                        определенных ситуациях.</p>
+                    <p class="p-lesson">Синтаксис условного оператора выглядит следующим образом:</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-1">if условие_1:
+    блок_1
+elif условие_2:
+    блок_2
+else:
+    блок_3</code>
+                        <include id="include-copy-code-button-1"></include>
+                    </div>
+                    <p class="p-lesson">Код, содержащийся в блоке_1, будет выполнен, если условие_1 истинно (True). Если
+                        условие_1 ложно (False), то код в блоке_1 будет пропущен и проверяется следующее условие.</p>
+                    <p class="p-lesson">Код, содержащийся в блоке_2, будет выполнен, если условие_2 истинно (True). Если
+                        ни одно из предыдущих условий не было истинным, то проверяется условие_2.</p>
+                    <p class="p-lesson">Код, содержащийся в блоке_3, будет выполнен, если ни одно из предыдущих условий
+                        не было истинным.</p>
+                    <p class="p-lesson">Отступы играют важную роль в Python, так как они определяют, какой код относится
+                        к блоку if, elif или else. Обычно используется четыре пробела (или одна табуляция) для создания
+                        отступов.</p>
+                    <p class="p-lesson">Для формулировки условий в условном операторе мы можем использовать операторы
+                        сравнения (==, !=, >, <,>=, <=) и логические операторы (and, or, not).</p>
+                    <p class="p-lesson">Вот таблица операторов сравнения:</p>
+                    <table class="p-lesson">
+                        <tbody>
+                            <tr>
+                                <th>Оператор</th>
+                                <th>Значение</th>
+                            </tr>
+                            <tr>
+                                <td>==</td>
+                                <td>Равно</td>
+                            </tr>
+                            <tr>
+                                <td>!=</td>
+                                <td>Не равно</td>
+                            </tr>
+                            <tr>
+                                <td>></td>
+                                <td>Больше</td>
+                            </tr>
+                            <tr>
+                                <td><</td>
+                                <td>Меньше</td>
+                            </tr>
+                            <tr>
+                                <td>>=</td>
+                                <td>Больше или равно</td>
+                            </tr>
+                            <tr>
+                                <td><=</td>
+                                <td>Меньше или равно</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="p-lesson">Мы также можем использовать цепочки сравнений для проверки
+                        нескольких условий одновременно. Например:</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-2">x = 5
+if 1 < x < 10:
+    print("Число находится в диапазоне от 1 до 10.")</code>
+                        <include id="include-copy-code-button-2"></include>
+                    </div>
+                    <p class="p-lesson">В этом примере мы проверяем, что число x больше 1 и меньше 10
+                        одновременно.</p>
+                    <p class="p-lesson">Условный оператор также может быть вложенным, что означает, что один
+                        условный оператор может находиться внутри другого. Например:</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-3">x = 5
+if x > 0:
+    if x < 10:
+        print("Число положительное и меньше 10.")
+    else:
+        print("Число положительное, но не меньше 10.")
+else:
+    print("Число отрицательное.")</code>
+                        <include id="include-copy-code-button-3"></include>
+                    </div>
+                    <p class="p-lesson">В этом примере мы проверяем, что число x положительное и меньше 10.
+                        Если это верно, то выводим соответствующее сообщение. В противном случае, если число
+                        отрицательное, выводим другое сообщение.</p>
+                    <p class="p-lesson">В следующем уроке мы рассмотрим циклы и научимся выполнять
+                        повторяющиеся действия в программе.</p>
+                </article>
+                <script>let currentArticleNumber = 3;</script>
+                <include id="include-nav"></include>
+            </section>
+
+            <include id="include-footer"></include>
+
+        </div>
+    </div>
+    <include id="include-open-menu">
+        </indlude>
+</body>
+
+</html>

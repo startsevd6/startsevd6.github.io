@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
         }
         let xhr = new XMLHttpRequest();
+        let messageSent = false;
         xhr.open('HEAD', `/learn-python/${currentArticleNumber + 1}/`, true);
         xhr.onreadystatechange = function () {
             if (xhr.status === 200) {
@@ -126,12 +127,21 @@ document.addEventListener('DOMContentLoaded', function () {
                         return;
                     }
                 } catch (error) {
-                    console.log('Ошибка: Подгрузить nav не удалось');
+                    if (!messageSent) {
+                        console.log('Ошибка: Подгрузить nav не удалось');
+                        messageSent = true;
+                    }
                 }
             } else if (xhr.status === 404) {
-                console.log('Следующей страницы (№' + (currentArticleNumber + 1) + ') нет');
+                if (!messageSent) {
+                    console.log('Следующей страницы (№' + (currentArticleNumber + 1) + ') нет');
+                    messageSent = true;
+                }
             } else {
-                console.log('Произошла ошибка при выполнении запроса на сервер, готовность:', xhr.readyState, 'статус:', xhr.status);
+                if (!messageSent) {
+                    console.log('Произошла ошибка при выполнении запроса на сервер, готовность:', xhr.readyState, 'статус:', xhr.status);
+                    messageSent = true;
+                }
             }
         };
         xhr.send();
@@ -253,35 +263,67 @@ document.addEventListener('DOMContentLoaded', function () {
         clearTimeout(debounceTimeout);
 
         debounceTimeout = setTimeout(function () {
-            if (window.innerWidth >= 950 && window.innerWidth <= 1200) {
+            if (window.innerWidth >= 1200) {
+                aside.classList.remove('animate');
+                sections.classList.remove('animate');
+            } else if (window.innerWidth >= 950 && window.innerWidth <= 1200) {
                 if (sectionsIsShifted) {
                     sections.classList.remove('animate');
                     sections.classList.add('shifted');
                     aside.classList.remove('animate');
                     aside.classList.add('open');
+                    addClasses();
+                    setTimeout(function () {
+                        sections.classList.add('animate');
+                        aside.classList.add('animate');
+                    }, 500);
+                } else {
+                    aside.classList.remove('animate');
+                    aside.classList.remove('open');
+                    sections.classList.remove('animate');
+                    sections.classList.remove('shifted');
+                    removeClasses();
                     setTimeout(function () {
                         sections.classList.add('animate');
                         aside.classList.add('animate');
                     }, 500);
                 }
-                removeClasses();
             } else if (window.innerWidth <= 950) {
                 if (!isOpenMenuLoaded) {
                     loadContent('open-menu', openMenuContent); // Загружаем кнопку открытия меню, если ширина экрана изменилась
                     isOpenMenuLoaded = true;
+                    if (isOpenMenuLoaded && window.innerWidth <= 950) {
+                        const elementOpenMenu = document.querySelector('button.open-menu');
+                        if (elementOpenMenu != null) {
+                            // Функция открытия меню для мобильных устройств
+                            elementOpenMenu.addEventListener('click', function () {
+                                if (!sectionsIsShifted) {
+                                    aside.classList.add('visible');
+                                    aside.classList.add('animate');
+                                    aside.classList.add('open');
+                                    toggleClasses(sections, 'animate', true);
+                                    toggleClasses(sections, 'shifted', true);
+                                    sectionsIsShifted = true;
+                                } else {
+                                    aside.classList.add('animate');
+                                    aside.classList.remove('visible');
+                                    toggleClasses(sections, 'animate', true);
+                                    toggleClasses(sections, 'shifted', false);
+                                    sectionsIsShifted = false;
+                                }
+                            });
+                        }
+                    }
                 }
-                addClasses();
-                aside.classList.remove('animate');
-                aside.classList.remove('open');
-                sections.classList.remove('shifted');
-                setTimeout(function () {
-                    aside.classList.add('animate');
-                }, 500);
-            } else if (window.innerWidth >= 1200) {
-                aside.classList.remove('animate');
-                aside.classList.remove('open');
-                sections.classList.remove('shifted');
-                removeClasses();
+                if (!sectionsIsShifted) {
+                    addClasses();
+                    aside.classList.remove('animate');
+                    aside.classList.add('open');
+                    sections.classList.remove('shifted');
+                    setTimeout(function () {
+                        aside.classList.add('animate');
+                    }, 500);
+                }
             }
         }, 10);
     }

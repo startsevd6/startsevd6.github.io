@@ -28,11 +28,11 @@
                 <div class="shadow-header">
                     <div class="container-header">
                         <div class="header-p">
-                            <p class="theme-p">Тема: Ввод и выыод данных</p>
+                            <p class="theme-p">Тема: Условный оператор</p>
                         </div>
                         <div class="div-a">
-                            <a href="#print" class="header-a">Вывод</a>
-                            <a href="#input" class="header-a">Ввод</a>
+                            <a href="#syntax" class="header-a">Синтаксис</a>
+                            <a href="#operators" class="header-a">Операторы</a>
                         </div>
                     </div>
                     <div class="account-button"> <!-- Сейчас авторизация не работает -->
@@ -48,10 +48,13 @@
 
             <section class="lesson">
                 <article>
+                    <h1>Условный оператор</h1>
                     <p class="p-lesson">Привет! Сегодня мы поговорим об условном операторе в Python.</p>
                     <p class="p-lesson">Условный оператор позволяет программе выполнять различные действия в зависимости
                         от условий. Он позволяет ветвить программу и выбирать, какой код должен быть выполнен в
                         определенных ситуациях.</p>
+
+                    <h2 id="syntax">Синтаксис</h2>
                     <p class="p-lesson">Синтаксис условного оператора выглядит следующим образом:</p>
                     <div class="pre-code-lesson">
                         <code class="pre" id="code-1">if условие_1:
@@ -71,38 +74,60 @@ else:
                     <p class="p-lesson">Отступы играют важную роль в Python, так как они определяют, какой код относится
                         к блоку if, elif или else. Обычно используется четыре пробела (или одна табуляция) для создания
                         отступов.</p>
+
+                    <h2 id="operators">Логические операторы и операторы сравнения</h2>
                     <p class="p-lesson">Для формулировки условий в условном операторе мы можем использовать операторы
                         сравнения (==, !=, >, <,>=, <=) и логические операторы (and, or, not).</p>
                     <p class="p-lesson">Вот таблица операторов сравнения:</p>
                     <table class="p-lesson">
                         <tbody>
                             <tr>
-                                <th>Оператор</th>
+                                <th>Оператор сравнения</th>
                                 <th>Значение</th>
                             </tr>
                             <tr>
-                                <td>==</td>
+                                <td class="td-text-center">==</td>
                                 <td>Равно</td>
                             </tr>
                             <tr>
-                                <td>!=</td>
+                                <td class="td-text-center">!=</td>
                                 <td>Не равно</td>
                             </tr>
                             <tr>
-                                <td>></td>
+                                <td class="td-text-center">></td>
                                 <td>Больше</td>
                             </tr>
                             <tr>
-                                <td><</td>
+                                <td class="td-text-center"><</td>
                                 <td>Меньше</td>
                             </tr>
                             <tr>
-                                <td>>=</td>
+                                <td class="td-text-center">>=</td>
                                 <td>Больше или равно</td>
                             </tr>
                             <tr>
-                                <td><=</td>
+                                <td class="td-text-center"><=</td>
                                 <td>Меньше или равно</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="p-lesson">
+                        <tbody>
+                            <tr>
+                                <th>Логический оператор</th>
+                                <th>Предназначение</th>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center">and</td>
+                                <td>И - используется, когда нужно проверить верны ли оба условия</td>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center">or</td>
+                                <td>ИЛИ - используется, когда нужно проверить верно хотя бы одно условие</td>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center">not</td>
+                                <td>НЕ - используется для смены значения условия на противоположное</td>
                             </tr>
                         </tbody>
                     </table>

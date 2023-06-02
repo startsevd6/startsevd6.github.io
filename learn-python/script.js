@@ -92,11 +92,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let isNavLoaded = false;
 
     function loadNav() {
-        let navBlock = `
-        <div class="nav-footer">`;
-        if (currentArticleNumber - 1 >= 0) {
-            const previousArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber - 1].outerText;
-            navBlock += `
+        try {
+            let navBlock = `
+            <div class="nav-footer">`;
+            if (currentArticleNumber - 1 >= 0) {
+                const previousArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber - 1].outerText;
+                navBlock += `
                 <a href="/learn-python/${currentArticleNumber - 1}/" class="nav-a-left">
                     <div class="nav-div-img-left">
                         <img class="nav-img-left" src="/learn-python/img/icon-arrow.svg" alt="arrow left">
@@ -104,14 +105,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     <span class="nav-theme-left">${currentArticleNumber - 1}: ${previousArticleTitle}</span>
                 </a>
             `;
-        }
-        let xhr = new XMLHttpRequest();
-        let messageSent = false;
-        xhr.open('HEAD', `/learn-python/${currentArticleNumber + 1}/`, true);
-        xhr.onreadystatechange = function () {
-            if (xhr.status === 200) {
-                const nextArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber + 1].outerText;
-                navBlock += `
+            }
+            let xhr = new XMLHttpRequest();
+            let messageSent = false;
+            xhr.open('HEAD', `/learn-python/${currentArticleNumber + 1}/`, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.status === 200) {
+                    const nextArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber + 1].outerText;
+                    navBlock += `
                     <a href="/learn-python/${currentArticleNumber + 1}/" class="nav-a-right">
                         <span class="nav-theme-right">${currentArticleNumber + 1}: ${nextArticleTitle}</span>
                         <div class="nav-div-img-right">
@@ -120,32 +121,35 @@ document.addEventListener('DOMContentLoaded', function () {
                     </a>
                 </div>
                 `;
-                try {
-                    if (!isNavLoaded) {
-                        loadContent('nav', navBlock); // Загружаем nav
-                        isNavLoaded = true;
-                        return;
+                    try {
+                        if (!isNavLoaded) {
+                            loadContent('nav', navBlock); // Загружаем nav
+                            isNavLoaded = true;
+                            return;
+                        }
+                    } catch (error) {
+                        if (!messageSent) {
+                            console.log('Ошибка: Подгрузить nav не удалось');
+                            messageSent = true;
+                        }
                     }
-                } catch (error) {
+                } else if (xhr.status === 404) {
                     if (!messageSent) {
-                        console.log('Ошибка: Подгрузить nav не удалось');
+                        console.log('Следующей страницы (№' + (currentArticleNumber + 1) + ') нет');
+                        messageSent = true;
+                    }
+                } else {
+                    if (!messageSent) {
+                        console.log('Произошла ошибка при выполнении запроса на сервер, готовность:', xhr.readyState, 'статус:', xhr.status);
                         messageSent = true;
                     }
                 }
-            } else if (xhr.status === 404) {
-                if (!messageSent) {
-                    console.log('Следующей страницы (№' + (currentArticleNumber + 1) + ') нет');
-                    messageSent = true;
-                }
-            } else {
-                if (!messageSent) {
-                    console.log('Произошла ошибка при выполнении запроса на сервер, готовность:', xhr.readyState, 'статус:', xhr.status);
-                    messageSent = true;
-                }
-            }
-        };
-        xhr.send();
-        loadContent('nav', navBlock); // Загружаем nav
+            };
+            xhr.send();
+            loadContent('nav', navBlock); // Загружаем nav
+        } catch {
+            console.log('Не найден номер статьи, навигация в конце статьи не загружена');
+        }
     };
 
     loadNav(); // Добавляем блок с навигацией в конце урока
@@ -245,10 +249,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     toggleClasses(sections, 'shifted', true);
                     sectionsIsShifted = true;
                 } else {
+                    elementOpenMenuInnerHTML = elementOpenMenu.innerHTML;
+                    elementOpenMenu.innerHTML = '';
                     aside.classList.add('animate');
                     aside.classList.remove('visible');
                     toggleClasses(sections, 'animate', true);
                     toggleClasses(sections, 'shifted', false);
+                    setTimeout(function () {
+                        elementOpenMenu.innerHTML = elementOpenMenuInnerHTML;
+                    }, 500);
                     sectionsIsShifted = false;
                 }
             });
@@ -277,6 +286,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         sections.classList.add('animate');
                         aside.classList.add('animate');
                     }, 500);
+                    sectionsIsShifted = false;
                 } else {
                     aside.classList.remove('animate');
                     aside.classList.remove('open');
@@ -287,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         sections.classList.add('animate');
                         aside.classList.add('animate');
                     }, 500);
+                    sectionsIsShifted = true;
                 }
             } else if (window.innerWidth <= 950) {
                 if (!isOpenMenuLoaded) {

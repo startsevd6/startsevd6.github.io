@@ -51,10 +51,6 @@ figure {
     margin: 0 auto;
 }
 
-.wrapper:not(:first-child) {
-    overflow: hidden;
-}
-
 .a-lesson,
 .a-settings,
 .a-python {
@@ -292,6 +288,10 @@ td {
     padding: 5px;
 }
 
+.td-text-center {
+    text-align: center;
+}
+
 .code-lesson,
 .pre-code-lesson {
     display: inline-block;
@@ -304,7 +304,7 @@ td {
     page-break-inside: avoid;
     word-break: break-all;
     word-wrap: break-word;
-    white-space: pre;
+    white-space: pre-wrap;
 }
 
 code {
@@ -436,12 +436,13 @@ footer {
 .open-menu {
     display: none;
     position: fixed;
-    top: calc(100% - 60px);
-    left: calc(100% - 60px);
+    bottom: 10px;
+    right: 10px;
     height: 50px;
     padding: 19px 15px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .1), 0 0 2px rgba(0, 0, 0, .05);
     border-radius: 10px;
+    z-index: 20;
 }
 
 .open-menu-img {
@@ -482,6 +483,7 @@ footer {
 
     aside.open {
         width: 290px;
+        border-right: 1px solid #ececea;
     }
 
     .sections {
@@ -489,8 +491,7 @@ footer {
     }
 
     .sections.shifted {
-        overflow-x: hidden;
-        transform: translateX(230px);
+        overflow: hidden;
     }
 
     .sections.animate {

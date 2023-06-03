@@ -13,14 +13,19 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="lessons">
     `;
 
+    activeClass = '';
     for (let i = 0; i < articleThemes.length; i++) {
+        if (i == currentArticleNumber) {
+            activeClass = ' active-lesson';
+        }
         asideContent += `
-            <a href="/learn-python/${i}/" class="a-lesson">
+            <a href="/learn-python/${i}/" class="a-lesson${activeClass}">
                 <div class="div-number-lesson">
                     <p class="number-lesson">${i}</p>
                 </div>
                 <span class="name-lesson">${articleThemes[i]}</span>
             </a>`;
+        activeClass = '';
     }
 
     asideContent += `

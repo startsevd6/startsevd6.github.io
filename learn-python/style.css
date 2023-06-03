@@ -50,9 +50,14 @@ figure {
 .a-settings,
 .a-python {
     display: block;
+    width: 290px;
     height: 60px;
     text-decoration: none;
     border-radius: 5px;
+}
+
+.active-lesson {
+    background-color: #edf0f1;
 }
 
 .button-menu {
@@ -457,7 +462,7 @@ footer {
     aside {
         display: flex;
         height: calc(100% - 10px);
-        width: 300px;
+        width: 290px;
         border-radius: 0;
         top: 0;
         margin: 0;

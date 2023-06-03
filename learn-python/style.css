@@ -11,15 +11,17 @@ p {
 
 aside {
     position: fixed;
+    display: flex;
     width: 290px;
     height: 681px;
-    float: left;
     margin-left: 52px;
     margin-top: 31px;
     padding: 5px;
     background-color: #fff;
     border-radius: 12px;
     z-index: 10;
+    align-content: space-between;
+    flex-wrap: wrap;
 }
 
 button {
@@ -39,13 +41,6 @@ figure {
     margin: 0;
 }
 
-.warning {
-    display: none;
-    background-color: #eae7ce;
-    margin-top: 110px;
-    padding: 50px 25px;
-}
-
 .wrapper {
     max-width: 1740px;
     margin: 0 auto;
@@ -58,10 +53,6 @@ figure {
     height: 60px;
     text-decoration: none;
     border-radius: 5px;
-}
-
-.a-python {
-    margin-top: 261px;
 }
 
 .button-menu {
@@ -105,6 +96,7 @@ figure {
 .name-lesson,
 .name-settings,
 .name-menu {
+    position: relative;
     display: block;
     margin: 0;
     padding: 20px;
@@ -114,6 +106,7 @@ figure {
     font-weight: 500;
     font-size: 1rem;
     color: #1a1a1a;
+    white-space: nowrap;
 }
 
 .name-settings,
@@ -453,22 +446,17 @@ footer {
 @media (max-width: 1700px) {
     aside {
         display: flex;
-        height: 100%;
+        height: calc(100% - 10px);
         width: 300px;
         border-radius: 0;
         top: 0;
         margin: 0;
         padding: 5px;
-        flex-direction: column;
     }
 
     .sections {
         margin-left: calc(4% + 300px);
         margin-right: 4%;
-    }
-
-    .a-python {
-        margin-top: max(calc(100vh - 430px), 5px);
     }
 }
 
@@ -486,26 +474,10 @@ footer {
         border-right: 1px solid #ececea;
     }
 
-    .sections {
-        transform: translateX(0px);
-    }
-
-    .sections.shifted {
+    .lessons,
+    .buttons {
+        width: 100%;
         overflow: hidden;
-    }
-
-    .sections.animate {
-        transition: transform 0.5s ease;
-    }
-
-    .a-lesson.extension,
-    .a-settings.extension,
-    .a-python.extension .button-menu.extension {
-        width: 290px;
-    }
-
-    .a-python {
-        margin-top: max(calc(100vh - 490px), 5px);
     }
 
     .div-number-lesson {
@@ -520,18 +492,16 @@ footer {
         padding: 24px 25px;
     }
 
-    .name-lesson,
-    #after-img {
-        display: none;
+    .a-python,
+    .a-settings,
+    .button-menu {
+        height: 60px;
+        width: 100%;
+        overflow: hidden;
     }
 
-    .name-lesson.visible {
-        display: block;
-    }
-
-    #after-img.visible,
-    .name-settings.visible {
-        display: inline-block;
+    .after-img {
+        vertical-align: middle;
     }
 
     .button-menu {
@@ -560,7 +530,6 @@ footer {
     }
 
     aside {
-        display: block;
         transform: translateX(calc(-4% - 300px));
     }
 
@@ -572,12 +541,16 @@ footer {
         transform: translateX(0);
     }
 
-    .a-python {
-        margin-top: max(calc(100vh - 430px), 5px);
+    .sections {
+        transform: translateX(0px);
+    }
+
+    .sections.animate {
+        transition: transform 0.5s ease;
     }
 
     .button-menu {
-        display: block;
+        display: none;
     }
 
     .sections {
@@ -586,6 +559,7 @@ footer {
 
     .sections.shifted {
         transform: translateX(calc(4% + 300px));
+        overflow: hidden;
     }
 
     .nav-footer {
@@ -606,17 +580,18 @@ footer {
         width: 100%;
         border-radius: 0 0 7px 7px;
     }
+
+    .nav-a-left, .nav-a-right {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .nav-a-right {
+        float: unset;
+    }
 }
 
 @media (max-width: 715px) {
-    body {
-        overflow-x: hidden;
-    }
-
-    .wrapper {
-        width: 100vw;
-    }
-
     header {
         top: -50px;
     }
@@ -649,6 +624,9 @@ footer {
 }
 
 @media (max-width: 400px) {
+    .container-header {
+        height: 90px;
+    }
 
     .theme-p,
     .header-a {
@@ -657,7 +635,7 @@ footer {
     }
 
     .header-a {
-        padding: 13px 7px;
+        padding: 8px 7px;
         font-size: 1rem;
     }
 
@@ -696,11 +674,6 @@ footer {
         line-height: 2;
     }
 
-    .p-warning {
-        font-family: 'Inter', sans-serif;
-        font-weight: 400;
-    }
-
     .div-a {
         margin: 0 16px;
         float: left;
@@ -708,11 +681,16 @@ footer {
 }
 
 @media (max-width: 319px) {
-    .theme-p {
-        font-size: 1rem;
+    header {
+        top: -40px;
     }
 
-    .warning {
-        display: block;
+    .container-header {
+        height: 80px;
+    }
+
+    .theme-p {
+        font-size: 1rem;
+        padding: 8px 13px;
     }
 }

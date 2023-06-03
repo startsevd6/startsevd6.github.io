@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Объявляем переменные блоков, которые потом будем вставлять на страницу
     const asideContent = `
-        <aside class="sidebar">
+    <aside class="sidebar">
+        <div class="lessons">
             <a href="/learn-python/0/" class="a-lesson">
                 <div class="div-number-lesson">
                     <p class="number-lesson">0</p>
@@ -32,25 +33,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <span class="name-lesson">Циклы</span>
             </a>
+        </div>
+        <div class="buttons">
             <a href="/learn-python/python-compiler/" class="a-python">
                 <div class="div-img-settings">
                     <img src="/learn-python/img/icon-python.svg" alt="python compiler button">
                 </div>
-                <span class="name-settings" id="after-img">Python компилятор</span>
+                <span class="name-settings after-img">Python компилятор</span>
             </a>
             <a href="/learn-python/settings/" class="a-settings">
                 <div class="div-img-settings">
                     <img src="/learn-python/img/icon-settings.svg" alt="settings button">
                 </div>
-                <span class="name-settings" id="after-img">Настройки</span>
+                <span class="name-settings after-img">Настройки</span>
             </a>
             <button class="button-menu">
                 <div class="div-img-menu">
                     <img src="/learn-python/img/icon-menu.svg" alt="menu button">
                 </div>
-                <span class="name-menu" id="after-img">Меню</span>
+                <span class="name-menu after-img">Меню</span>
             </button>
-        </aside>`;
+        </div>
+    </aside>`;
     const footerContent = `
         <footer>
             <p class="email">e-mail: 
@@ -155,64 +159,10 @@ document.addEventListener('DOMContentLoaded', function () {
     loadNav(); // Добавляем блок с навигацией в конце урока
 
 
-    // Функция изменения класса всем определённым блокам на странице
-    function toggleClasses(elements, className, add) {
-        if (Array.isArray(elements) || elements instanceof NodeList || elements instanceof HTMLCollection) {
-            elements.forEach(function (element) {
-                if (add) {
-                    element.classList.add(className);
-                } else {
-                    element.classList.remove(className);
-                }
-            });
-        } else {
-            if (add) {
-                elements.classList.add(className);
-            } else {
-                elements.classList.remove(className);
-            }
-        }
-    }
-
-
-    // Функция массового изменения класса определённым блокам
-    const aLesson = document.querySelectorAll('.a-lesson');
-    const aPython = document.querySelectorAll('.a-python');
-    const aSettings = document.querySelectorAll('.a-settings');
-    const buttonMenu = document.querySelectorAll('.button-menu');
-    const nameLesson = document.querySelectorAll('.name-lesson');
-    const nameSettings = document.querySelectorAll('.name-settings');
-    const nameMenu = document.querySelectorAll('.name-menu');
-    const afterImg = document.querySelectorAll('#after-img');
-
-    let sectionsIsShifted = false;
-
-    function addClasses() {
-        toggleClasses(aLesson, 'extension', true);
-        toggleClasses(aPython, 'extension', true);
-        toggleClasses(aSettings, 'extension', true);
-        toggleClasses(buttonMenu, 'extension', true);
-        toggleClasses(nameLesson, 'visible', true);
-        toggleClasses(nameSettings, 'visible', true);
-        toggleClasses(nameMenu, 'visible', true);
-        toggleClasses(afterImg, 'visible', true);
-    }
-
-    function removeClasses() {
-        toggleClasses(aLesson, 'extension', false);
-        toggleClasses(aPython, 'extension', false);
-        toggleClasses(aSettings, 'extension', false);
-        toggleClasses(buttonMenu, 'extension', false);
-        toggleClasses(nameLesson, 'visible', false);
-        toggleClasses(nameSettings, 'visible', false);
-        toggleClasses(nameMenu, 'visible', false);
-        toggleClasses(afterImg, 'visible', false);
-    }
-
-
     // если сайдбар сжат, то расширяем, если нет, то сжимаем
     const aside = document.querySelector('aside');
     const sections = document.querySelector('.sections');
+    let sectionsIsShifted = false;
 
     document.addEventListener('click', function (event) {
         let target = event.target.closest('button.button-menu');
@@ -221,21 +171,20 @@ document.addEventListener('DOMContentLoaded', function () {
             if (aside.offsetWidth === 80) {
                 aside.classList.add('animate');
                 aside.classList.add('open');
-                toggleClasses(sections, 'animate', true);
-                toggleClasses(sections, 'shifted', true);
-                sectionsIsShifted = true;
                 setTimeout(function () {
                     addClasses();
+                    sectionsIsShifted = true;
                 }, 500);
             } else {
                 aside.classList.remove('open');
-                toggleClasses(sections, 'animate', true);
-                toggleClasses(sections, 'shifted', false);
-                sectionsIsShifted = false;
                 removeClasses();
+                setTimeout(function () {
+                    sectionsIsShifted = false;
+                }, 500)
             }
         }
     });
+    // Та же функция, но для мобильных устройств
     if (isOpenMenuLoaded && window.innerWidth <= 950) {
         const elementOpenMenu = document.querySelector('button.open-menu');
         if (elementOpenMenu != null) {
@@ -245,16 +194,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     aside.classList.add('visible');
                     aside.classList.add('animate');
                     aside.classList.add('open');
-                    toggleClasses(sections, 'animate', true);
-                    toggleClasses(sections, 'shifted', true);
+                    sections.classList.add('animate');
+                    sections.classList.add('shifted');
                     sectionsIsShifted = true;
                 } else {
                     elementOpenMenuInnerHTML = elementOpenMenu.innerHTML;
                     elementOpenMenu.innerHTML = '';
                     aside.classList.add('animate');
                     aside.classList.remove('visible');
-                    toggleClasses(sections, 'animate', true);
-                    toggleClasses(sections, 'shifted', false);
+                    sections.classList.add('animate');
+                    sections.classList.remove('shifted');
                     setTimeout(function () {
                         elementOpenMenu.innerHTML = elementOpenMenuInnerHTML;
                     }, 500);
@@ -267,34 +216,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Расширяем aside обратно, если разрешение экрана подходит
     let debounceTimeout;
+    let previousScreenWidth = window.innerWidth;
 
     function resizeHandler() {
         clearTimeout(debounceTimeout);
 
         debounceTimeout = setTimeout(function () {
+            // При ширине экрана более 1200px aside всегда развёрнут
             if (window.innerWidth >= 1200) {
                 aside.classList.remove('animate');
                 sections.classList.remove('animate');
             } else if (window.innerWidth >= 950 && window.innerWidth <= 1200) {
                 if (sectionsIsShifted) {
-                    sections.classList.remove('animate');
-                    sections.classList.add('shifted');
                     aside.classList.remove('animate');
                     aside.classList.add('open');
                     addClasses();
                     setTimeout(function () {
-                        sections.classList.add('animate');
                         aside.classList.add('animate');
                     }, 500);
                     sectionsIsShifted = false;
                 } else {
                     aside.classList.remove('animate');
                     aside.classList.remove('open');
-                    sections.classList.remove('animate');
-                    sections.classList.remove('shifted');
                     removeClasses();
                     setTimeout(function () {
-                        sections.classList.add('animate');
                         aside.classList.add('animate');
                     }, 500);
                     sectionsIsShifted = true;
@@ -308,19 +253,19 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (elementOpenMenu != null) {
                             // Функция открытия меню для мобильных устройств
                             elementOpenMenu.addEventListener('click', function () {
-                                if (!sectionsIsShifted) {
+                                if (sectionsIsShifted) {
+                                    aside.classList.add('animate');
+                                    aside.classList.remove('visible');
+                                    sections.classList.add('animate');
+                                    sections.classList.remove('shifted');
+                                    sectionsIsShifted = false;
+                                } else {
                                     aside.classList.add('visible');
                                     aside.classList.add('animate');
                                     aside.classList.add('open');
-                                    toggleClasses(sections, 'animate', true);
-                                    toggleClasses(sections, 'shifted', true);
+                                    sections.classList.add('animate');
+                                    sections.classList.add('shifted');
                                     sectionsIsShifted = true;
-                                } else {
-                                    aside.classList.add('animate');
-                                    aside.classList.remove('visible');
-                                    toggleClasses(sections, 'animate', true);
-                                    toggleClasses(sections, 'shifted', false);
-                                    sectionsIsShifted = false;
                                 }
                             });
                         }
@@ -336,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }, 500);
                 }
             }
-        }, 10);
+        }, 100);
     }
 
     window.addEventListener('resize', resizeHandler); // Выполняем функцию resizeHandler при изменении размера экрана
@@ -386,11 +331,11 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (window.innerWidth <= 950) {
             offsetY -= 12;
         }
-
+        // Если текст выёдет за пределы экрана, то увеличиваем переменную offsetY в зависимости от длины текста
         if (buttonRect.left + window.screenX - offsetY + 128 > window.innerWidth) {
             offsetY += 47;
         }
-
+        // Если в блоке нет кода, то выравниваем переменную offsetY по левому краю кнопки
         if (offsetY < 60 && !codeElement) {
             offsetY = 0;
         }

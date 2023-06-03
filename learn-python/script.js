@@ -1,38 +1,29 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Объявляем переменные блоков, которые потом будем вставлять на страницу
-    const asideContent = `
+    // Темы всех статей
+    const articleThemes = [
+        'Введение в Python',
+        'Переменные',
+        'Вывод и ввод текста',
+        'Условный оператор'//,
+        //'Циклы'
+    ];
+    // Переменная aside, которая будет заполняться
+    let asideContent = `
     <aside class="sidebar">
         <div class="lessons">
-            <a href="/learn-python/0/" class="a-lesson">
+    `;
+
+    for (let i = 0; i < articleThemes.length; i++) {
+        asideContent += `
+            <a href="/learn-python/${i}/" class="a-lesson">
                 <div class="div-number-lesson">
-                    <p class="number-lesson">0</p>
+                    <p class="number-lesson">${i}</p>
                 </div>
-                <span class="name-lesson">Введение в Python</span>
-            </a>
-            <a href="/learn-python/1/" class="a-lesson">
-                <div class="div-number-lesson">
-                    <p class="number-lesson">1</p>
-                </div>
-                <span class="name-lesson">Переменные</span>
-            </a>
-            <a href="/learn-python/2/" class="a-lesson">
-                <div class="div-number-lesson">
-                    <p class="number-lesson">2</p>
-                </div>
-                <span class="name-lesson">Вывод и ввод текста</span>
-            </a>
-            <a href="/learn-python/3/" class="a-lesson">
-                <div class="div-number-lesson">
-                    <p class="number-lesson">3</p>
-                </div>
-                <span class="name-lesson">Условный оператор</span>
-            </a>
-            <a href="/learn-python/4/" class="a-lesson">
-                <div class="div-number-lesson">
-                    <span class="number-lesson">4</span>
-                </div>
-                <span class="name-lesson">Циклы</span>
-            </a>
+                <span class="name-lesson">${articleThemes[i]}</span>
+            </a>`;
+    }
+
+    asideContent += `
         </div>
         <div class="buttons">
             <a href="/learn-python/python-compiler/" class="a-python">
@@ -55,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </button>
         </div>
     </aside>`;
+    // Объявляем переменные блоков, которые потом будем вставлять на страницу
     const footerContent = `
         <footer>
             <p class="email">e-mail: 
@@ -94,13 +86,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Функция подгрузки блока с навигацией в конце урока
     let isNavLoaded = false;
+    let messageSent = false;
 
     function loadNav() {
         try {
             let navBlock = `
             <div class="nav-footer">`;
             if (currentArticleNumber - 1 >= 0) {
-                const previousArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber - 1].outerText;
+                const previousArticleTitle = articleThemes[currentArticleNumber - 1];
                 navBlock += `
                 <a href="/learn-python/${currentArticleNumber - 1}/" class="nav-a-left">
                     <div class="nav-div-img-left">
@@ -110,49 +103,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 </a>
             `;
             }
-            let xhr = new XMLHttpRequest();
-            let messageSent = false;
-            xhr.open('HEAD', `/learn-python/${currentArticleNumber + 1}/`, true);
-            xhr.onreadystatechange = function () {
-                if (xhr.status === 200) {
-                    const nextArticleTitle = document.getElementsByClassName('name-lesson')[currentArticleNumber + 1].outerText;
-                    navBlock += `
-                    <a href="/learn-python/${currentArticleNumber + 1}/" class="nav-a-right">
-                        <span class="nav-theme-right">${currentArticleNumber + 1}: ${nextArticleTitle}</span>
-                        <div class="nav-div-img-right">
-                            <img class="nav-img-right" src="/learn-python/img/icon-arrow.svg" alt="arrow right">
-                        </div>
-                    </a>
-                </div>
-                `;
-                    try {
-                        if (!isNavLoaded) {
-                            loadContent('nav', navBlock); // Загружаем nav
-                            isNavLoaded = true;
-                            return;
-                        }
-                    } catch (error) {
-                        if (!messageSent) {
-                            console.log('Ошибка: Подгрузить nav не удалось');
-                            messageSent = true;
-                        }
-                    }
-                } else if (xhr.status === 404) {
-                    if (!messageSent) {
-                        console.log('Следующей страницы (№' + (currentArticleNumber + 1) + ') нет');
-                        messageSent = true;
-                    }
-                } else {
-                    if (!messageSent) {
-                        console.log('Произошла ошибка при выполнении запроса на сервер, готовность:', xhr.readyState, 'статус:', xhr.status);
-                        messageSent = true;
-                    }
+            if (currentArticleNumber + 1 <= articleThemes.length && articleThemes[currentArticleNumber + 1] != undefined) {
+                const nextArticleTitle = articleThemes[currentArticleNumber + 1];
+                navBlock += `
+                <a href="/learn-python/${currentArticleNumber + 1}/" class="nav-a-right">
+                    <span class="nav-theme-right">${currentArticleNumber + 1}: ${nextArticleTitle}</span>
+                    <div class="nav-div-img-right">
+                        <img class="nav-img-right" src="/learn-python/img/icon-arrow.svg" alt="arrow right">
+                    </div>
+                </a>
+            </div>
+            `;
+            }
+            try {
+                if (!isNavLoaded) {
+                    loadContent('nav', navBlock); // Загружаем nav
+                    isNavLoaded = true;
                 }
-            };
-            xhr.send();
-            loadContent('nav', navBlock); // Загружаем nav
-        } catch {
-            console.log('Не найден номер статьи, навигация в конце статьи не загружена');
+            } catch (error) {
+                if (!messageSent) {
+                    console.log('Ошибка: Подгрузить nav не удалось');
+                    messageSent = true;
+                }
+            }
+        } catch (error) {
+            if (!messageSent) {
+                console.log('Ошибка: Подгрузить nav не удалось');
+                messageSent = true;
+            }
         }
     };
 
@@ -172,12 +150,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 aside.classList.add('animate');
                 aside.classList.add('open');
                 setTimeout(function () {
-                    addClasses();
                     sectionsIsShifted = true;
                 }, 500);
             } else {
                 aside.classList.remove('open');
-                removeClasses();
                 setTimeout(function () {
                     sectionsIsShifted = false;
                 }, 500)
@@ -230,7 +206,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (sectionsIsShifted) {
                     aside.classList.remove('animate');
                     aside.classList.add('open');
-                    addClasses();
                     setTimeout(function () {
                         aside.classList.add('animate');
                     }, 500);
@@ -238,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else {
                     aside.classList.remove('animate');
                     aside.classList.remove('open');
-                    removeClasses();
                     setTimeout(function () {
                         aside.classList.add('animate');
                     }, 500);
@@ -272,7 +246,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
                 if (!sectionsIsShifted) {
-                    addClasses();
                     aside.classList.remove('animate');
                     aside.classList.add('open');
                     sections.classList.remove('shifted');
@@ -315,8 +288,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const copyCodeButtons = document.querySelectorAll('.copy-code-lesson');
     let lastCopyTime = 0;
     let lastCopiedBlockNumber = 0;
-    let lastCopyCodeImg = null;
-    let lastCopyCodeImgSuccess = null;
+    let lastCopyCodeImg;
+    let lastCopyCodeImgSuccess;
 
     function showResultBlock(codeElement, copyCodeImg, message) {
         const copyCodeResultBlock = document.createElement('div');

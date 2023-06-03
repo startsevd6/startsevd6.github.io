@@ -28,19 +28,19 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="buttons">
             <a href="/learn-python/python-compiler/" class="a-python">
                 <div class="div-img-settings">
-                    <img src="/learn-python/img/icon-python.svg" alt="python compiler button">
+                    <img class="img-python" src="/learn-python/img/icon-python.svg" alt="python compiler button">
                 </div>
                 <span class="name-settings after-img">Python компилятор</span>
             </a>
             <a href="/learn-python/settings/" class="a-settings">
                 <div class="div-img-settings">
-                    <img src="/learn-python/img/icon-settings.svg" alt="settings button">
+                    <img class="img-settings" src="/learn-python/img/icon-settings.svg" alt="settings button">
                 </div>
                 <span class="name-settings after-img">Настройки</span>
             </a>
             <button class="button-menu">
                 <div class="div-img-menu">
-                    <img src="/learn-python/img/icon-menu.svg" alt="menu button">
+                    <img class="img-menu" src="/learn-python/img/icon-menu.svg" alt="menu button">
                 </div>
                 <span class="name-menu after-img">Меню</span>
             </button>

@@ -162,6 +162,20 @@ figure {
     margin-right: 10%;
     min-width: 320px;
     max-width: 1224px;
+    opacity: 1;
+}
+
+.sections.animate {
+    transition: opacity 0.5s ease;
+}
+
+.sections.aside-open {
+    opacity: 0.9;
+}
+
+.sections.aside-open code {
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 header {
@@ -715,12 +729,13 @@ footer {
 
     .theme-p {
         font-size: 1rem;
-        padding: 8px 13px;
+        padding: 8px;
+        width: calc(100% - 16px);
+        white-space: nowrap;
         line-height: 2;
     }
 
     .div-a {
-        margin: 0 16px;
         float: left;
     }
 }

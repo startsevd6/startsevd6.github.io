@@ -154,17 +154,16 @@ document.addEventListener('DOMContentLoaded', function () {
         let target = event.target.closest('button.button-menu');
 
         if (target) {
-            if (aside.offsetWidth === 80) {
+            if (!sectionsIsShifted) {
                 aside.classList.add('animate');
                 aside.classList.add('open');
-                setTimeout(function () {
-                    sectionsIsShifted = true;
-                }, 500);
+                sections.classList.add('animate');
+                sections.classList.add('aside-open');
+                sectionsIsShifted = true;
             } else {
                 aside.classList.remove('open');
-                setTimeout(function () {
-                    sectionsIsShifted = false;
-                }, 500)
+                sections.classList.remove('aside-open');
+                sectionsIsShifted = false;
             }
         }
     });
@@ -200,7 +199,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Расширяем aside обратно, если разрешение экрана подходит
     let debounceTimeout;
-    let previousScreenWidth = window.innerWidth;
 
     function resizeHandler() {
         clearTimeout(debounceTimeout);
@@ -266,7 +264,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     window.addEventListener('resize', resizeHandler); // Выполняем функцию resizeHandler при изменении размера экрана
-    resizeHandler(); // Возвращаем aside в исходное состояние сразу после загрузки страницы 
 
 
     // Вставка кнопок копирования кода на страницу
@@ -307,12 +304,10 @@ document.addEventListener('DOMContentLoaded', function () {
         let buttonRect = copyCodeImg.getBoundingClientRect();
 
         let offsetY = 52; // изменяем переменную offsetY в зависимости от ширины экрана и размера текста самого блока
-        if (window.innerWidth > 950 && window.innerWidth <= 1200) {
-            offsetY += 108;
-        } else if (window.innerWidth <= 950) {
+        if (window.innerWidth <= 950) {
             offsetY -= 12;
         }
-        // Если текст выёдет за пределы экрана, то увеличиваем переменную offsetY в зависимости от длины текста
+        // Если текст выйдет за пределы экрана, то увеличиваем переменную offsetY в зависимости от длины текста
         if (buttonRect.left + window.screenX - offsetY + 128 > window.innerWidth) {
             offsetY += 47;
         }
@@ -343,53 +338,56 @@ document.addEventListener('DOMContentLoaded', function () {
     copyCodeButtons.forEach(function (button) {
         new ClipboardJS(button, {
             text: function (trigger) {
-                try {
-                    const codeElement = trigger.getAttribute('data-clipboard-target');
-                    const copyCodeImg = document.querySelector(`${codeElement}-img`);
-                    const copyCodeImgSuccess = document.querySelector(`${codeElement}-success`);
-                    if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber === codeElement.substring(codeElement.length - 1)) {
-                        const copyCodeResultBlock = document.querySelector('span.p-lesson');
-                        copyCodeResultBlock.innerText = 'Уже скопировано!';
+                console.log(sectionsIsShifted)
+                if (!sectionsIsShifted) {
+                    try {
+                        const codeElement = trigger.getAttribute('data-clipboard-target');
+                        const copyCodeImg = document.querySelector(`${codeElement}-img`);
+                        const copyCodeImgSuccess = document.querySelector(`${codeElement}-success`);
+                        if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber === codeElement.substring(codeElement.length - 1)) {
+                            const copyCodeResultBlock = document.querySelector('span.p-lesson');
+                            copyCodeResultBlock.innerText = 'Уже скопировано!';
+                            lastCopyTime = Date.now();
+                            return;
+                        } else if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber != codeElement.substring(codeElement.length - 1)) {
+                            const copyCodeResultBlock = document.querySelector('.popup-copy-code');
+                            copyCodeResultBlock.remove();
+                            lastCopyCodeImgSuccess.classList.remove('visible');
+                            lastCopyCodeImg.classList.add('visible');
+                            lastCopyTime = Date.now();
+                        }
                         lastCopyTime = Date.now();
-                        return;
-                    } else if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber != codeElement.substring(codeElement.length - 1)) {
-                        const copyCodeResultBlock = document.querySelector('.popup-copy-code');
-                        copyCodeResultBlock.remove();
-                        lastCopyCodeImgSuccess.classList.remove('visible');
-                        lastCopyCodeImg.classList.add('visible');
-                        lastCopyTime = Date.now();
-                    }
-                    lastCopyTime = Date.now();
-                    lastCopiedBlockNumber = codeElement.substring(codeElement.length - 1);
-                    lastCopyCodeImg = copyCodeImg;
-                    lastCopyCodeImgSuccess = copyCodeImgSuccess;
-                    showResultBlock(codeElement, copyCodeImg, 'Скопировано!');
+                        lastCopiedBlockNumber = codeElement.substring(codeElement.length - 1);
+                        lastCopyCodeImg = copyCodeImg;
+                        lastCopyCodeImgSuccess = copyCodeImgSuccess;
+                        showResultBlock(codeElement, copyCodeImg, 'Скопировано!');
 
-                    copyCodeImg.classList.remove('visible');
-                    copyCodeImgSuccess.classList.add('visible');
-                    setTimeout(function () {
+                        copyCodeImg.classList.remove('visible');
+                        copyCodeImgSuccess.classList.add('visible');
+                        setTimeout(function () {
+                            copyCodeImgSuccess.classList.remove('visible');
+                            copyCodeImg.classList.add('visible');
+                        }, 2750);
+                        return document.querySelector(codeElement).innerText;
+                    } catch {
+                        const codeButton = '#' + button.getAttribute('id').substring(12);
+                        const copyCodeImg = document.querySelector(`${codeButton}-img`);
+                        const copyCodeImgSuccess = document.querySelector(`${codeButton}-success`);
+                        const copyCodeImgUnsuccess = document.querySelector(`${codeButton}-unsuccess`);
+                        showResultBlock(false, copyCodeImg, 'Не удалось найти текст для копирования');
+
+                        copyCodeImg.classList.remove('visible');
                         copyCodeImgSuccess.classList.remove('visible');
-                        copyCodeImg.classList.add('visible');
-                    }, 2750);
-                    return document.querySelector(codeElement).innerText;
-                } catch {
-                    const codeButton = '#' + button.getAttribute('id').substring(12);
-                    const copyCodeImg = document.querySelector(`${codeButton}-img`);
-                    const copyCodeImgSuccess = document.querySelector(`${codeButton}-success`);
-                    const copyCodeImgUnsuccess = document.querySelector(`${codeButton}-unsuccess`);
-                    showResultBlock(false, copyCodeImg, 'Не удалось найти текст для копирования');
-
-                    copyCodeImg.classList.remove('visible');
-                    copyCodeImgSuccess.classList.remove('visible');
-                    copyCodeImgUnsuccess.classList.add('visible');
-                    setTimeout(function () {
-                        copyCodeImgUnsuccess.classList.remove('visible');
-                        copyCodeImg.classList.add('visible');
-                    }, 2750);
-                    setTimeout(function () {
-                        console.log('Ошибка: не удалось найти текст для копирования');
-                    }, 10);
-                    return 'text copy error';
+                        copyCodeImgUnsuccess.classList.add('visible');
+                        setTimeout(function () {
+                            copyCodeImgUnsuccess.classList.remove('visible');
+                            copyCodeImg.classList.add('visible');
+                        }, 2750);
+                        setTimeout(function () {
+                            console.log('Ошибка: не удалось найти текст для копирования');
+                        }, 10);
+                        return 'text copy error';
+                    }
                 }
             }
         });

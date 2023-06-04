@@ -64,13 +64,6 @@ figure {
     display: none;
 }
 
-.a-lesson:hover,
-.a-settings:hover,
-.a-python:hover,
-.button-menu:hover {
-    background-color: #edf0f1;
-}
-
 .div-number-lesson {
     float: left;
     padding: 21px;
@@ -79,7 +72,8 @@ figure {
     height: 18px;
 }
 
-.img-python, .img-settings {
+.img-python,
+.img-settings {
     height: 20px;
     width: 20px;
 }
@@ -106,6 +100,32 @@ figure {
     font-size: 0.875rem;
     justify-content: center;
     color: #000;
+}
+
+.a-lesson:hover .number-lesson,
+.a-lesson:hover .name-lesson,
+.a-python:hover .name-settings,
+.a-settings:hover .name-settings,
+.button-menu:hover .name-menu {
+    color: #157cb9;
+}
+
+.a-python:hover .img-python,
+.a-settings:hover .img-settings,
+.button-menu:hover .img-menu {
+    display: none;
+}
+
+.a-python .img-python-hover,
+.a-settings .img-settings-hover,
+.button-menu .img-menu-hover {
+    display: none;
+}
+
+.a-python:hover .img-python-hover,
+.a-settings:hover .img-settings-hover,
+.button-menu:hover .img-menu-hover {
+    display: block;
 }
 
 .name-lesson,
@@ -596,11 +616,12 @@ footer {
         border-radius: 0 0 7px 7px;
     }
 
-    .nav-a-left, .nav-a-right {
+    .nav-a-left,
+    .nav-a-right {
         display: flex;
         justify-content: center;
     }
-    
+
     .nav-a-right {
         float: unset;
     }
@@ -684,18 +705,6 @@ footer {
 }
 
 @media (max-width: 320px) {
-    .theme-p {
-        padding: 13px;
-        line-height: 2;
-    }
-
-    .div-a {
-        margin: 0 16px;
-        float: left;
-    }
-}
-
-@media (max-width: 319px) {
     header {
         top: -40px;
     }
@@ -707,5 +716,11 @@ footer {
     .theme-p {
         font-size: 1rem;
         padding: 8px 13px;
+        line-height: 2;
+    }
+
+    .div-a {
+        margin: 0 16px;
+        float: left;
     }
 }

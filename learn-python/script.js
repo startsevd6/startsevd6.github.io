@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
         asideContent += `
             <a href="/learn-python/${i}/" class="a-lesson${activeClass}">
                 <div class="div-number-lesson">
-                    <p class="number-lesson">${i}</p>
+                    <span class="number-lesson">${i}</span>
                 </div>
                 <span class="name-lesson">${articleThemes[i]}</span>
             </a>`;
@@ -38,13 +38,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <span class="name-settings after-img">Python компилятор</span>
             </a>
-            <a href="/learn-python/settings/" class="a-settings">
+            <button class="button-settings">
                 <div class="div-img-settings">
                     <img class="img-settings" src="/learn-python/img/icon-settings.svg" alt="settings button">
                     <img class="img-settings-hover" src="/learn-python/img/icon-settings-hover.svg" alt="settings button">
                 </div>
                 <span class="name-settings after-img">Настройки</span>
-            </a>
+            </button>
             <button class="button-menu">
                 <div class="div-img-menu">
                     <img class="img-menu" src="/learn-python/img/icon-menu.svg" alt="menu button">
@@ -90,6 +90,134 @@ document.addEventListener('DOMContentLoaded', function () {
         loadContent('open-menu', openMenuContent); // Загружаем кнопку открытия меню
         isOpenMenuLoaded = true;
     }
+
+
+    // Настройки
+    // функции для взаиможействия с файлами cookie
+    const settingsButton = document.querySelector('.button-settings');
+
+    // Функция получения значения из cookie
+    function getCookie(siteTheme) {
+        const cookieValue = document.cookie.match('(^|;)\\s*' + siteTheme + '\\s*=\\s*([^;]+)');
+        return cookieValue ? cookieValue.pop() : null;
+    }
+
+    // Функция получения темы сайта из cookie
+    function getSiteTheme() {
+        const themeCookie = getCookie('theme');
+        if (themeCookie !== null) {
+            return themeCookie;
+        }
+        return 'light';
+    }
+
+    // Функция получения размера текста из cookie
+    function getFontSize() {
+        const fontSizeCookie = getCookie('font-size');
+        if (fontSizeCookie !== null && fontSizeCookie !== undefined) {
+            fontSize = fontSizeCookie / 16;
+            document.documentElement.style.setProperty('--h1-font-size', 1.875 * fontSize + 'rem');
+            document.documentElement.style.setProperty('--h2-font-size', 1.625 * fontSize + 'rem');
+            document.documentElement.style.setProperty('--p-font-size', fontSize + 'rem');
+            document.documentElement.style.setProperty('--code-font-size', 0.875 * fontSize + 'rem');
+            return fontSizeCookie;
+        }
+        return 16;
+    }
+    getFontSize();
+
+    // Функция установки значения в cookie
+    function setCookie(name, value, days) {
+        const expires = new Date();
+        expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+        document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
+    }
+
+    const popupSettings = document.createElement('div');
+    const html = document.querySelector('html');
+    const body = document.querySelector('body');
+    let settingsLoaded = false;
+    let settingsOpened = false;
+    settingsButton.addEventListener('click', function () {
+        if (!settingsLoaded) {
+            siteTheme = getSiteTheme();
+            let settingsContent = `
+            <span class="settings-title">Настройки</span>
+            <button class="close-settings">
+                <img src="/learn-python/img/icon-unsuccess.svg" alt="close settings">
+            </button>
+            <div class="settings-content">
+                <div class="settings-site-theme">
+                    <fieldset>
+                        <legend>Выберите тему:</legend>`;
+            if (siteTheme === 'light') {
+                settingsContent += `
+                <input type="radio" name="theme" id="light-theme" checked>
+                <label for="light-theme">Светлая тема</label>
+                <input type="radio" name="theme" id="dark-theme">
+                <label for="dark-theme">Тёмная тема</label>`;
+            } else if (siteTheme === 'dark') {
+                settingsContent += `
+                <input type="radio" name="theme" id="light-theme">
+                <label for="light-theme">Светлая тема</label>
+                <input type="radio" name="theme" id="dark-theme" checked>
+                <label for="dark-theme">Тёмная тема</label>`;
+            }
+            settingsContent += `
+            </fieldset>
+                </div>
+                <div class="settings-font-size">
+                    <span class="settings-text">Введите размер текста:</span>
+                    <input type="text" id="font-size" minlength="1" maxlength="2" size="4" required>
+                </div>
+            </div>`;
+            popupSettings.classList.add('popup-settings');
+            html.appendChild(popupSettings);
+            popupSettings.innerHTML = settingsContent;
+            settingsLoaded = true;
+        }
+        if (!settingsOpened) {
+            body.classList.add('not-visible');
+            popupSettings.classList.add('visible');
+            const closeSettings = document.querySelector('.close-settings');
+            closeSettings.addEventListener('click', function () {
+                if (settingsLoaded && settingsOpened) {
+                    body.classList.remove('not-visible');
+                    popupSettings.classList.remove('visible');
+                    settingsOpened = false;
+                }
+            });
+            const lightThemeButton = document.querySelector('#light-theme');
+            const darkThemeButton = document.querySelector('#dark-theme');
+            const fontSizeInput = document.querySelector('#font-size');
+            fontSizeInput.value = getFontSize();
+            lightThemeButton.addEventListener('click', function () {
+                siteTheme = 'light';
+                setCookie('theme', siteTheme, 365);
+            });
+            darkThemeButton.addEventListener('click', function () {
+                siteTheme = 'dark';
+                setCookie('theme', siteTheme, 365);
+            });
+            fontSizeInput.addEventListener('input', function () {
+                let fontSize = fontSizeInput.value;
+                if (fontSize !== '') {
+                    remFontSize = fontSize / 16;
+                    document.documentElement.style.setProperty('--h1-font-size', 1.875 * remFontSize + 'rem');
+                    document.documentElement.style.setProperty('--h2-font-size', 1.625 * remFontSize + 'rem');
+                    document.documentElement.style.setProperty('--p-font-size', remFontSize + 'rem');
+                    document.documentElement.style.setProperty('--code-font-size', 0.875 * remFontSize + 'rem');
+                    setCookie('font-size', fontSize, 365);
+                }
+            });
+            settingsOpened = true;
+        } else {
+            getFontSize();
+            body.classList.remove('not-visible');
+            popupSettings.classList.remove('visible');
+            settingsOpened = false;
+        }
+    });
 
 
     // Функция подгрузки блока с навигацией в конце урока

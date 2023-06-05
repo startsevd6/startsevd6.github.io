@@ -1,7 +1,18 @@
+:root {
+    --h1-font-size: 1.875rem; 
+    --h2-font-size: 1.625rem;
+    --p-font-size: 1rem;
+    --code-font-size: 0.875rem;
+}
+
 body {
     background: #edf0f1;
     margin: 0;
     padding: 0;
+}
+
+body.not-visible {
+    opacity: 0.5;
 }
 
 p {
@@ -47,10 +58,8 @@ figure {
 }
 
 .a-lesson,
-.a-settings,
 .a-python {
     display: block;
-    width: 290px;
     height: 60px;
     text-decoration: none;
     border-radius: 5px;
@@ -78,7 +87,7 @@ figure {
     width: 20px;
 }
 
-.img-menu {
+.button-settings.img-menu {
     height: 12px;
     width: 20px;
 }
@@ -105,25 +114,25 @@ figure {
 .a-lesson:hover .number-lesson,
 .a-lesson:hover .name-lesson,
 .a-python:hover .name-settings,
-.a-settings:hover .name-settings,
+.button-settings:hover .name-settings,
 .button-menu:hover .name-menu {
     color: #157cb9;
 }
 
 .a-python:hover .img-python,
-.a-settings:hover .img-settings,
+.button-settings:hover .img-settings,
 .button-menu:hover .img-menu {
     display: none;
 }
 
 .a-python .img-python-hover,
-.a-settings .img-settings-hover,
+.button-settings .img-settings-hover,
 .button-menu .img-menu-hover {
     display: none;
 }
 
 .a-python:hover .img-python-hover,
-.a-settings:hover .img-settings-hover,
+.button-settings:hover .img-settings-hover,
 .button-menu:hover .img-menu-hover {
     display: block;
 }
@@ -146,15 +155,14 @@ figure {
 
 .name-settings,
 .name-menu {
-    position: relative;
-    left: -18px;
+    left: -25px;
     top: -5px;
     display: inline-block;
     line-height: 20px;
 }
 
 .name-menu {
-    top: 0;
+    top: -2px;
 }
 
 .sections {
@@ -170,7 +178,7 @@ figure {
 }
 
 .sections.aside-open {
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .sections.aside-open code {
@@ -259,7 +267,7 @@ h1 {
     font-family: 'Montserrat';
     margin: 0;
     padding-bottom: 20px;
-    font-size: 1.875rem;
+    font-size: var(--h1-font-size);
 }
 
 h2 {
@@ -267,12 +275,13 @@ h2 {
     margin: 0;
     padding: 50px 0 30px;
     color: rgba(0, 0, 0, .95);
-    font-size: 1.625rem;
+    font-size: var(--h2-font-size);
 }
 
 .p-lesson {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
+    font-size: var(--p-font-size);
     padding-bottom: 20px;
     line-height: 1.5;
     color: rgba(0, 0, 0, .9);
@@ -352,7 +361,7 @@ td {
 code {
     display: inline-block;
     font-family: 'Source code Pro', monospace;
-    font-size: 0.875rem;
+    font-size: var(--code-font-size);
     padding: 10px;
 }
 
@@ -492,6 +501,60 @@ footer {
     height: 12px;
 }
 
+.popup-settings {
+    position: fixed;
+    display: none;
+    width: 50%;
+    height: 50%;
+    left: 25%;
+    top: 25%;
+    border: #ececea 1px solid;
+    padding: 16px;
+    background: #fff;
+    border-radius: 32px;
+}
+
+.popup-settings.visible {
+    display: block;
+}
+
+.settings-title {
+    display: inline-block;
+    width: calc(100% - 50px);
+    text-align: center;
+    font-family: 'Montserrat';
+    margin: 0;
+    color: rgba(0, 0, 0, .95);
+    font-size: 1.625rem;
+}
+
+.close-settings {
+    width: 42px;
+    height: 42px;
+}
+
+.settings-site-theme {
+    margin: 16px 0;
+}
+
+fieldset {
+    margin: 0;
+    border-radius: 16px;
+}
+
+legend {
+    font-family: 'Montserrat';
+    color: rgba(0, 0, 0, .9);
+    font-size: 1.125rem;
+}
+
+label, .settings-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, .9);
+}
+
 @media (max-width: 1700px) {
     aside {
         display: flex;
@@ -542,7 +605,7 @@ footer {
     }
 
     .a-python,
-    .a-settings,
+    .button-settings,
     .button-menu {
         height: 60px;
         width: 100%;
@@ -553,7 +616,7 @@ footer {
         vertical-align: middle;
     }
 
-    .button-menu {
+    .button-settings, .button-menu {
         display: inline-block;
         text-align: left;
         border-radius: 10px;

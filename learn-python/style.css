@@ -1,7 +1,9 @@
 :root {
     --h1-font-size: 1.875rem; 
     --h2-font-size: 1.625rem;
+    --nav-theme-font-size: 1.125rem;
     --p-font-size: 1rem;
+    --figcaption-font-size: 0.875rem;
     --code-font-size: 0.875rem;
 }
 
@@ -63,6 +65,14 @@ figure {
     height: 60px;
     text-decoration: none;
     border-radius: 5px;
+}
+
+.a-lesson, .a-python, .button-settings, .button-menu {
+    width: 290px;
+}
+
+.button-settings {
+    text-align: left;
 }
 
 .active-lesson {
@@ -311,7 +321,7 @@ h2 {
 .figcaption-lesson {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    font-size: 0.875rem;
+    font-size: var(--figcaption-font-size);
     padding-bottom: 20px;
     color: #1a1a1a;
 }
@@ -454,7 +464,7 @@ code {
     user-select: none;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    font-size: 1.125rem;
+    font-size: var(--nav-theme-font-size);
     color: rgba(0, 0, 0, 0.9);
 }
 

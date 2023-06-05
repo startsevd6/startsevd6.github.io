@@ -79,6 +79,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 throw new Error(`Ошибка: Загрузка ${includeBlock} не удалась`);
             }
         } catch (error) {
+            if (currentArticleNumber === -1) {
+                return;
+            }
             alert('Ошибка: Загрузка блока', includeBlock, 'не удалась');
         }
     };
@@ -111,20 +114,27 @@ document.addEventListener('DOMContentLoaded', function () {
         return 'light';
     }
 
+    function setFontSize(fontSize) {
+        fontSize = fontSize / 16;
+        document.documentElement.style.setProperty('--h1-font-size', 1.875 * fontSize + 'rem');
+        document.documentElement.style.setProperty('--h2-font-size', 1.625 * fontSize + 'rem');
+        document.documentElement.style.setProperty('--nav-theme-font-size', 1.125 * fontSize + 'rem');
+        document.documentElement.style.setProperty('--p-font-size', fontSize + 'rem');
+        document.documentElement.style.setProperty('--figcaption-font-size', 0.875 * fontSize + 'rem');
+        document.documentElement.style.setProperty('--code-font-size', 0.875 * fontSize + 'rem');
+    }
+
     // Функция получения размера текста из cookie
     function getFontSize() {
         const fontSizeCookie = getCookie('font-size');
         if (fontSizeCookie !== null && fontSizeCookie !== undefined) {
-            fontSize = fontSizeCookie / 16;
-            document.documentElement.style.setProperty('--h1-font-size', 1.875 * fontSize + 'rem');
-            document.documentElement.style.setProperty('--h2-font-size', 1.625 * fontSize + 'rem');
-            document.documentElement.style.setProperty('--p-font-size', fontSize + 'rem');
-            document.documentElement.style.setProperty('--code-font-size', 0.875 * fontSize + 'rem');
+            setFontSize(fontSizeCookie);
             return fontSizeCookie;
         }
+        setFontSize(16);
         return 16;
     }
-    getFontSize();
+    getFontSize(); // Переопределяем значения размера текста сразу после загрузки страницы
 
     // Функция установки значения в cookie
     function setCookie(name, value, days) {
@@ -177,11 +187,13 @@ document.addEventListener('DOMContentLoaded', function () {
             settingsLoaded = true;
         }
         if (!settingsOpened) {
+            settingsButton.classList.add('active-lesson');
             body.classList.add('not-visible');
             popupSettings.classList.add('visible');
             const closeSettings = document.querySelector('.close-settings');
             closeSettings.addEventListener('click', function () {
                 if (settingsLoaded && settingsOpened) {
+                    settingsButton.classList.remove('active-lesson');
                     body.classList.remove('not-visible');
                     popupSettings.classList.remove('visible');
                     settingsOpened = false;
@@ -202,17 +214,14 @@ document.addEventListener('DOMContentLoaded', function () {
             fontSizeInput.addEventListener('input', function () {
                 let fontSize = fontSizeInput.value;
                 if (fontSize !== '') {
-                    remFontSize = fontSize / 16;
-                    document.documentElement.style.setProperty('--h1-font-size', 1.875 * remFontSize + 'rem');
-                    document.documentElement.style.setProperty('--h2-font-size', 1.625 * remFontSize + 'rem');
-                    document.documentElement.style.setProperty('--p-font-size', remFontSize + 'rem');
-                    document.documentElement.style.setProperty('--code-font-size', 0.875 * remFontSize + 'rem');
+                    setFontSize(fontSize);
                     setCookie('font-size', fontSize, 365);
                 }
             });
             settingsOpened = true;
         } else {
             getFontSize();
+            settingsButton.classList.remove('active-lesson');
             body.classList.remove('not-visible');
             popupSettings.classList.remove('visible');
             settingsOpened = false;

@@ -73,74 +73,74 @@ else:
                     <h2 id="operators">Логические операторы и операторы сравнения</h2>
                     <p class="p-lesson">Для формулировки условий в условном операторе мы можем использовать операторы
                         сравнения (==, !=, >, <,>=, <=) и логические операторы (and, or, not).</p>
-                                <p class="p-lesson">Вот таблица операторов сравнения:</p>
-                                <table class="p-lesson">
-                                    <tbody>
-                                        <tr>
-                                            <th>Оператор сравнения</th>
-                                            <th>Значение</th>
-                                        </tr>
-                                        <tr>
-                                            <td class="td-text-center">==</td>
-                                            <td>Равно</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="td-text-center">!=</td>
-                                            <td>Не равно</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="td-text-center">></td>
-                                            <td>Больше</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="td-text-center"><</td>
-                                            <td>Меньше</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="td-text-center">>=</td>
-                                            <td>Больше или равно</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="td-text-center"><=</td>
-                                            <td>Меньше или равно</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="p-lesson">
-                                    <tbody>
-                                        <tr>
-                                            <th>Логический оператор</th>
-                                            <th>Предназначение</th>
-                                        </tr>
-                                        <tr>
-                                            <td class="td-text-center">and</td>
-                                            <td>И - используется, когда нужно проверить верны ли оба условия</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="td-text-center">or</td>
-                                            <td>ИЛИ - используется, когда нужно проверить верно хотя бы одно условие
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="td-text-center">not</td>
-                                            <td>НЕ - используется для смены значения условия на противоположное</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <p class="p-lesson">Мы также можем использовать цепочки сравнений для проверки
-                                    нескольких условий одновременно. Например:</p>
-                                <div class="pre-code-lesson">
-                                    <code class="pre" id="code-2">x = 5
+                    <p class="p-lesson">Вот таблица операторов сравнения:</p>
+                    <table class="p-lesson">
+                        <tbody>
+                            <tr>
+                                <th>Оператор сравнения</th>
+                                <th>Значение</th>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center">==</td>
+                                <td>Равно</td>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center">!=</td>
+                                <td>Не равно</td>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center">></td>
+                                <td>Больше</td>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center"><</td>
+                                <td>Меньше</td>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center">>=</td>
+                                <td>Больше или равно</td>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center"><=</td>
+                                <td>Меньше или равно</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="p-lesson">
+                        <tbody>
+                            <tr>
+                                <th>Логический оператор</th>
+                                <th>Предназначение</th>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center">and</td>
+                                <td>И - используется, когда нужно проверить верны ли оба условия</td>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center">or</td>
+                                <td>ИЛИ - используется, когда нужно проверить верно хотя бы одно условие
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-text-center">not</td>
+                                <td>НЕ - используется для смены значения условия на противоположное</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="p-lesson">Мы также можем использовать цепочки сравнений для проверки
+                        нескольких условий одновременно. Например:</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-2">x = 5
 if 1 < x < 10:
     print("Число находится в диапазоне от 1 до 10.")</code>
-                                    <include id="include-copy-code-button-2"></include>
-                                </div>
-                                <p class="p-lesson">В этом примере мы проверяем, что число x больше 1 и меньше 10
-                                    одновременно.</p>
-                                <p class="p-lesson">Условный оператор также может быть вложенным, что означает, что один
-                                    условный оператор может находиться внутри другого. Например:</p>
-                                <div class="pre-code-lesson">
-                                    <code class="pre" id="code-3">x = 5
+                        <include id="include-copy-code-button-2"></include>
+                    </div>
+                    <p class="p-lesson">В этом примере мы проверяем, что число x больше 1 и меньше 10
+                        одновременно.</p>
+                    <p class="p-lesson">Условный оператор также может быть вложенным, что означает, что один
+                        условный оператор может находиться внутри другого. Например:</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-3">x = 5
 if x > 0:
     if x < 10:
         print("Число положительное и меньше 10.")
@@ -148,13 +148,13 @@ if x > 0:
         print("Число положительное, но не меньше 10.")
 else:
     print("Число отрицательное.")</code>
-                                    <include id="include-copy-code-button-3"></include>
-                                </div>
-                                <p class="p-lesson">В этом примере мы проверяем, что число x положительное и меньше 10.
-                                    Если это верно, то выводим соответствующее сообщение. В противном случае, если число
-                                    отрицательное, выводим другое сообщение.</p>
-                                <p class="p-lesson">В следующем уроке мы рассмотрим циклы и научимся выполнять
-                                    повторяющиеся действия в программе.</p>
+                        <include id="include-copy-code-button-3"></include>
+                    </div>
+                    <p class="p-lesson">В этом примере мы проверяем, что число x положительное и меньше 10.
+                        Если это верно, то выводим соответствующее сообщение. В противном случае, если число
+                        отрицательное, выводим другое сообщение.</p>
+                    <p class="p-lesson">В следующем уроке мы рассмотрим циклы и научимся выполнять
+                        повторяющиеся действия в программе.</p>
                 </article>
                 <script>let currentArticleNumber = 3;</script>
                 <include id="include-nav"></include>

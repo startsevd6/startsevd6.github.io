@@ -5,10 +5,20 @@
     --p-font-size: 1rem;
     --figcaption-font-size: 0.875rem;
     --code-font-size: 0.875rem;
+
+    --body-color: #edf0f1;
+    --block-color: #ffffff;
+    --name-font-color: #1a1a1a;
+    --header-font-color: #ffffff;
+    --h1-font-color: #000000;
+    --h2-font-color: rgba(0, 0, 0, 0.95);
+    --p-font-color: rgba(0, 0, 0, 0.9);
+    --code-block-color: #ebecee;
+    --shadow-block-color: linear-gradient(0deg, rgba(236, 240, 241, 0), #ecf0f1 50px);
 }
 
 body {
-    background: #edf0f1;
+    background: var(--body-color);
     margin: 0;
     padding: 0;
 }
@@ -30,7 +40,7 @@ aside {
     margin-left: 52px;
     margin-top: 31px;
     padding: 5px;
-    background-color: #fff;
+    background-color: var(--block-color);
     border-radius: 12px;
     z-index: 10;
     align-content: space-between;
@@ -40,7 +50,7 @@ aside {
 button {
     border: 0;
     padding: 0;
-    background: #ffffff;
+    background: var(--block-color);
     cursor: pointer;
 }
 
@@ -76,7 +86,7 @@ figure {
 }
 
 .active-lesson {
-    background-color: #edf0f1;
+    background-color: var(--body-color);
 }
 
 .button-menu {
@@ -118,7 +128,7 @@ figure {
     font-weight: 700;
     font-size: 0.875rem;
     justify-content: center;
-    color: #000;
+    color: var(--h1-font-color);
 }
 
 .a-lesson:hover .number-lesson,
@@ -159,7 +169,7 @@ figure {
     font-family: 'Montserrat';
     font-weight: 500;
     font-size: 1rem;
-    color: #1a1a1a;
+    color: var(--name-font-color);
     white-space: nowrap;
 }
 
@@ -204,12 +214,12 @@ header {
 
 .top-header {
     height: 31px;
-    background-color: #edf0f1;
+    background-color: var(--body-color);
 }
 
 .shadow-header {
     display: flex;
-    background: linear-gradient(0deg, rgba(236, 240, 241, 0), #ecf0f1 50px);
+    background: var(--shadow-block-color);
 }
 
 .container-header {
@@ -230,7 +240,7 @@ header {
     font-weight: 500;
     font-size: 1.25rem;
     line-height: 24px;
-    color: #fff;
+    color: var(--header-font-color);
 }
 
 .theme-p {
@@ -269,7 +279,7 @@ header {
     display: inline-block;
     margin-top: 60px;
     padding: 50px;
-    background: #ffffff;
+    background: var(--block-color);
     border-radius: 12px;
 }
 
@@ -277,6 +287,7 @@ h1 {
     font-family: 'Montserrat';
     margin: 0;
     padding-bottom: 20px;
+    color: var(--h1-font-color);
     font-size: var(--h1-font-size);
 }
 
@@ -284,7 +295,7 @@ h2 {
     font-family: 'Montserrat';
     margin: 0;
     padding: 50px 0 30px;
-    color: rgba(0, 0, 0, .95);
+    color: var(--h2-font-color);
     font-size: var(--h2-font-size);
 }
 
@@ -294,7 +305,7 @@ h2 {
     font-size: var(--p-font-size);
     padding-bottom: 20px;
     line-height: 1.5;
-    color: rgba(0, 0, 0, .9);
+    color: var(--p-font-color);
 }
 
 .p-lesson:last-child {
@@ -323,7 +334,7 @@ h2 {
     font-weight: 400;
     font-size: var(--figcaption-font-size);
     padding-bottom: 20px;
-    color: #1a1a1a;
+    color: var(--name-font-color);
 }
 
 .img-lesson {
@@ -358,7 +369,7 @@ td {
     display: inline-block;
     margin-bottom: 20px;
     border-radius: 10px;
-    background: #ebecee;
+    background: var(--code-block-color);
 }
 
 .pre {
@@ -373,6 +384,7 @@ code {
     font-family: 'Source code Pro', monospace;
     font-size: var(--code-font-size);
     padding: 10px;
+    color: var(--h1-font-color);
 }
 
 .popup-copy-code {
@@ -432,7 +444,7 @@ code {
 
 .nav-a-left:hover,
 .nav-a-right:hover {
-    background-color: #edf0f1;
+    background-color: var(--body-color);
     border-radius: 7px;
 }
 
@@ -465,13 +477,13 @@ code {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: var(--nav-theme-font-size);
-    color: rgba(0, 0, 0, 0.9);
+    color: var(--p-font-color);
 }
 
 footer {
     margin: 60px 0 60px;
     padding: 50px;
-    background: #ffffff;
+    background: var(--block-color);
     border-radius: 12px;
 }
 
@@ -480,7 +492,7 @@ footer {
     font-family: 'Montserrat';
     font-weight: 500;
     font-size: 1rem;
-    color: #000;
+    color: var(--h1-font-color);
     text-decoration: none;
 }
 
@@ -520,7 +532,7 @@ footer {
     top: 25%;
     border: #ececea 1px solid;
     padding: 16px;
-    background: #fff;
+    background: var(--block-color);
     border-radius: 32px;
 }
 
@@ -534,8 +546,8 @@ footer {
     text-align: center;
     font-family: 'Montserrat';
     margin: 0;
-    color: rgba(0, 0, 0, .95);
-    font-size: 1.625rem;
+    color: var(--h2-font-color);
+    font-size: var(--h2-font-size);
 }
 
 .close-settings {
@@ -554,15 +566,15 @@ fieldset {
 
 legend {
     font-family: 'Montserrat';
-    color: rgba(0, 0, 0, .9);
-    font-size: 1.125rem;
+    color: var(--p-font-color);
+    font-size: var(--p-font-size);
 }
 
 label, .settings-text {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     line-height: 1.5;
-    color: rgba(0, 0, 0, .9);
+    color: var(--p-font-color);
 }
 
 @media (max-width: 1700px) {

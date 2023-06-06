@@ -100,19 +100,46 @@ document.addEventListener('DOMContentLoaded', function () {
     const settingsButton = document.querySelector('.button-settings');
 
     // Функция получения значения из cookie
-    function getCookie(siteTheme) {
-        const cookieValue = document.cookie.match('(^|;)\\s*' + siteTheme + '\\s*=\\s*([^;]+)');
+    function getCookie(selectedSiteTheme) {
+        const cookieValue = document.cookie.match('(^|;)\\s*' + selectedSiteTheme + '\\s*=\\s*([^;]+)');
         return cookieValue ? cookieValue.pop() : null;
+    }
+
+    function setSiteTheme(selectedSiteTheme) {
+        if (selectedSiteTheme === 'light') {
+            document.documentElement.style.setProperty('--body-color', '#edf0f1');
+            document.documentElement.style.setProperty('--block-color', '#ffffff');
+            document.documentElement.style.setProperty('--name-font-color', '#1a1a1a');
+            document.documentElement.style.setProperty('--header-font-color', '#ffffff');
+            document.documentElement.style.setProperty('--h1-font-color', '#000000');
+            document.documentElement.style.setProperty('--h2-font-color', 'rgba(0, 0, 0, 0.95)');
+            document.documentElement.style.setProperty('--p-font-color', '#rgba(0, 0, 0, 0.9)');
+            document.documentElement.style.setProperty('--code-block-color', '#ebecee');
+            document.documentElement.style.setProperty('--shadow-block-color', 'linear-gradient(0deg, rgba(236, 240, 241, 0), #ecf0f1 50px)');
+        } else if (selectedSiteTheme === 'dark') {
+            document.documentElement.style.setProperty('--body-color', '#000000');
+            document.documentElement.style.setProperty('--block-color', '#241e20');
+            document.documentElement.style.setProperty('--name-font-color', '#efefef');
+            document.documentElement.style.setProperty('--header-font-color', '#000000');
+            document.documentElement.style.setProperty('--h1-font-color', '#ffffff');
+            document.documentElement.style.setProperty('--h2-font-color', 'rgba(255, 255, 255, 0.95)');
+            document.documentElement.style.setProperty('--p-font-color', 'rgba(255, 255, 255, 0.9)');
+            document.documentElement.style.setProperty('--code-block-color', '#141311');
+            document.documentElement.style.setProperty('--shadow-block-color', 'linear-gradient(0deg, rgba(19, 15, 14, 0), #000000 50px)');
+        }
     }
 
     // Функция получения темы сайта из cookie
     function getSiteTheme() {
         const themeCookie = getCookie('theme');
         if (themeCookie !== null) {
+            setSiteTheme(themeCookie);
             return themeCookie;
         }
+        setSiteTheme('light');
         return 'light';
     }
+    getSiteTheme(); // Переопределяем значения темы сайта сразу после загрузки страницы
 
     function setFontSize(fontSize) {
         fontSize = fontSize / 16;
@@ -150,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let settingsOpened = false;
     settingsButton.addEventListener('click', function () {
         if (!settingsLoaded) {
-            siteTheme = getSiteTheme();
+            selectedSiteTheme = getSiteTheme();
             let settingsContent = `
             <span class="settings-title">Настройки</span>
             <button class="close-settings">
@@ -160,13 +187,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="settings-site-theme">
                     <fieldset>
                         <legend>Выберите тему:</legend>`;
-            if (siteTheme === 'light') {
+            if (selectedSiteTheme === 'light') {
                 settingsContent += `
                 <input type="radio" name="theme" id="light-theme" checked>
                 <label for="light-theme">Светлая тема</label>
                 <input type="radio" name="theme" id="dark-theme">
                 <label for="dark-theme">Тёмная тема</label>`;
-            } else if (siteTheme === 'dark') {
+            } else if (selectedSiteTheme === 'dark') {
                 settingsContent += `
                 <input type="radio" name="theme" id="light-theme">
                 <label for="light-theme">Светлая тема</label>
@@ -204,12 +231,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const fontSizeInput = document.querySelector('#font-size');
             fontSizeInput.value = getFontSize();
             lightThemeButton.addEventListener('click', function () {
-                siteTheme = 'light';
-                setCookie('theme', siteTheme, 365);
+                selectedSiteTheme = 'light';
+                setSiteTheme(selectedSiteTheme);
+                setCookie('theme', selectedSiteTheme, 365);
             });
             darkThemeButton.addEventListener('click', function () {
-                siteTheme = 'dark';
-                setCookie('theme', siteTheme, 365);
+                selectedSiteTheme = 'dark';
+                setSiteTheme(selectedSiteTheme);
+                setCookie('theme', selectedSiteTheme, 365);
             });
             fontSizeInput.addEventListener('input', function () {
                 let fontSize = fontSizeInput.value;

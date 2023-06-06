@@ -11,8 +11,8 @@
     --name-font-color: #1a1a1a;
     --header-font-color: #ffffff;
     --h1-font-color: #000000;
-    --h2-font-color: rgba(0, 0, 0, 0.95);
-    --p-font-color: rgba(0, 0, 0, 0.9);
+    --h2-font-color: #0d0d0d;
+    --p-font-color: #1a1a1a;
     --code-block-color: #ebecee;
     --shadow-block-color: linear-gradient(0deg, rgba(236, 240, 241, 0), #ecf0f1 50px);
 }
@@ -532,6 +532,8 @@ footer {
     top: 25%;
     border: #ececea 1px solid;
     padding: 16px;
+    -webkit-user-select: none;
+    user-select: none;
     background: var(--block-color);
     border-radius: 32px;
 }

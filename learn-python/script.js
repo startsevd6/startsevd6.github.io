@@ -112,20 +112,20 @@ document.addEventListener('DOMContentLoaded', function () {
             document.documentElement.style.setProperty('--name-font-color', '#1a1a1a');
             document.documentElement.style.setProperty('--header-font-color', '#ffffff');
             document.documentElement.style.setProperty('--h1-font-color', '#000000');
-            document.documentElement.style.setProperty('--h2-font-color', 'rgba(0, 0, 0, 0.95)');
-            document.documentElement.style.setProperty('--p-font-color', '#rgba(0, 0, 0, 0.9)');
+            document.documentElement.style.setProperty('--h2-font-color', '#0d0d0d');
+            document.documentElement.style.setProperty('--p-font-color', '#1a1a1a');
             document.documentElement.style.setProperty('--code-block-color', '#ebecee');
-            document.documentElement.style.setProperty('--shadow-block-color', 'linear-gradient(0deg, rgba(236, 240, 241, 0), #ecf0f1 50px)');
+            document.documentElement.style.setProperty('--shadow-block-color', 'linear-gradient(0deg, rgba(0, 0, 0, 0), #ecf0f1 50px)');
         } else if (selectedSiteTheme === 'dark') {
             document.documentElement.style.setProperty('--body-color', '#000000');
             document.documentElement.style.setProperty('--block-color', '#241e20');
             document.documentElement.style.setProperty('--name-font-color', '#efefef');
             document.documentElement.style.setProperty('--header-font-color', '#000000');
             document.documentElement.style.setProperty('--h1-font-color', '#ffffff');
-            document.documentElement.style.setProperty('--h2-font-color', 'rgba(255, 255, 255, 0.95)');
-            document.documentElement.style.setProperty('--p-font-color', 'rgba(255, 255, 255, 0.9)');
+            document.documentElement.style.setProperty('--h2-font-color', '#0d0d0d');
+            document.documentElement.style.setProperty('--p-font-color', '#1a1a1a');
             document.documentElement.style.setProperty('--code-block-color', '#141311');
-            document.documentElement.style.setProperty('--shadow-block-color', 'linear-gradient(0deg, rgba(19, 15, 14, 0), #000000 50px)');
+            document.documentElement.style.setProperty('--shadow-block-color', 'linear-gradient(0deg, rgba(0, 0, 0, 0), #000000 50px)');
         }
     }
 

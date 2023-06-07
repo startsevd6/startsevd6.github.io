@@ -434,92 +434,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const imgSettings = document.querySelector('.img-settings');
         const imgMenu = document.querySelector('.img-menu');
         if (selectedSiteTheme === 'light') {
-            const lightThemeColors = [
-                { key: '--body-color', value: '#edf0f1' },
-                { key: '--block-color', value: '#ffffff' },
-                { key: '--button-copy-color', value: '#f5f6f7' },
-                { key: '--name-font-color', value: '#1a1a1a' },
-                { key: '--header-font-color', value: '#ffffff' },
-                { key: '--h1-font-color', value: '#000000' },
-                { key: '--h2-font-color', value: '#0d0d0d' },
-                { key: '--p-font-color', value: '#1a1a1a' },
-                { key: '--code-block-color', value: '#ebecee' },
-                { key: '--code-button-hover-color', value: '#eff1f3' },
-                { key: '--shadow-block-color', value: 'linear-gradient(0deg, rgba(0, 0, 0, 0), #ecf0f1 50px)' },
-            ];
-
-            function toggleClasses(elements, className, add) {
-                if (add) {
-                    elements.forEach(element => {
-                        element.classList.add(className);
-                    });
-                } else {
-                    elements.forEach(element => {
-                        element.classList.remove(className);
-                    });
-                }
-            }
-
-            for (let i = 0; i < lightThemeColors.length; i++) {
-                const key = lightThemeColors[i].key;
-                const value = lightThemeColors[i].value;
-                document.documentElement.style.setProperty(key, value);
-            }
-            imgPython.classList.remove('not-visible');
-            imgSettings.classList.remove('not-visible');
-            imgMenu.classList.remove('not-visible');
-            arrows = [
-                document.querySelector('.nav-img-left'),
-                document.querySelector('.nav-img-right')
-            ];
-            arrows.forEach(element => {
-                element.style.display = 'block';
-            });
-            iconCopyCode = document.querySelectorAll('.copy-code-img');
-            iconCopyCodeSuccess = document.querySelectorAll('.copy-code-img-success');
-            iconCopyCodeUnsuccess = document.querySelectorAll('.copy-code-img-unsuccess');
-            darkElements = document.querySelectorAll('.dark');
-            toggleClasses(iconCopyCode, 'visible', false);
-            toggleClasses(iconCopyCodeSuccess, 'visible', false);
-            toggleClasses(iconCopyCodeUnsuccess, 'visible', false);
-            toggleClasses(darkElements, 'visible', false);
+            document.documentElement.style.setProperty('--body-color', '#edf0f1');
+            document.documentElement.style.setProperty('--block-color', '#ffffff');
+            document.documentElement.style.setProperty('--name-font-color', '#1a1a1a');
+            document.documentElement.style.setProperty('--header-font-color', '#ffffff');
+            document.documentElement.style.setProperty('--h1-font-color', '#000000');
+            document.documentElement.style.setProperty('--h2-font-color', '#0d0d0d');
+            document.documentElement.style.setProperty('--p-font-color', '#1a1a1a');
+            document.documentElement.style.setProperty('--code-block-color', '#ebecee');
+            document.documentElement.style.setProperty('--shadow-block-color', 'linear-gradient(0deg, rgba(0, 0, 0, 0), #ecf0f1 50px)');
         } else if (selectedSiteTheme === 'dark') {
-            const darkThemeColors = [
-                { key: '--body-color', value: '#000000' },
-                { key: '--block-color', value: '#241e20' },
-                { key: '--button-copy-color', value: '#0a0908' },
-                { key: '--name-font-color', value: '#efefef' },
-                { key: '--header-font-color', value: '#000000' },
-                { key: '--h1-font-color', value: '#ffffff' },
-                { key: '--h2-font-color', value: '#e5e5e5' },
-                { key: '--p-font-color', value: '#f2f2f2' },
-                { key: '--code-block-color', value: '#141311' },
-                { key: '--code-button-hover-color', value: '#0f0d0b' },
-                { key: '--shadow-block-color', value: 'linear-gradient(0deg, rgba(0, 0, 0, 0), #000000 50px)' },
-            ];
-            for (let i = 0; i < darkThemeColors.length; i++) {
-                const key = darkThemeColors[i].key;
-                const value = darkThemeColors[i].value;
-                document.documentElement.style.setProperty(key, value);
-            }
-            imgPython.classList.add('not-visible');
-            imgSettings.classList.add('not-visible');
-            imgMenu.classList.add('not-visible');
-            arrows = [
-                document.querySelector('.nav-img-left'),
-                document.querySelector('.nav-img-right')
-            ];
-            arrows.forEach(element => {
-                element.style.display = 'none';
-            });
-            iconCopyCode = document.querySelectorAll('.copy-code-img');
-            iconCopyCodeSuccess = document.querySelectorAll('.copy-code-img-success');
-            iconCopyCodeUnsuccess = document.querySelectorAll('.copy-code-img-unsuccess');
-            darkElements = document.querySelectorAll('.dark');
-            toggleClasses(iconCopyCode, 'visible', false);
-            toggleClasses(iconCopyCodeSuccess, 'visible', false);
-            toggleClasses(iconCopyCodeUnsuccess, 'visible', false);
-            toggleClasses(darkElements, 'visible', true);
+            document.documentElement.style.setProperty('--body-color', '#000000');
+            document.documentElement.style.setProperty('--block-color', '#241e20');
+            document.documentElement.style.setProperty('--name-font-color', '#efefef');
+            document.documentElement.style.setProperty('--header-font-color', '#000000');
+            document.documentElement.style.setProperty('--h1-font-color', '#ffffff');
+            document.documentElement.style.setProperty('--h2-font-color', '#0d0d0d');
+            document.documentElement.style.setProperty('--p-font-color', '#1a1a1a');
+            document.documentElement.style.setProperty('--code-block-color', '#141311');
+            document.documentElement.style.setProperty('--shadow-block-color', 'linear-gradient(0deg, rgba(0, 0, 0, 0), #000000 50px)');
         }
     }
 

@@ -153,26 +153,31 @@ document.addEventListener('DOMContentLoaded', function () {
     loadNav(); // Добавляем блок с навигацией в конце урока
 
 
-    // если сайдбар сжат, то расширяем, если нет, то сжимаем
     const aside = document.querySelector('aside');
     const sections = document.querySelector('.sections');
+    function toggleAside(asideIsOpen) {
+        if (open) {
+            aside.classList.add('animate');
+            aside.classList.add('open');
+            sections.classList.add('animate');
+            sections.classList.add('aside-open');
+        } else {
+            aside.classList.remove('open');
+            sections.classList.remove('aside-open');
+        }
+        return !asideIsOpen;
+    }
+
+
+    // если сайдбар сжат, то расширяем, если нет, то сжимаем
+
     let asideIsOpen = false;
 
     document.addEventListener('click', function (event) {
         let target = event.target.closest('button.button-menu');
 
         if (target) {
-            if (!asideIsOpen) {
-                aside.classList.add('animate');
-                aside.classList.add('open');
-                sections.classList.add('animate');
-                sections.classList.add('aside-open');
-                asideIsOpen = true;
-            } else {
-                aside.classList.remove('open');
-                sections.classList.remove('aside-open');
-                asideIsOpen = false;
-            }
+            asideIsOpen = toggleAside(asideIsOpen);
         }
     });
     // Та же функция, но для мобильных устройств
@@ -181,25 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (elementOpenMenu != null) {
             // Функция открытия меню для мобильных устройств
             elementOpenMenu.addEventListener('click', function () {
-                if (!asideIsOpen) {
-                    aside.classList.add('animate');
-                    aside.classList.add('open');
-                    sections.classList.add('animate');
-                    sections.classList.add('aside-open');
-                    asideIsOpen = true;
-                } else {
-                    const elementOpenMenuInnerHTML = elementOpenMenu.innerHTML;
-                    elementOpenMenu.innerHTML = '';
-                    aside.classList.add('animate');
-                    aside.classList.remove('open');
-                    aside.classList.remove('visible');
-                    sections.classList.add('animate');
-                    sections.classList.remove('aside-open');
-                    setTimeout(function () {
-                        elementOpenMenu.innerHTML = elementOpenMenuInnerHTML;
-                    }, 500);
-                    asideIsOpen = false;
-                }
+                asideIsOpen = toggleAside(asideIsOpen);
             });
         }
     }
@@ -242,20 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (elementOpenMenu != null) {
                             // Функция открытия меню для мобильных устройств
                             elementOpenMenu.addEventListener('click', function () {
-                                if (asideIsOpen) {
-                                    aside.classList.add('animate');
-                                    aside.classList.remove('visible');
-                                    sections.classList.add('animate');
-                                    sections.classList.remove('shifted');
-                                    asideIsOpen = false;
-                                } else {
-                                    aside.classList.add('visible');
-                                    aside.classList.add('animate');
-                                    aside.classList.add('open');
-                                    sections.classList.add('animate');
-                                    sections.classList.add('shifted');
-                                    asideIsOpen = true;
-                                }
+                                asideIsOpen = toggleAside(asideIsOpen);
                             });
                         }
                     }
@@ -419,6 +393,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
+    // Функция массового переключения классов
+    function toggleClasses(elements, classes, add) {
+        if (add) {
+            elements.forEach(function (element) {
+                element.classList.add(classes);
+            });
+        } else {
+            elements.forEach(function (element) {
+                element.classList.remove(classes);
+            });
+        }
+    }
+
+
     // Настройки
     const settingsButton = document.querySelector('.button-settings');
 
@@ -430,29 +418,61 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Функция установки темы на сайте
     function setSiteTheme(selectedSiteTheme) {
-        const imgPython = document.querySelector('.img-python');
-        const imgSettings = document.querySelector('.img-settings');
-        const imgMenu = document.querySelector('.img-menu');
-        if (selectedSiteTheme === 'light') {
-            document.documentElement.style.setProperty('--body-color', '#edf0f1');
-            document.documentElement.style.setProperty('--block-color', '#ffffff');
-            document.documentElement.style.setProperty('--name-font-color', '#1a1a1a');
-            document.documentElement.style.setProperty('--header-font-color', '#ffffff');
-            document.documentElement.style.setProperty('--h1-font-color', '#000000');
-            document.documentElement.style.setProperty('--h2-font-color', '#0d0d0d');
-            document.documentElement.style.setProperty('--p-font-color', '#1a1a1a');
-            document.documentElement.style.setProperty('--code-block-color', '#ebecee');
-            document.documentElement.style.setProperty('--shadow-block-color', 'linear-gradient(0deg, rgba(0, 0, 0, 0), #ecf0f1 50px)');
-        } else if (selectedSiteTheme === 'dark') {
-            document.documentElement.style.setProperty('--body-color', '#000000');
-            document.documentElement.style.setProperty('--block-color', '#241e20');
-            document.documentElement.style.setProperty('--name-font-color', '#efefef');
-            document.documentElement.style.setProperty('--header-font-color', '#000000');
-            document.documentElement.style.setProperty('--h1-font-color', '#ffffff');
-            document.documentElement.style.setProperty('--h2-font-color', '#0d0d0d');
-            document.documentElement.style.setProperty('--p-font-color', '#1a1a1a');
-            document.documentElement.style.setProperty('--code-block-color', '#141311');
-            document.documentElement.style.setProperty('--shadow-block-color', 'linear-gradient(0deg, rgba(0, 0, 0, 0), #000000 50px)');
+        const lightThemeColors = [
+            { key: 'body-color', value: '#edf0f1' },
+            { key: 'block-color', value: '#ffffff' },
+            { key: 'button-copy-color', value: '#f5f6f7' },
+            { key: 'input-color', value: '#e1e2e4' },
+            { key: 'input-hover-color', value: '#c3c5c9' },
+            { key: 'name-font-color', value: '#1a1a1a' },
+            { key: 'header-font-color', value: '#ffffff' },
+            { key: 'h1-font-color', value: '#000000' },
+            { key: 'h2-font-color', value: '#0d0d0d' },
+            { key: 'p-font-color', value: '#1a1a1a' },
+            { key: 'code-block-color', value: '#ebecee' },
+            { key: 'code-button-hover-color', value: '#eff1f3' },
+            { key: 'shadow-block-color', value: 'linear-gradient(0deg, rgba(0, 0, 0, 0), #ecf0f1 50px)' }
+        ];
+        const darkThemeColors = [
+            { key: 'body-color', value: '#000000' },
+            { key: 'block-color', value: '#241e20' },
+            { key: 'button-copy-color', value: '#0a0908' },
+            { key: 'input-color', value: '#1e1d1b' },
+            { key: 'input-hover-color', value: '#3c3836' },
+            { key: 'name-font-color', value: '#efefef' },
+            { key: 'header-font-color', value: '#000000' },
+            { key: 'h1-font-color', value: '#ffffff' },
+            { key: 'h2-font-color', value: '#f2f2f2' },
+            { key: 'p-font-color', value: '#e5e5e5' },
+            { key: 'code-block-color', value: '#141311' },
+            { key: 'code-button-hover-color', value: '#100e0c' },
+            { key: 'shadow-block-color', value: 'linear-gradient(0deg, rgba(0, 0, 0, 0), #000000 50px)' }
+        ];
+        const themeColors = {
+            light: lightThemeColors,
+            dark: darkThemeColors
+        };
+        let arraySelectedThemeColors = themeColors[selectedSiteTheme];
+        for (let i = 0; i < arraySelectedThemeColors.length; i++) {
+            const key = arraySelectedThemeColors[i].key;
+            const value = arraySelectedThemeColors[i].value;
+            document.documentElement.style.setProperty('--' + key, value);
+        }
+        if (selectedSiteTheme === 'dark') {
+            const imgPython = document.querySelector('.img-python');
+            const imgSettings = document.querySelector('.img-settings');
+            const imgMenu = document.querySelector('.img-menu');
+            imgPython.classList.add('not-visible');
+            imgSettings.classList.add('not-visible');
+            imgMenu.classList.add('not-visible');
+            const copyCodeImgs = document.querySelectorAll('.copy-code-img');
+            const copyCodeImgsSuccess = document.querySelectorAll('.copy-code-img-success');
+            const copyCodeImgsUnsuccess = document.querySelectorAll('.copy-code-img-unsuccess');
+            const darkElements = document.querySelectorAll('.dark');
+            toggleClasses(copyCodeImgs, 'visible', false);
+            toggleClasses(copyCodeImgsSuccess, 'visible', false);
+            toggleClasses(copyCodeImgsUnsuccess, 'visible', false);
+            toggleClasses(darkElements, 'visible', true);
         }
     }
 
@@ -483,12 +503,19 @@ document.addEventListener('DOMContentLoaded', function () {
             fontSize = 8;
         }
         fontSize = fontSize / 16;
-        document.documentElement.style.setProperty('--h1-font-size', 1.875 * fontSize + 'rem');
-        document.documentElement.style.setProperty('--h2-font-size', 1.625 * fontSize + 'rem');
-        document.documentElement.style.setProperty('--nav-theme-font-size', 1.125 * fontSize + 'rem');
-        document.documentElement.style.setProperty('--p-font-size', fontSize + 'rem');
-        document.documentElement.style.setProperty('--figcaption-font-size', 0.875 * fontSize + 'rem');
-        document.documentElement.style.setProperty('--code-font-size', 0.875 * fontSize + 'rem');
+        cssVariablesFontSize = [
+            { key: 'h1-font-size', value: 1.875 * fontSize },
+            { key: 'h2-font-size', value: 1.625 * fontSize },
+            { key: 'nav-theme-font-size', value: 1.125 * fontSize },
+            { key: 'p-font-size', value: fontSize },
+            { key: 'figcaption-font-size', value: 0.875 * fontSize },
+            { key: 'code-font-size', value: 0.875 * fontSize },
+        ];
+        for (let i = 0; i < cssVariablesFontSize.length; i++) {
+            const key = cssVariablesFontSize[i].key;
+            const value = cssVariablesFontSize[i].value;
+            document.documentElement.style.setProperty('--' + key, value + 'rem');
+        }
     }
 
     // Функция получения размера текста из cookie
@@ -529,23 +556,40 @@ document.addEventListener('DOMContentLoaded', function () {
                         <legend>Выберите тему:</legend>`;
             if (selectedSiteTheme === 'light') {
                 settingsContent += `
-                <input type="radio" name="theme" id="light-theme" checked>
-                <label for="light-theme">Светлая тема</label>
-                <input type="radio" name="theme" id="dark-theme">
-                <label for="dark-theme">Тёмная тема</label>`;
+                        <ul class="radio-buttons">
+                            <li>
+                                <input type="radio" name="theme" id="light-theme" checked>
+                                <label for="light-theme">Светлая тема</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="theme" id="dark-theme">
+                                <label for="dark-theme">Тёмная тема</label>
+                            </li>
+                        </ul>`;
             } else if (selectedSiteTheme === 'dark') {
                 settingsContent += `
-                <input type="radio" name="theme" id="light-theme">
-                <label for="light-theme">Светлая тема</label>
-                <input type="radio" name="theme" id="dark-theme" checked>
-                <label for="dark-theme">Тёмная тема</label>`;
+                        <ul class="radio-buttons">
+                            <li>
+                                <input type="radio" name="theme" id="light-theme">
+                                <label for="light-theme">Светлая тема</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="theme" id="dark-theme" checked>
+                                <label for="dark-theme">Тёмная тема</label>
+                            </li>
+                        </ul>`;
             }
             settingsContent += `
-            </fieldset>
+                    </fieldset>
                 </div>
                 <div class="settings-font-size">
                     <span class="settings-text">Введите размер текста:</span>
                     <input type="text" id="font-size" minlength="1" maxlength="2" size="4" required>
+                </div>
+                <div class="div-button-apply-changes">
+                <button class="button-apply-changes">
+                    <span class="button-text">Применить изменения</span>
+                </button>
                 </div>
             </div>`;
             popupSettings.classList.add('popup-settings');
@@ -583,9 +627,13 @@ document.addEventListener('DOMContentLoaded', function () {
             fontSizeInput.addEventListener('input', function () {
                 let fontSize = fontSizeInput.value;
                 if (fontSize !== '') {
-                    setFontSize(fontSize);
                     setCookie('font-size', fontSize, 365);
                 }
+            });
+            const buttonApplyChanges = document.querySelector('button.button-apply-changes'); 
+            buttonApplyChanges.addEventListener('click', function () {
+                setSiteTheme(selectedSiteTheme);
+                getFontSize();
             });
             settingsOpened = true;
         } else {

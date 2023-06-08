@@ -9,6 +9,8 @@
     --body-color: #edf0f1;
     --block-color: #ffffff;
     --button-copy-color: #f5f6f7;
+    --input-color: #e1e2e4;
+    --input-hover-color: #c3c5c9;
     --name-font-color: #1a1a1a;
     --header-font-color: #ffffff;
     --h1-font-color: #000000;
@@ -17,10 +19,6 @@
     --code-block-color: #ebecee;
     --code-button-hover-color: #eff1f3;
     --shadow-block-color: linear-gradient(0deg, rgba(236, 240, 241, 0), #3a7ab4 50px);
-}
-
-* {
-    transition: all 0.5s ease;
 }
 
 body {
@@ -425,7 +423,7 @@ code {
     margin: 5px 0;
     padding: 10px;
     border-radius: 7px;
-    background: var(--button-copy-color);
+    background: var(--code-button-hover-color);
     -webkit-user-select: none;
     user-select: none;
     z-index: 3;
@@ -592,8 +590,9 @@ footer {
 }
 
 fieldset {
+    display: inline-block;
     margin: 0;
-    border-radius: 16px;
+    border-radius: 8px;
 }
 
 legend {
@@ -602,12 +601,54 @@ legend {
     font-size: var(--p-font-size);
 }
 
+.radio-buttons {
+    margin: 0;
+    padding: 0;
+}
+
+.radio-buttons li {
+    list-style-type: none;
+}
+
 label,
 .settings-text {
+    display: inline-flex;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     line-height: 1.5;
+    font-size: var(--p-font-size);
     color: var(--p-font-color);
+}
+
+input[type="text"] {
+    font-size: var(--p-font-size);
+    border: 0;
+    border-radius: 4px;
+    background-color: var(--code-block-color);
+    color: var(--h1-font-color);
+}
+
+.div-button-apply-changes {
+    display: flex;
+    justify-content: center;
+}
+
+.button-apply-changes {
+    margin: 20px 0;
+    padding: 10px 0;
+    border-radius: 4px;
+    background-color: var(--input-color);
+}
+
+.button-apply-changes:hover {
+    background-color: var(--input-hover-color);
+}
+
+.button-text {
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--h2-font-size);
+    color: var(--h1-font-color);
 }
 
 @media (max-width: 1700px) {
@@ -707,25 +748,12 @@ label,
         width: 290px;
     }
 
-    .sections {
-        transform: translateX(0px);
-    }
-
-    .sections.animate {
-        transition: transform 0.5s ease;
-    }
-
     .button-menu {
         display: none;
     }
 
     .sections {
         margin: 0;
-    }
-
-    .sections.shifted {
-        transform: translateX(calc(4% + 300px));
-        overflow: hidden;
     }
 
     .nav-footer {

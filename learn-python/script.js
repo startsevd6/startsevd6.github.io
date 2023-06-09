@@ -458,20 +458,34 @@ document.addEventListener('DOMContentLoaded', function () {
             const value = arraySelectedThemeColors[i].value;
             document.documentElement.style.setProperty('--' + key, value);
         }
-        if (selectedSiteTheme === 'dark') {
-            const imgPython = document.querySelector('.img-python');
-            const imgSettings = document.querySelector('.img-settings');
-            const imgMenu = document.querySelector('.img-menu');
+        const imgPython = document.querySelector('.img-python');
+        const imgSettings = document.querySelector('.img-settings');
+        const imgMenu = document.querySelector('.img-menu');
+        const copyCodeImgs = document.querySelectorAll('.copy-code-img');
+        const copyCodeImgsSuccess = document.querySelectorAll('.copy-code-img-success');
+        const copyCodeImgsUnsuccess = document.querySelectorAll('.copy-code-img-unsuccess');
+        const arrowElements = [
+            document.querySelector('.nav-img-left'),
+            document.querySelector('.nav-img-right')
+        ];
+        const darkElements = document.querySelectorAll('.dark');
+        if (selectedSiteTheme === 'light') {
+            imgPython.classList.remove('not-visible');
+            imgSettings.classList.remove('not-visible');
+            imgMenu.classList.remove('not-visible');
+            toggleClasses(copyCodeImgs, 'visible', true);
+            toggleClasses(copyCodeImgsSuccess, 'visible', false);
+            toggleClasses(copyCodeImgsUnsuccess, 'visible', false);
+            toggleClasses(arrowElements, 'not-visible', false);
+            toggleClasses(darkElements, 'visible', false);
+        } else if (selectedSiteTheme === 'dark') {
             imgPython.classList.add('not-visible');
             imgSettings.classList.add('not-visible');
             imgMenu.classList.add('not-visible');
-            const copyCodeImgs = document.querySelectorAll('.copy-code-img');
-            const copyCodeImgsSuccess = document.querySelectorAll('.copy-code-img-success');
-            const copyCodeImgsUnsuccess = document.querySelectorAll('.copy-code-img-unsuccess');
-            const darkElements = document.querySelectorAll('.dark');
             toggleClasses(copyCodeImgs, 'visible', false);
             toggleClasses(copyCodeImgsSuccess, 'visible', false);
             toggleClasses(copyCodeImgsUnsuccess, 'visible', false);
+            toggleClasses(arrowElements, 'not-visible', true);
             toggleClasses(darkElements, 'visible', true);
         }
     }
@@ -630,7 +644,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     setCookie('font-size', fontSize, 365);
                 }
             });
-            const buttonApplyChanges = document.querySelector('button.button-apply-changes'); 
+            const buttonApplyChanges = document.querySelector('button.button-apply-changes');
             buttonApplyChanges.addEventListener('click', function () {
                 setSiteTheme(selectedSiteTheme);
                 getFontSize();

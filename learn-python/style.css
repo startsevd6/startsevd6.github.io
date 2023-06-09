@@ -486,6 +486,11 @@ code {
     width: 52px;
 }
 
+.nav-img-left.not-visible,
+.nav-img-right.not-visible {
+    display: none;
+}
+
 .nav-div-img-left,
 .nav-div-img-right {
     display: inline-flex;

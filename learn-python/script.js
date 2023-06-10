@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Расширяем aside обратно, если разрешение экрана подходит
     let debounceTimeout;
 
-    function resizeHandler() {
+    window.addEventListener('resize', function resizeHandler() {
         clearTimeout(debounceTimeout);
 
         debounceTimeout = setTimeout(function () {
@@ -244,9 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         }, 100);
-    }
-
-    window.addEventListener('resize', resizeHandler); // Выполняем функцию resizeHandler при изменении размера экрана
+    });
 
 
     // Вставка кнопок копирования кода на страницу
@@ -395,6 +393,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Функция массового переключения классов
     function toggleClasses(elements, classes, add) {
+        console.log(elements, classes, add);
         if (add) {
             elements.forEach(function (element) {
                 element.classList.add(classes);
@@ -429,6 +428,8 @@ document.addEventListener('DOMContentLoaded', function () {
             { key: 'h1-font-color', value: '#000000' },
             { key: 'h2-font-color', value: '#0d0d0d' },
             { key: 'p-font-color', value: '#1a1a1a' },
+            { key: 'a-font-color', value: '#2b5b87' },
+            { key: 'a-hover-font-color', value: 'rgba(58, 122, 180, 0.2)' },
             { key: 'code-block-color', value: '#ebecee' },
             { key: 'code-button-hover-color', value: '#eff1f3' },
             { key: 'shadow-block-color', value: 'linear-gradient(0deg, rgba(0, 0, 0, 0), #ecf0f1 50px)' }
@@ -444,6 +445,8 @@ document.addEventListener('DOMContentLoaded', function () {
             { key: 'h1-font-color', value: '#ffffff' },
             { key: 'h2-font-color', value: '#f2f2f2' },
             { key: 'p-font-color', value: '#e5e5e5' },
+            { key: 'a-font-color', value: '#78a2d4' },
+            { key: 'a-hover-font-color', value: 'rgba(157, 188, 217, 0.2)' },
             { key: 'code-block-color', value: '#141311' },
             { key: 'code-button-hover-color', value: '#100e0c' },
             { key: 'shadow-block-color', value: 'linear-gradient(0deg, rgba(0, 0, 0, 0), #000000 50px)' }
@@ -464,10 +467,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const copyCodeImgs = document.querySelectorAll('.copy-code-img');
         const copyCodeImgsSuccess = document.querySelectorAll('.copy-code-img-success');
         const copyCodeImgsUnsuccess = document.querySelectorAll('.copy-code-img-unsuccess');
-        const arrowElements = [
-            document.querySelector('.nav-img-left'),
-            document.querySelector('.nav-img-right')
-        ];
+        const arrowElements = [];
+        const arrowLeft = document.querySelector('.nav-img-left');
+        const arrowRight = document.querySelector('.nav-img-right');
+        if (arrowLeft) {
+            arrowElements.push(arrowLeft);
+        }
+        if (arrowRight) {
+            arrowElements.push(arrowRight);
+        }
         const darkElements = document.querySelectorAll('.dark');
         if (selectedSiteTheme === 'light') {
             imgPython.classList.remove('not-visible');

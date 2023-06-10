@@ -16,6 +16,8 @@
     --h1-font-color: #000000;
     --h2-font-color: #0d0d0d;
     --p-font-color: #1a1a1a;
+    --a-font-color: #2B5B87;
+    --a-hover-font-color: rgba(58, 122, 180, 0.2);
     --code-block-color: #ebecee;
     --code-button-hover-color: #eff1f3;
     --shadow-block-color: linear-gradient(0deg, rgba(236, 240, 241, 0), #3a7ab4 50px);
@@ -266,7 +268,7 @@ header {
 .theme-p,
 .header-a {
     padding: 13px;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 1.25rem;
     line-height: 24px;
@@ -314,7 +316,7 @@ header {
 }
 
 h1 {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding-bottom: 20px;
     color: var(--h1-font-color);
@@ -322,7 +324,7 @@ h1 {
 }
 
 h2 {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 50px 0 30px;
     color: var(--h2-font-color);
@@ -343,12 +345,12 @@ h2 {
 }
 
 .a-in-lesson {
-    color: #2b5b87;
+    color: var(--a-font-color);
     text-decoration: none;
 }
 
 .a-in-lesson:hover {
-    background-color: rgba(58, 122, 180, 0.2);
+    background-color: var(--a-hover-font-color);
     border-radius: 3px;
     text-decoration: underline;
 }
@@ -530,11 +532,11 @@ footer {
 }
 
 .email-a {
-    color: #2b5b87;
+    color: var(--a-font-color);
 }
 
 .email-a:hover {
-    background-color: rgba(58, 122, 180, 0.2);
+    background-color: var(--a-hover-font-color);
     border-radius: 3px;
     text-decoration: underline;
 }
@@ -654,6 +656,14 @@ input[type="text"] {
     font-family: 'Montserrat', sans-serif;
     font-size: var(--h2-font-size);
     color: var(--h1-font-color);
+}
+
+.lessons,
+.buttons {width: 100%;}
+.button-settings,
+.button-menu {
+    width: 100%;
+    border-radius: 5px;
 }
 
 @media (max-width: 1700px) {

@@ -352,7 +352,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         copyCodeImg.classList.remove('visible');
                         copyCodeImgSuccess.classList.add('visible');
                         setTimeout(function () {
-                            console.log(getSiteTheme(), selectedSiteTheme)
                             if (getSiteTheme() === selectedSiteTheme) {
                                 copyCodeImgSuccess.classList.remove('visible');
                                 copyCodeImg.classList.add('visible');
@@ -374,7 +373,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         copyCodeImgSuccess.classList.remove('visible');
                         copyCodeImgUnsuccess.classList.add('visible');
                         setTimeout(function () {
-                            console.log(getSiteTheme(), selectedSiteTheme)
                             if (getSiteTheme() === selectedSiteTheme) {
                                 copyCodeImgUnsuccess.classList.remove('visible');
                                 copyCodeImg.classList.add('visible');
@@ -393,7 +391,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Функция массового переключения классов
     function toggleClasses(elements, classes, add) {
-        console.log(elements, classes, add);
         if (add) {
             elements.forEach(function (element) {
                 element.classList.add(classes);

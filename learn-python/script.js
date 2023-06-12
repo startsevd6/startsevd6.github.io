@@ -75,17 +75,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Функция подгрузки блока после загрузки всей страницы
     function loadContent(includeBlock, content) {
         const includeContent = document.getElementById('include-' + includeBlock);
+        if (currentArticleNumber === -1) {
+            return;
+        }
         try {
             includeContent.innerHTML = content;
-
-            if (!includeContent.innerHTML.trim()) {
-                throw new Error(`Ошибка: Загрузка ${includeBlock} не удалась`);
-            }
         } catch (error) {
-            if (currentArticleNumber === -1) {
-                return;
-            }
-            alert('Ошибка: Загрузка блока', includeBlock, 'не удалась');
+            console.log('Ошибка: Загрузка блока', includeBlock, 'не удалась');
         }
     };
 

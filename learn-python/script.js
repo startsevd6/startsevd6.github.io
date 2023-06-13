@@ -505,14 +505,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Функция установки размера текста на сайте
     function setFontSize(fontSize) {
-        if (1200 < window.innerWidth && window.innerWidth <= 1700 && fontSize >= 60) {
-            fontSize = 60;
-        } else if (400 < window.innerWidth && window.innerWidth <= 1200 && fontSize >= 48) {
+        if (1200 < window.innerWidth && window.innerWidth <= 1700 && fontSize >= 48) {
             fontSize = 48;
-        } else if (320 < window.innerWidth && window.innerWidth <= 400 && fontSize >= 32) {
+        } else if (1000 < window.innerWidth && window.innerWidth <= 1200 && fontSize >= 32) {
             fontSize = 32;
-        } else if (window.innerWidth <= 320 && fontSize >= 24) {
+        } else if (650 < window.innerWidth && window.innerWidth <= 1000 && fontSize >= 24) {
             fontSize = 24;
+        } else if (window.innerWidth <= 650 && fontSize >= 16) {
+            fontSize = 16;
         }
         if (fontSize < 8) {
             fontSize = 8;
@@ -544,6 +544,21 @@ document.addEventListener('DOMContentLoaded', function () {
         return 16;
     }
     getFontSize(); // Переопределяем значения размера текста сразу после загрузки страницы
+
+    // Функция получения максимального размера текста из cookie
+    function getMaxFontSize() {
+        fontSize = getFontSize();
+        if (1200 < window.innerWidth && window.innerWidth <= 1700 && fontSize >= 48) {
+            fontSize = 48;
+        } else if (1000 < window.innerWidth && window.innerWidth <= 1200 && fontSize >= 32) {
+            fontSize = 32;
+        } else if (650 < window.innerWidth && window.innerWidth <= 1000 && fontSize >= 24) {
+            fontSize = 24;
+        } else if (window.innerWidth <= 650 && fontSize >= 16) {
+            fontSize = 16;
+        }
+        return fontSize;
+    }
 
     // Функция установки значения в cookie
     function setCookie(name, value, days) {
@@ -598,8 +613,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     </fieldset>
                 </div>
                 <div class="settings-font-size">
-                    <span class="settings-text">Введите размер текста:</span>
-                    <input type="text" id="font-size" minlength="1" maxlength="2" size="4" required>
+                    <span class="settings-text">Выберите размер текста:</span>
+                    <input type="range" min="8" max="${getMaxFontSize()}" value="${getFontSize()}" class="slider" id="font-size">
                 </div>
                 <div class="div-button-apply-changes">
                 <button class="button-apply-changes">

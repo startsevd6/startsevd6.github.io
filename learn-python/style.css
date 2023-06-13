@@ -596,6 +596,11 @@ footer {
     margin: 16px 0;
 }
 
+.settings-site-theme,
+.settings-font-size {
+    display: inline-block;
+}
+
 fieldset {
     display: inline-block;
     margin: 0;
@@ -635,6 +640,17 @@ input[type="text"] {
     color: var(--h1-font-color);
 }
 
+input[type="range"] {
+    appearance: none;
+    background: none;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    border: 5px solid var(--body-color);
+    border-radius: 50vmax;
+    background-color: var(--body-color);
+}
+
 .div-button-apply-changes {
     display: flex;
     justify-content: center;
@@ -659,7 +675,10 @@ input[type="text"] {
 }
 
 .lessons,
-.buttons {width: 100%;}
+.buttons {
+    width: 100%;
+}
+
 .button-settings,
 .button-menu {
     width: 100%;
@@ -830,6 +849,13 @@ input[type="text"] {
 
     .lesson {
         padding: 50px 25px;
+    }
+
+    .popup-settings {
+        top: 15%;
+        left: 15%;
+        height: 70%;
+        width: 70%;
     }
 }
 

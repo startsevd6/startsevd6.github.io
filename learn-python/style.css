@@ -602,7 +602,6 @@ footer {
 }
 
 fieldset {
-    display: inline-block;
     margin: 0;
     border-radius: 8px;
 }
@@ -644,11 +643,17 @@ input[type="range"] {
     appearance: none;
     background: none;
     cursor: pointer;
-    display: block;
-    margin: auto;
+    display: inline-block;
+    margin: 0;
     border: 5px solid var(--body-color);
-    border-radius: 50vmax;
+    border-radius: 16px;
     background-color: var(--body-color);
+}
+
+.font-size-value {
+    margin: 0 0 0 10%;
+    vertical-align: top;
+    line-height: 26px;
 }
 
 .div-button-apply-changes {

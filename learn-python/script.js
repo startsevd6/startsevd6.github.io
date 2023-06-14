@@ -547,14 +547,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Функция получения максимального размера текста из cookie
     function getMaxFontSize() {
-        fontSize = getFontSize();
-        if (1200 < window.innerWidth && window.innerWidth <= 1700 && fontSize >= 48) {
+        let fontSize = 64;
+        fontSize = 64;
+        if (1200 < window.innerWidth && window.innerWidth <= 1700) {
             fontSize = 48;
-        } else if (1000 < window.innerWidth && window.innerWidth <= 1200 && fontSize >= 32) {
+        } else if (1000 < window.innerWidth && window.innerWidth <= 1200) {
             fontSize = 32;
-        } else if (650 < window.innerWidth && window.innerWidth <= 1000 && fontSize >= 24) {
+        } else if (650 < window.innerWidth && window.innerWidth <= 1000) {
             fontSize = 24;
-        } else if (window.innerWidth <= 650 && fontSize >= 16) {
+        } else if (window.innerWidth <= 650) {
             fontSize = 16;
         }
         return fontSize;
@@ -613,8 +614,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     </fieldset>
                 </div>
                 <div class="settings-font-size">
-                    <span class="settings-text">Выберите размер текста:</span>
-                    <input type="range" min="8" max="${getMaxFontSize()}" value="${getFontSize()}" class="slider" id="font-size">
+                    <fieldset>
+                        <legend>Выберите размер текста:</legend>
+                        <input type="range" min="8" max="${getMaxFontSize()}" value="${getFontSize()}" class="slider" id="font-size">
+                        <span class="p-lesson font-size-value">${getFontSize()}</span>
+                    </fieldset>
                 </div>
                 <div class="div-button-apply-changes">
                 <button class="button-apply-changes">
@@ -625,6 +629,15 @@ document.addEventListener('DOMContentLoaded', function () {
             popupSettings.classList.add('popup-settings');
             html.appendChild(popupSettings);
             popupSettings.innerHTML = settingsContent;
+            const fontSizeValue = document.querySelector('span.font-size-value');
+            const fontSizeInput = document.querySelector('input[type="range"].slider');
+            let debounceTimeout;
+            fontSizeInput.addEventListener('input', function () {
+                clearTimeout(debounceTimeout);
+                debounceTimeout = setTimeout(() => {
+                    fontSizeValue.innerHTML = fontSizeInput.value;
+                }, 5);
+            });
             settingsLoaded = true;
         }
         if (!settingsOpened) {

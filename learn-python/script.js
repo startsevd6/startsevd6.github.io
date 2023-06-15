@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
         'Введение в Python',
         'Переменные',
         'Вывод и ввод текста',
-        'Условный оператор'//,
-        //'Циклы'
+        'Условный оператор',
+        'Циклы'
     ];
     // Переменная aside, которая будет заполняться
     let asideContent = `

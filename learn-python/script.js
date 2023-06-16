@@ -617,7 +617,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <fieldset>
                         <legend>Выберите размер текста:</legend>
                         <input type="range" min="8" max="${getMaxFontSize()}" value="${getFontSize()}" class="slider" id="font-size">
+                        <div class="div-font-size-value">
                         <span class="p-lesson font-size-value">${getFontSize()}</span>
+                        <div>
                     </fieldset>
                 </div>
                 <div class="div-button-apply-changes">

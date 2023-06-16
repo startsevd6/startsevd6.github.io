@@ -592,17 +592,14 @@ footer {
     height: 32px;
 }
 
-.settings-site-theme {
-    margin: 16px 0;
-}
-
 .settings-site-theme,
 .settings-font-size {
-    display: inline-block;
+    margin-bottom: 20px;
 }
 
 fieldset {
     margin: 0;
+    border-width: 1px;
     border-radius: 8px;
 }
 
@@ -619,6 +616,12 @@ legend {
 
 .radio-buttons li {
     list-style-type: none;
+}
+
+input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    margin: 5px;
 }
 
 label,
@@ -645,14 +648,23 @@ input[type="range"] {
     cursor: pointer;
     display: inline-block;
     margin: 0;
+    width: calc(70% - 20px);
     border: 5px solid var(--body-color);
     border-radius: 16px;
     background-color: var(--body-color);
 }
 
+.div-font-size-value {
+    position: relative;
+    display: inline-block;
+    width: 30%;
+    top: -8px;
+}
+
 .font-size-value {
-    margin: 0 0 0 10%;
-    vertical-align: top;
+    display: block;
+    padding: 0;
+    text-align: center;
     line-height: 26px;
 }
 

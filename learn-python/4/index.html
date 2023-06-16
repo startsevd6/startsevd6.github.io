@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Циклы позволяют нам повторять определенный код несколько раз. В Python есть два основных типа циклов: цикл while и цикл for.">
+        content="Циклы позволяют нам повторять определенный код несколько раз. В Python есть два основных цикла: цикл while и цикл for.">
     <link rel="shortcut icon" href="/learn-python/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/learn-python/style.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@
                 <div class="shadow-header">
                     <div class="container-header">
                         <div class="header-p">
-                            <p class="theme-p">Тема: Условный оператор</p>
+                            <p class="theme-p">Тема: Циклы</p>
                         </div>
                         <div class="div-a">
                             <a href="#while" class="header-a">while</a>
@@ -46,142 +46,98 @@
                 <article>
                     <h1>Циклы</h1>
                     <p class="p-lesson">Привет! Сегодня мы поговорим о циклах в Python.</p>
-                    <p class="p-lesson">Циклы позволяют нам повторять определенный код несколько раз. В Python есть два основных типа циклов: цикл while и цикл for.</p>
+                    <p class="p-lesson">В циклах в программировании всегда используют переменные i, j и k в качестве итератора по умолчанию. Эти переменные используются, т.к. i - это первая буква слова "iterator", в значении "курсор" на английском языке. j похожа на i и обычно используется в качестве второго итератора для вложенных циклов. А k выбирается, так как находится на клавиатуре рядом с i и j. Обычно вложенные циклы используют сначала i, затем j, а затем k для третьего по вложенности цикла. Это помогает программистам легче читать код с использованием циклов. И поэтому их не принято использовать не в циклах.</p>
+                    <p class="p-lesson">Циклы позволяют нам повторять определенный код несколько раз. В Python есть два основных цикла: цикл while и цикл for.</p>
+
+                    <h2 id="while">while</h2>
                     <p class="p-lesson">Цикл while выполняет код, пока условие истинно (True). Синтаксис цикла while выглядит следующим образом:</p>
                     <div class="pre-code-lesson">
                         <code class="pre" id="code-1">while условие:
     блок_кода</code>
+                        <include id="include-copy-code-button-1"></include>
                     </div>
                     <p class="p-lesson">Код, содержащийся в блоке_кода, будет выполняться до тех пор, пока условие остается истинным. Важно убедиться, что внутри цикла есть изменение условия, чтобы избежать бесконечного цикла.</p>
                     <p class="p-lesson">Пример использования цикла while:</p>
                     <div class="pre-code-lesson">
-                        <code class="pre" id="code-1">count = 0
+                        <code class="pre" id="code-2">count = 0
 while count < 5:
     print("Текущее значение count:", count)
     count += 1</code>
-                    </div>
-                    <p class="p-lesson">В этом примере цикл while будет выполняться до тех пор, пока значение переменной count меньше 5. Каждый раз, когда код внутри цикла выполняется, мы выводим текущее значение count на экран и увеличиваем его на 1.</p>
-                    
-                    <h2 id="while">while</h2>
-
-                    <h2 id="for">for</h2>
-                    
-                    <!--
-                    <h1>Условный оператор</h1>
-                    <p class="p-lesson">Привет! Сегодня мы поговорим об условном операторе в Python.</p>
-                    <p class="p-lesson">Условный оператор позволяет программе выполнять различные действия в зависимости
-                        от условий. Он позволяет ветвить программу и выбирать, какой код должен быть выполнен в
-                        определенных ситуациях.</p>
-
-                    <h2 id="syntax">Синтаксис</h2>
-                    <p class="p-lesson">Синтаксис условного оператора выглядит следующим образом:</p>
-                    <div class="pre-code-lesson">
-                        <code class="pre" id="code-1">if условие_1:
-    блок_1
-elif условие_2:
-    блок_2
-else:
-    блок_3</code>
-                        <include id="include-copy-code-button-1"></include>
-                    </div>
-                    <p class="p-lesson">Код, содержащийся в блоке_1, будет выполнен, если условие_1 истинно (True). Если
-                        условие_1 ложно (False), то код в блоке_1 будет пропущен и проверяется следующее условие.</p>
-                    <p class="p-lesson">Код, содержащийся в блоке_2, будет выполнен, если условие_2 истинно (True). Если
-                        ни одно из предыдущих условий не было истинным, то проверяется условие_2.</p>
-                    <p class="p-lesson">Код, содержащийся в блоке_3, будет выполнен, если ни одно из предыдущих условий
-                        не было истинным.</p>
-                    <p class="p-lesson">Отступы играют важную роль в Python, так как они определяют, какой код относится
-                        к блоку if, elif или else. Обычно используется четыре пробела (или одна табуляция) для создания
-                        отступов.</p>
-
-                    <h2 id="operators">Логические операторы и операторы сравнения</h2>
-                    <p class="p-lesson">Для формулировки условий в условном операторе мы можем использовать операторы
-                        сравнения (==, !=, >, <,>=, <=) и логические операторы (and, or, not).</p>
-                    <p class="p-lesson">Вот таблица операторов сравнения:</p>
-                    <table class="p-lesson">
-                        <tbody>
-                            <tr>
-                                <th>Оператор сравнения</th>
-                                <th>Значение</th>
-                            </tr>
-                            <tr>
-                                <td class="td-text-center">==</td>
-                                <td>Равно</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-center">!=</td>
-                                <td>Не равно</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-center">></td>
-                                <td>Больше</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-center"><</td>
-                                <td>Меньше</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-center">>=</td>
-                                <td>Больше или равно</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-center"><=</td>
-                                <td>Меньше или равно</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="p-lesson">
-                        <tbody>
-                            <tr>
-                                <th>Логический оператор</th>
-                                <th>Предназначение</th>
-                            </tr>
-                            <tr>
-                                <td class="td-text-center">and</td>
-                                <td>И - используется, когда нужно проверить верны ли оба условия</td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-center">or</td>
-                                <td>ИЛИ - используется, когда нужно проверить верно хотя бы одно условие
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td-text-center">not</td>
-                                <td>НЕ - используется для смены значения условия на противоположное</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p class="p-lesson">Мы также можем использовать цепочки сравнений для проверки
-                        нескольких условий одновременно. Например:</p>
-                    <div class="pre-code-lesson">
-                        <code class="pre" id="code-2">x = 5
-if 1 < x < 10:
-    print("Число находится в диапазоне от 1 до 10.")</code>
                         <include id="include-copy-code-button-2"></include>
                     </div>
-                    <p class="p-lesson">В этом примере мы проверяем, что число x больше 1 и меньше 10
-                        одновременно.</p>
-                    <p class="p-lesson">Условный оператор также может быть вложенным, что означает, что один
-                        условный оператор может находиться внутри другого. Например:</p>
+                    <p class="p-lesson">В этом примере цикл while будет выполняться до тех пор, пока значение переменной count меньше 5. Каждый раз, когда код внутри цикла выполняется, мы выводим текущее значение count на экран и увеличиваем его на 1.</p>
+
+                    <h2 id="for">for</h2>
+                    <p class="p-lesson">Цикл for используется для итерации по последовательности или коллекции элементов. Вот его общий синтаксис:</p>
                     <div class="pre-code-lesson">
-                        <code class="pre" id="code-3">x = 5
-if x > 0:
-    if x < 10:
-        print("Число положительное и меньше 10.")
-    else:
-        print("Число положительное, но не меньше 10.")
-else:
-    print("Число отрицательное.")</code>
+                        <code class="pre" id="code-3">for элемент in последовательность:
+    блок_кода</code>
                         <include id="include-copy-code-button-3"></include>
                     </div>
-                    <p class="p-lesson">В этом примере мы проверяем, что число x положительное и меньше 10.
-                        Если это верно, то выводим соответствующее сообщение. В противном случае, если число
-                        отрицательное, выводим другое сообщение.</p>
-                    <p class="p-lesson">В следующем уроке мы рассмотрим циклы и научимся выполнять
-                        повторяющиеся действия в программе.</p>
+                    <p class="p-lesson">Цикл for будет выполнять блок_кода для каждого элемента в последовательности. Мы можем использовать функцию range() для создания последовательности чисел. Например:</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-4">for i in range(1, 4):
+    print(i)</code>
+                        <include id="include-copy-code-button-4"></include>
+                    </div>
+                    <p class="p-lesson">В этом примере цикл for будет выполняться три раза, выводя значения от 1 до 3. Параметры функции range(start, stop, step) определяют начальное значение, конечное значение (не включительно) и шаг соответственно.</p>
+                    <p class="p-lesson">Примеры использования параметров функции range():</p>
+                    <ol>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Одно значение - оно определяет конечное значение</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-5">for i in range(3):
+print(i)</code>
+                                <include id="include-copy-code-button-5"></include>
+                            </div>
+                            <p class="p-lesson">Выводит 0, 1, 2</p>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Два значения - первое определяет начальное значение, второе - последнее значение</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-6">for i in range(1, 4):
+print(i)</code>
+                                <include id="include-copy-code-button-6"></include>
+                            </div>
+                            <p class="p-lesson">Выводит 1, 2, 3</p>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Три значения - первое определяет начальное значение, второе - конечное значение, третье - шаг</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-7">for i in range(1, 10, 2):
+print(i) </code>
+                                <include id="include-copy-code-button-7"></include>
+                            </div>
+                            <p class="p-lesson">Выводит 1, 3, 5, 7, 9</p>
+                        </li>
+                    </ol>
+                    <p class="p-lesson">Цикл for также может быть использован для перебора элементов в строке или другой коллекции. Например:</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-8">name = "Python"
+for letter in name:
+    print(letter)</code>
+                        <include id="include-copy-code-button-8"></include>
+                    </div>
+                    <p class="p-lesson">В этом примере мы перебираем каждую букву в строке "Python" и выводим ее.</p>
+                    <p class="p-lesson">Внутри цикла мы можем использовать ключевые слова break и continue. Ключевое слово break позволяет нам выйти из цикла досрочно, даже если условие еще не стало ложным. Ключевое слово continue позволяет пропустить оставшуюся часть текущей итерации и перейти к следующей итерации.</p>
+                    <p class="p-lesson">В Python мы также можем создавать вложенные циклы, то есть циклы внутри других циклов. Это может быть полезно для обработки различных данных или выполнения сложных операций. Кроме того, мы можем использовать бесконечный цикл while True, чтобы создать цикл, который будет выполняться до тех пор, пока не будет прерван  с помощью break.</p>
+                    <p class="p-lesson">Кроме того, циклы в Python могут иметь блок else, который будет выполнен, если цикл завершился естественным образом, то есть без прерывания с помощью break.</p>
+                    <p class="p-lesson">Пример использования break и continue:</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-9">for i in range(1, 6):
+    if i == 3:
+        continue
+    if i == 5:
+        break
+    print(i)
+else:
+    print("Цикл завершился естественным образом")</code>
+                        <include id="include-copy-code-button-9"></include>
+                    </div>
+                    <p class="p-lesson">В этом примере мы пропускаем число 3 с помощью continue и прерываем цикл при достижении числа 5 с помощью break.</p>
+                    <p class="p-lesson">В <a href="/learn-python/5/" class="a-in-lesson">следующем уроке</a> мы рассмотрим списки и научимся работать с коллекциями элементов в Python.</p>
                 </article>
-                -->
-                <script>let currentArticleNumber = 3;</script>
+                <script>let currentArticleNumber = 4;</script>
                 <include id="include-nav"></include>
             </section>
 

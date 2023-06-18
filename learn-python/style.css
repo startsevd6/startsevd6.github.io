@@ -287,6 +287,7 @@ header {
     display: inline-block;
     text-decoration: none;
     background-color: #3a7ab4;
+    transition: background-color 0.25s ease;
 }
 
 .header-a:hover {
@@ -298,6 +299,7 @@ header {
     height: 26px;
     max-width: 26px;
     background: #3ab497;
+    transition: background-color 0.25s ease;
     padding: 12px;
     border-radius: 7px;
     margin: 0 0 0 35px;
@@ -345,7 +347,10 @@ h2 {
 }
 
 .a-in-lesson {
+    background-color: var(--block-color);
+    transition: background-color 0.25s ease;
     color: var(--a-font-color);
+    transition: color 0.25s ease;
     text-decoration: none;
 }
 
@@ -440,6 +445,7 @@ code {
 .copy-code-lesson {
     float: right;
     border-radius: 10px;
+    transition: background-color 0.25s ease;
 }
 
 .copy-code-lesson:hover {
@@ -470,6 +476,7 @@ code {
     display: inline-block;
     padding: 23px 13px;
     text-decoration: none;
+    transition: background-color 0.25s ease;
 }
 
 .nav-a-left:hover,
@@ -533,6 +540,7 @@ footer {
 
 .email-a {
     color: var(--a-font-color);
+    transition: color 0.25s ease;
 }
 
 .email-a:hover {
@@ -677,6 +685,7 @@ input[type="range"] {
     padding: 10px 0;
     border-radius: 4px;
     background-color: var(--input-color);
+    transition: background-color 0.25s ease;
 }
 
 .button-apply-changes:hover {

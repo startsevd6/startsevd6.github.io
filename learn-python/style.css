@@ -592,6 +592,13 @@ footer {
     height: 32px;
 }
 
+.settings-content {
+    display: flex;
+    height: calc(100% - 32px);
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 .settings-site-theme,
 .settings-font-size {
     margin-bottom: 20px;
@@ -632,14 +639,6 @@ label,
     line-height: 1.5;
     font-size: var(--p-font-size);
     color: var(--p-font-color);
-}
-
-input[type="text"] {
-    font-size: var(--p-font-size);
-    border: 0;
-    border-radius: 4px;
-    background-color: var(--code-block-color);
-    color: var(--h1-font-color);
 }
 
 input[type="range"] {

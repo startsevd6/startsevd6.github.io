@@ -561,10 +561,9 @@ footer {
 .popup-settings {
     position: fixed;
     display: none;
-    width: 50%;
-    height: 50%;
-    left: 25%;
-    top: 25%;
+    width: 60%;
+    left: 20%;
+    top: 10%;
     border: #ececea 1px solid;
     padding: 16px;
     -webkit-user-select: none;
@@ -595,6 +594,7 @@ footer {
 .settings-content {
     display: flex;
     height: calc(100% - 32px);
+    margin-top: 16px;
     flex-direction: column;
     justify-content: flex-start;
 }

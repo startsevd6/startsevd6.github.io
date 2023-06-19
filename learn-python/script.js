@@ -14,7 +14,26 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
 
     activeClass = '';
-    for (let i = 0; i < articleThemes.length; i++) {
+
+    const rangeOfArticles = Math.floor((window.innerHeight - 180) / 60);
+
+    let rangeOfArticlesBefore = currentArticleNumber - rangeOfArticles;
+    let rangeOfArticlesAfter = currentArticleNumber + rangeOfArticles;
+
+    if (rangeOfArticlesBefore < 0) {
+        rangeOfArticlesAfter = Math.min(rangeOfArticlesAfter + Math.floor(-rangeOfArticlesBefore / 2), articleThemes.length);
+        rangeOfArticlesBefore = 0;
+    } else if (rangeOfArticlesAfter > articleThemes.length) {
+        rangeOfArticlesBefore = Math.max(rangeOfArticlesBefore + Math.floor((articleThemes.length - rangeOfArticlesAfter + 1) / -2), 0);
+        rangeOfArticlesAfter = articleThemes.length;
+    }
+
+    if (rangeOfArticlesBefore == rangeOfArticlesAfter) {
+        rangeOfArticlesAfter += 1;
+    }
+
+    console.log(currentArticleNumber, rangeOfArticles, articleThemes.length, rangeOfArticlesBefore, rangeOfArticlesAfter);
+    for (let i = rangeOfArticlesBefore; i < rangeOfArticlesAfter; i++) {
         if (i == currentArticleNumber) {
             activeClass = ' active-lesson';
         }
@@ -153,10 +172,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const sections = document.querySelector('.sections');
     function toggleAside(asideIsOpen) {
         if (asideIsOpen) {
-            aside.classList.add('animate');
-            aside.classList.add('open');
-            sections.classList.add('animate');
-            sections.classList.add('aside-open');
+            aside.classList.add('animate', 'open');
+            sections.classList.add('animate', 'aside-open');
         } else {
             aside.classList.remove('open');
             sections.classList.remove('aside-open');
@@ -209,8 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }, 500);
                     asideIsOpen = false;
                 } else {
-                    aside.classList.remove('animate');
-                    aside.classList.remove('open');
+                    aside.classList.remove('animate', 'open');
                     setTimeout(function () {
                         aside.classList.add('animate');
                     }, 500);
@@ -233,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (!asideIsOpen) {
                     aside.classList.remove('animate');
                     aside.classList.add('open');
-                    sections.classList.remove('shifted');
+                    sections.classList.remove('aside-open');
                     setTimeout(function () {
                         aside.classList.add('animate');
                     }, 500);

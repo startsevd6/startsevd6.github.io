@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Все статьи сайта">
+    <link rel="shortcut icon" href="/learn-python/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/learn-python/style.min.css">
+    <link rel="stylesheet" href="/learn-python/all-articles/style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500;700&family=Source+Code+Pro&display=swap"
+        rel="stylesheet">
+    <script type="text/javascript" src="../../learn-python/clipboard.min.js"></script>
+    <script type="text/javascript" src="../../learn-python/script.js" defer></script>
+    <script type="text/javascript" src="../../learn-python/all-articles/articles.min.js" defer></script>
+    <title>Все статьи сайта</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <include id="include-aside"></include>
+
+        <div class="sections">
+            <header>
+                <div class="top-header"></div>
+                <div class="shadow-header">
+                    <div class="container-header">
+                        <div class="header-p">
+                            <p class="theme-p">Все статьи</p>
+                        </div>
+                    </div>
+                    <div class="account-button"> <!-- Сейчас авторизация не работает -->
+                        <img src="/learn-python/img/icon-account.svg" alt="account icon" class="img-icon-account">
+                    </div>
+                </div>
+            </header>
+
+            <section class="lesson">
+                <div class="container-articles">
+                    <include id="include-articles"></include>
+                </div>
+                <script>let currentArticleNumber = -1;</script>
+                <include id="include-nav"></include>
+            </section>
+
+            <include id="include-footer"></include>
+
+        </div>
+    </div>
+    <include id="include-open-menu">
+        </indlude>
+</body>
+
+</html>

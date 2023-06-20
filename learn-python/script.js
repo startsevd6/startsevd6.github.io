@@ -1,3 +1,4 @@
+'use strict';
 document.addEventListener('DOMContentLoaded', function () {
     // Темы всех статей
     const articleThemes = [
@@ -12,8 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
     <aside class="sidebar">
         <div class="lessons">
     `;
-
-    activeClass = '';
+    try {
+        activeClass = '';
+    } catch {
+        var activeClass = '';
+    }
 
     const rangeOfArticles = Math.floor((window.innerHeight - 180) / 60);
 
@@ -32,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
         rangeOfArticlesAfter += 1;
     }
 
-    console.log(currentArticleNumber, rangeOfArticles, articleThemes.length, rangeOfArticlesBefore, rangeOfArticlesAfter);
     for (let i = rangeOfArticlesBefore; i < rangeOfArticlesAfter; i++) {
         if (i == currentArticleNumber) {
             activeClass = ' active-lesson';
@@ -94,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Функция подгрузки блока после загрузки всей страницы
     function loadContent(includeBlock, content) {
         const includeContent = document.getElementById('include-' + includeBlock);
-        if (currentArticleNumber === -1) {
+        if (currentArticleNumber === -1 && includeBlock == 'nav') {
             return;
         }
         try {
@@ -487,18 +490,30 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         const darkElements = document.querySelectorAll('.dark');
         if (selectedSiteTheme === 'light') {
-            imgPython.classList.remove('not-visible');
-            imgSettings.classList.remove('not-visible');
-            imgMenu.classList.remove('not-visible');
+            if (imgPython) {
+                imgPython.classList.remove('not-visible');
+            }
+            if (imgSettings) {
+                imgSettings.classList.remove('not-visible');
+            }
+            if (imgMenu) {
+                imgMenu.classList.remove('not-visible');
+            }
             toggleClasses(copyCodeImgs, 'visible', true);
             toggleClasses(copyCodeImgsSuccess, 'visible', false);
             toggleClasses(copyCodeImgsUnsuccess, 'visible', false);
             toggleClasses(arrowElements, 'not-visible', false);
             toggleClasses(darkElements, 'visible', false);
         } else if (selectedSiteTheme === 'dark') {
-            imgPython.classList.add('not-visible');
-            imgSettings.classList.add('not-visible');
-            imgMenu.classList.add('not-visible');
+            if (imgPython) {
+                imgPython.classList.add('not-visible');
+            }
+            if (imgSettings) {
+                imgSettings.classList.add('not-visible');
+            }
+            if (imgMenu) {
+                imgMenu.classList.add('not-visible');
+            }
             toggleClasses(copyCodeImgs, 'visible', false);
             toggleClasses(copyCodeImgsSuccess, 'visible', false);
             toggleClasses(copyCodeImgsUnsuccess, 'visible', false);
@@ -534,7 +549,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fontSize = 8;
         }
         fontSize = fontSize / 16;
-        cssVariablesFontSize = [
+        let cssVariablesFontSize = [
             { key: 'h1-font-size', value: 1.875 * fontSize },
             { key: 'h2-font-size', value: 1.625 * fontSize },
             { key: 'nav-theme-font-size', value: 1.125 * fontSize },
@@ -591,7 +606,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let settingsOpened = false;
     settingsButton.addEventListener('click', function () {
         if (!settingsLoaded) {
-            selectedSiteTheme = getSiteTheme();
+            try {
+                selectedSiteTheme = getSiteTheme();
+            } catch {
+                var selectedSiteTheme = getSiteTheme();
+            }
             let settingsContent = `
             <span class="settings-title">Настройки</span>
             <button class="close-settings">

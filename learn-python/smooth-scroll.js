@@ -1,18 +1,23 @@
-document.addEventListener('DOMContentLoaded', function () {
+'use strict';
+
+document.addEventListener('DOMContentLoaded', () => {
     // Плавный переход к блоку текста
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
-    smoothScrollLinks.forEach(function (link) {
-        link.addEventListener('click', function (event) {
+
+    smoothScrollLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
             event.preventDefault();
-            let target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector(link.getAttribute('href'));
             let windowHeightTop = 100;
+
             if (window.innerWidth <= 950) {
                 windowHeightTop = 50;
             }
+
             if (target) {
                 window.scrollTo({
                     top: target.offsetTop - windowHeightTop,
-                    behavior: 'smooth'
+                    behavior: 'smooth',
                 });
             }
         });

@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const aside = document.querySelector('aside');
     const sections = document.querySelector('.sections');
     function toggleAside(asideIsOpen) {
-        if (asideIsOpen) {
+        if (!asideIsOpen) {
             aside.classList.add('animate', 'open');
             sections.classList.add('animate', 'aside-open');
         } else {
@@ -227,13 +227,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     setTimeout(function () {
                         aside.classList.add('animate');
                     }, 500);
-                    asideIsOpen = false;
                 } else {
                     aside.classList.remove('animate', 'open');
                     setTimeout(function () {
                         aside.classList.add('animate');
                     }, 500);
-                    asideIsOpen = true;
                 }
             } else if (window.innerWidth <= 950) {
                 if (!isOpenMenuLoaded) {

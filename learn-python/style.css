@@ -23,25 +23,24 @@
     --shadow-block-color: linear-gradient(0deg, rgba(236, 240, 241, 0), #3a7ab4 50px);
 }
 
-body {
-    background: var(--body-color);
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    background: var(--body-color);
 }
 
 body.not-visible {
     opacity: 0.5;
 }
 
-p {
-    padding: 0;
-    margin: 0;
-}
-
 aside {
     position: fixed;
     display: flex;
-    width: 290px;
+    width: 300px;
     height: 681px;
     margin-left: 52px;
     margin-top: 31px;
@@ -55,7 +54,6 @@ aside {
 
 button {
     border: 0;
-    padding: 0;
     background: var(--block-color);
     cursor: pointer;
 }
@@ -64,10 +62,6 @@ img {
     max-width: 100%;
     -webkit-user-select: none;
     user-select: none;
-}
-
-figure {
-    margin: 0;
 }
 
 .wrapper {
@@ -94,8 +88,9 @@ aside.open .button-menu {
     text-align: left;
 }
 
-.active-lesson {
+aside .active-lesson {
     width: 290px;
+    transition: width 0.5s ease;
     background-color: var(--body-color);
 }
 
@@ -106,9 +101,8 @@ aside.open .button-menu {
 .div-number-lesson {
     float: left;
     padding: 21px;
-    margin: 0;
-    width: 24px;
-    height: 18px;
+    width: 70px;
+    height: 60px;
 }
 
 .img-python,
@@ -147,13 +141,12 @@ aside.open .button-menu {
 .div-img-settings,
 .div-img-menu {
     display: inline-flex;
-    width: 20px;
+    width: 60px;
     padding: 20px;
 }
 
 .number-lesson {
     display: flex;
-    margin: 0;
     -webkit-user-select: none;
     user-select: none;
     font-family: 'Montserrat';
@@ -194,8 +187,7 @@ aside.open .button-menu {
 .name-menu {
     position: relative;
     display: block;
-    margin: 0;
-    padding: 20px;
+    height: 60px;
     -webkit-user-select: none;
     user-select: none;
     font-family: 'Montserrat';
@@ -205,10 +197,15 @@ aside.open .button-menu {
     white-space: nowrap;
 }
 
+.name-lesson {
+    padding: 20px 0 20px 75px;
+}
+
 .name-settings,
 .name-menu {
     left: -25px;
     top: -5px;
+    padding: 20px;
     display: inline-block;
     line-height: 20px;
 }
@@ -296,8 +293,8 @@ header {
 
 .account-button {
     float: right;
-    height: 26px;
-    max-width: 26px;
+    height: 50px;
+    width: 50px;
     background: #3ab497;
     transition: background-color 0.25s ease;
     padding: 12px;
@@ -319,7 +316,6 @@ header {
 
 h1 {
     font-family: 'Montserrat', sans-serif;
-    margin: 0;
     padding-bottom: 20px;
     color: var(--h1-font-color);
     font-size: var(--h1-font-size);
@@ -327,7 +323,6 @@ h1 {
 
 h2 {
     font-family: 'Montserrat', sans-serif;
-    margin: 0;
     padding: 50px 0 30px;
     color: var(--h2-font-color);
     font-size: var(--h2-font-size);
@@ -348,9 +343,8 @@ h2 {
 
 .a-in-lesson {
     background-color: var(--block-color);
-    transition: background-color 0.25s ease;
     color: var(--a-font-color);
-    transition: color 0.25s ease;
+    transition: all 0.25s ease;
     text-decoration: none;
 }
 
@@ -540,7 +534,7 @@ footer {
 
 .email-a {
     color: var(--a-font-color);
-    transition: color 0.25s ease;
+    transition: all 0.25s ease;
 }
 
 .email-a:hover {
@@ -589,7 +583,6 @@ footer {
     width: calc(100% - 36px);
     text-align: center;
     font-family: 'Montserrat';
-    margin: 0;
     color: var(--h2-font-color);
     font-size: var(--h2-font-size);
 }
@@ -613,7 +606,6 @@ footer {
 }
 
 fieldset {
-    margin: 0;
     border-width: 1px;
     border-radius: 8px;
 }
@@ -622,11 +614,6 @@ legend {
     font-family: 'Montserrat';
     color: var(--p-font-color);
     font-size: var(--p-font-size);
-}
-
-.radio-buttons {
-    margin: 0;
-    padding: 0;
 }
 
 .radio-buttons li {
@@ -654,7 +641,6 @@ input[type="range"] {
     background: none;
     cursor: pointer;
     display: inline-block;
-    margin: 0;
     width: calc(70% - 20px);
     border: 5px solid var(--body-color);
     border-radius: 16px;
@@ -670,7 +656,6 @@ input[type="range"] {
 
 .font-size-value {
     display: block;
-    padding: 0;
     text-align: center;
     line-height: 26px;
 }
@@ -712,9 +697,7 @@ input[type="range"] {
 
 @media (max-width: 1700px) {
     aside {
-        display: flex;
-        height: calc(100% - 10px);
-        width: 290px;
+        height: 100%;
         border-radius: 0;
         top: 0;
         margin: 0;
@@ -729,16 +712,24 @@ input[type="range"] {
 
 @media (max-width: 1200px) {
     aside {
-        width: 70px;
+        width: 80px;
     }
 
     aside.animate {
-        transition: width 0.5s ease;
+        transition: all 0.5s ease;
     }
 
     aside.open {
-        width: 290px;
+        width: 300px;
         border-right: 1px solid #ececea;
+    }
+
+    aside .active-lesson {
+        background-color: var(--body-color);
+    }
+    
+    aside.open .active-lesson {
+        width: 290px;
     }
 
     .lessons,
@@ -748,14 +739,18 @@ input[type="range"] {
     }
 
     .div-number-lesson {
+        width: 70px;
+        height: 100%;
         padding: 21px 23px;
     }
 
     .div-img-settings {
+        width: 70px;
         padding: 20px 25px;
     }
 
     .div-img-menu {
+        width: 70px;
         padding: 24px 25px;
     }
 
@@ -798,13 +793,12 @@ input[type="range"] {
     }
 
     aside {
-        padding: 0;
         width: 0;
-        height: 100%;
+        padding: 5px 0;
     }
 
     aside.open {
-        width: 290px;
+        padding: 5px;
     }
 
     .button-menu {
@@ -891,12 +885,12 @@ input[type="range"] {
 
     .theme-p,
     .header-a {
-        height: 24px;
+        height: 45px;
         font-size: 1.125rem;
     }
 
     .header-a {
-        padding: 8px 7px;
+        padding: 13px 7px;
         font-size: 1rem;
     }
 
@@ -941,9 +935,14 @@ input[type="range"] {
     .theme-p {
         font-size: 1rem;
         padding: 8px;
+        height: 40px;
         width: calc(100% - 16px);
         white-space: nowrap;
         line-height: 2;
+    }
+
+    .header-a {
+        height: 40px;
     }
 
     .div-a {

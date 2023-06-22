@@ -30,7 +30,7 @@
 }
 
 body {
-    background: var(--body-color);
+    background-color: var(--body-color);
 }
 
 body.not-visible {
@@ -54,7 +54,7 @@ aside {
 
 button {
     border: 0;
-    background: var(--block-color);
+    background-color: var(--block-color);
     cursor: pointer;
 }
 
@@ -248,7 +248,7 @@ header {
 
 .shadow-header {
     display: flex;
-    background: var(--shadow-block-color);
+    background-color: var(--shadow-block-color);
 }
 
 .container-header {
@@ -295,7 +295,7 @@ header {
     float: right;
     height: 50px;
     width: 50px;
-    background: #3ab497;
+    background-color: #3ab497;
     transition: background-color 0.25s ease;
     padding: 12px;
     border-radius: 7px;
@@ -310,7 +310,7 @@ header {
     display: inline-block;
     margin-top: 60px;
     padding: 50px;
-    background: var(--block-color);
+    background-color: var(--block-color);
     border-radius: 12px;
 }
 
@@ -400,7 +400,7 @@ td {
     display: inline-block;
     margin-bottom: 20px;
     border-radius: 10px;
-    background: var(--code-block-color);
+    background-color: var(--code-block-color);
 }
 
 .pre {
@@ -418,39 +418,51 @@ code {
     color: var(--h1-font-color);
 }
 
-.popup-copy-code {
-    position: absolute;
-    width: max-content;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 7px;
-    background: var(--code-button-hover-color);
-    -webkit-user-select: none;
-    user-select: none;
-    z-index: 3;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.popup-copy-code.visible {
-    opacity: 1;
-}
-
 .copy-code-lesson {
     float: right;
+    position: relative;
+    padding: 10px;
+    width: 42px;
+    height: 42px;
     border-radius: 10px;
     transition: background-color 0.25s ease;
 }
 
+.copy-code-lesson::before {
+    content: attr(data-before);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: var(--p-font-size);
+    line-height: 1.5;
+    color: var(--p-font-color);
+    position: absolute;
+    display: inline-block;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 7px;
+    width: max-content;
+    top: -57px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-user-select: none;
+    user-select: none;
+    background-color: var(--code-button-hover-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.copy-code-lesson.visible-message::before {
+    opacity: 1;
+}
+
 .copy-code-lesson:hover {
-    background: var(--code-button-hover-color);
+    background-color: var(--code-button-hover-color);
 }
 
 .copy-code-img,
 .copy-code-img-success,
 .copy-code-img-unsuccess {
     display: none;
-    margin: 10px;
     width: 22px;
     height: 22px;
 }
@@ -519,7 +531,7 @@ code {
 footer {
     margin: 60px 0 60px;
     padding: 50px;
-    background: var(--block-color);
+    background-color: var(--block-color);
     border-radius: 12px;
 }
 
@@ -570,7 +582,7 @@ footer {
     padding: 16px;
     -webkit-user-select: none;
     user-select: none;
-    background: var(--block-color);
+    background-color: var(--block-color);
     border-radius: 32px;
 }
 

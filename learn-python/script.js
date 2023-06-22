@@ -1,5 +1,5 @@
 'use strict';
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
     // Темы всех статей
     const articleThemes = [
         'Введение в Python',
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let asideIsOpen = false;
 
-    document.addEventListener('click', function (event) {
+    document.addEventListener('click', (event) => {
         let target = event.target.closest('button.button-menu');
 
         if (target) {
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const elementOpenMenu = document.querySelector('button.open-menu');
         if (elementOpenMenu != null) {
             // Функция открытия меню для мобильных устройств
-            elementOpenMenu.addEventListener('click', function () {
+            elementOpenMenu.addEventListener('click', () => {
                 asideIsOpen = toggleAside(asideIsOpen);
             });
         }
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', function resizeHandler() {
         clearTimeout(debounceTimeout);
 
-        debounceTimeout = setTimeout(function () {
+        debounceTimeout = setTimeout(() => {
             // При ширине экрана более 1200px aside всегда развёрнут
             setFontSize(getFontSize());
             if (window.innerWidth >= 1200) {
@@ -224,12 +224,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (asideIsOpen) {
                     aside.classList.remove('animate');
                     aside.classList.add('open');
-                    setTimeout(function () {
+                    setTimeout(() => {
                         aside.classList.add('animate');
                     }, 500);
                 } else {
                     aside.classList.remove('animate', 'open');
-                    setTimeout(function () {
+                    setTimeout(() => {
                         aside.classList.add('animate');
                     }, 500);
                 }
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         const elementOpenMenu = document.querySelector('button.open-menu');
                         if (elementOpenMenu != null) {
                             // Функция открытия меню для мобильных устройств
-                            elementOpenMenu.addEventListener('click', function () {
+                            elementOpenMenu.addEventListener('click', () => {
                                 asideIsOpen = toggleAside(asideIsOpen);
                             });
                         }
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     aside.classList.remove('animate');
                     aside.classList.add('open');
                     sections.classList.remove('aside-open');
-                    setTimeout(function () {
+                    setTimeout(() => {
                         aside.classList.add('animate');
                     }, 500);
                 }
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let buttonId = includeId + i;
         let includeButtonCopyCode = document.getElementById(buttonId);
         let codeBlock = `
-        <button class="copy-code-lesson" id="button-copy-code-${i}" data-clipboard-target="#code-${i}">
+        <button class="copy-code-lesson" id="button-copy-code-${i}" data-clipboard-target="#code-${i}" data-before>
             <img class="copy-code-img visible" id="code-${i}-img" src="/learn-python/img/icon-copy.svg" alt="copy code">
             <img class="copy-code-img-success" id="code-${i}-success" src="/learn-python/img/icon-success.svg" alt="successful copy code">
             <img class="copy-code-img-unsuccess" id="code-${i}-unsuccess" src="/learn-python/img/icon-unsuccess.svg" alt="unseccessful copy code">
@@ -291,85 +291,59 @@ document.addEventListener('DOMContentLoaded', function () {
     let lastCopyCodeImg;
     let lastCopyCodeImgSuccess;
 
-    function showResultBlock(codeElement, copyCodeImg, message) {
-        const copyCodeResultBlock = document.createElement('div');
-        copyCodeResultBlock.className = 'popup-copy-code';
-        copyCodeResultBlock.innerHTML = `<span class="p-lesson">${message}</span>`;
-
-        let buttonRect = copyCodeImg.getBoundingClientRect();
-
-        let offsetY = 52; // изменяем переменную offsetY в зависимости от ширины экрана и размера текста самого блока
-        if (window.innerWidth <= 950) {
-            offsetY -= 12;
-        }
-        // Если текст выйдет за пределы экрана, то увеличиваем переменную offsetY в зависимости от длины текста
-        if (buttonRect.left + window.screenX - offsetY + 128 > window.innerWidth) {
-            offsetY += 47;
-        }
-        // Если в блоке нет кода, то выравниваем переменную offsetY по левому краю кнопки
-        if (offsetY < 60 && !codeElement) {
-            offsetY = 0;
-        }
-
-        let resultBlockTop = buttonRect.top + window.scrollY - 52;
-        let resultBlockLeft = buttonRect.left + window.screenX - offsetY;
-        copyCodeResultBlock.style.top = `${resultBlockTop}px`;
-        copyCodeResultBlock.style.left = `${resultBlockLeft}px`;
-        copyCodeResultBlock.classList.add('visible');
-        if (codeElement) {
-            const parentElement = document.querySelector(codeElement).parentNode;
-            parentElement.insertAdjacentElement('beforebegin', copyCodeResultBlock);
-        } else {
-            document.body.insertAdjacentElement('beforebegin', copyCodeResultBlock);
-        }
-        setTimeout(function () {
-            copyCodeResultBlock.classList.remove('visible');
-        }, 2750);
-        setTimeout(function () {
-            copyCodeResultBlock.remove();
-        }, 3050);
+    function showResultBlock(copiedBlockNumber, message, messageVisibilityTime) {
+        const copyCodeResultBlock = document.querySelectorAll('.copy-code-lesson')[copiedBlockNumber - 1];
+        copyCodeResultBlock.classList.add('visible-message');
+        copyCodeResultBlock.setAttribute('data-before', message);
+        setTimeout(() => {
+            copyCodeResultBlock.classList.remove('visible-message');
+        }, messageVisibilityTime);
     };
 
-    copyCodeButtons.forEach(function (button) {
+    copyCodeButtons.forEach((button) => {
         new ClipboardJS(button, {
-            text: function (trigger) {
+            text: (trigger) => {
                 if (!asideIsOpen) {
                     let selectedSiteTheme = getSiteTheme();
+                    let messageVisibilityTime = 2750;
                     let copyCodeImg;
                     try {
                         const codeElement = trigger.getAttribute('data-clipboard-target');
+
                         if (selectedSiteTheme == 'light') {
                             copyCodeImg = document.querySelector(`${codeElement}-img`);
                         } else if (selectedSiteTheme === 'dark') {
                             copyCodeImg = document.querySelector(`${codeElement}-img.dark`);
                         }
-                        const copyCodeImgSuccess = document.querySelector(`${codeElement}-success`);
+
                         if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber === codeElement.substring(codeElement.length - 1)) {
-                            const copyCodeResultBlock = document.querySelector('span.p-lesson');
-                            copyCodeResultBlock.innerText = 'Уже скопировано!';
+                            showResultBlock(lastCopiedBlockNumber, 'Скопировано!', 2750);
                             lastCopyTime = Date.now();
                             return;
                         } else if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber != codeElement.substring(codeElement.length - 1)) {
-                            const copyCodeResultBlock = document.querySelector('.popup-copy-code');
-                            copyCodeResultBlock.remove();
+                            const copyCodeResultBlock = document.querySelectorAll('.copy-code-lesson')[lastCopiedBlockNumber - 1];
+                            copyCodeResultBlock.classList.remove('visible-message');
                             lastCopyCodeImgSuccess.classList.remove('visible');
                             lastCopyCodeImg.classList.add('visible');
-                            lastCopyTime = Date.now();
+                            messageVisibilityTime += Date.now() - lastCopyTime;
                         }
+
                         lastCopyTime = Date.now();
                         lastCopiedBlockNumber = codeElement.substring(codeElement.length - 1);
+                        copyCodeImg = document.querySelector(`${codeElement}-img`);
+                        let copyCodeImgSuccess = document.querySelector(`${codeElement}-success`);
                         lastCopyCodeImg = copyCodeImg;
                         lastCopyCodeImgSuccess = copyCodeImgSuccess;
-                        showResultBlock(codeElement, copyCodeImg, 'Скопировано!');
+                        showResultBlock(lastCopiedBlockNumber, 'Скопировано!', messageVisibilityTime);
 
                         copyCodeImg.classList.remove('visible');
                         copyCodeImgSuccess.classList.add('visible');
-                        setTimeout(function () {
+                        setTimeout(() => {
                             if (getSiteTheme() === selectedSiteTheme) {
-                                copyCodeImgSuccess.classList.remove('visible');
                                 copyCodeImg.classList.add('visible');
+                                copyCodeImgSuccess.classList.remove('visible');
                             }
-                        }, 2750);
+                        }, messageVisibilityTime);
                         return document.querySelector(codeElement).innerText;
                     } catch {
                         const codeButton = '#' + button.getAttribute('id').substring(12);
@@ -380,18 +354,19 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                         const copyCodeImgSuccess = document.querySelector(`${codeButton}-success`);
                         const copyCodeImgUnsuccess = document.querySelector(`${codeButton}-unsuccess`);
-                        showResultBlock(false, copyCodeImg, 'Не удалось найти текст для копирования');
+                        const copiedBlockNumber = codeButton.substring(6);
+                        showResultBlock(copiedBlockNumber, 'Не удалось найти текст для копирования', 2750);
 
                         copyCodeImg.classList.remove('visible');
                         copyCodeImgSuccess.classList.remove('visible');
                         copyCodeImgUnsuccess.classList.add('visible');
-                        setTimeout(function () {
+                        setTimeout(() => {
                             if (getSiteTheme() === selectedSiteTheme) {
                                 copyCodeImgUnsuccess.classList.remove('visible');
                                 copyCodeImg.classList.add('visible');
                             }
                         }, 2750);
-                        setTimeout(function () {
+                        setTimeout(() => {
                             console.log('Ошибка: не удалось найти текст для копирования');
                         }, 10);
                         return 'text copy error';
@@ -405,11 +380,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Функция массового переключения классов
     function toggleClasses(elements, classes, add) {
         if (add) {
-            elements.forEach(function (element) {
+            elements.forEach((element) => {
                 element.classList.add(classes);
             });
         } else {
-            elements.forEach(function (element) {
+            elements.forEach((element) => {
                 element.classList.remove(classes);
             });
         }
@@ -602,7 +577,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const body = document.querySelector('body');
     let settingsLoaded = false;
     let settingsOpened = false;
-    settingsButton.addEventListener('click', function () {
+    settingsButton.addEventListener('click', () => {
         if (!settingsLoaded) {
             try {
                 selectedSiteTheme = getSiteTheme();
@@ -667,7 +642,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const fontSizeValue = document.querySelector('span.font-size-value');
             const fontSizeInput = document.querySelector('input[type="range"].slider');
             let debounceTimeout;
-            fontSizeInput.addEventListener('input', function () {
+            fontSizeInput.addEventListener('input', () => {
                 clearTimeout(debounceTimeout);
                 debounceTimeout = setTimeout(() => {
                     fontSizeValue.innerHTML = fontSizeInput.value;
@@ -680,7 +655,7 @@ document.addEventListener('DOMContentLoaded', function () {
             body.classList.add('not-visible');
             popupSettings.classList.add('visible');
             const closeSettings = document.querySelector('.close-settings');
-            closeSettings.addEventListener('click', function () {
+            closeSettings.addEventListener('click', () => {
                 if (settingsLoaded && settingsOpened) {
                     settingsButton.classList.remove('active-lesson');
                     body.classList.remove('not-visible');
@@ -692,24 +667,24 @@ document.addEventListener('DOMContentLoaded', function () {
             const darkThemeButton = document.querySelector('#dark-theme');
             const fontSizeInput = document.querySelector('#font-size');
             fontSizeInput.value = getFontSize();
-            lightThemeButton.addEventListener('click', function () {
+            lightThemeButton.addEventListener('click', () => {
                 selectedSiteTheme = 'light';
                 setSiteTheme(selectedSiteTheme);
                 setCookie('theme', selectedSiteTheme, 365);
             });
-            darkThemeButton.addEventListener('click', function () {
+            darkThemeButton.addEventListener('click', () => {
                 selectedSiteTheme = 'dark';
                 setSiteTheme(selectedSiteTheme);
                 setCookie('theme', selectedSiteTheme, 365);
             });
-            fontSizeInput.addEventListener('input', function () {
+            fontSizeInput.addEventListener('input', () => {
                 let fontSize = fontSizeInput.value;
                 if (fontSize !== '') {
                     setCookie('font-size', fontSize, 365);
                 }
             });
             const buttonApplyChanges = document.querySelector('button.button-apply-changes');
-            buttonApplyChanges.addEventListener('click', function () {
+            buttonApplyChanges.addEventListener('click', () => {
                 setSiteTheme(selectedSiteTheme);
                 getFontSize();
             });
@@ -727,8 +702,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Плавный переход к блоку текста
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
 
-    smoothScrollLinks.forEach(function (link) {
-        link.addEventListener('click', function (event) {
+    smoothScrollLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
             event.preventDefault();
             let target = document.querySelector(this.getAttribute('href'));
             let windowHeightTop;

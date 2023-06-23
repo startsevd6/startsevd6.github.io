@@ -20,7 +20,7 @@
     --a-hover-font-color: rgba(58, 122, 180, 0.2);
     --code-block-color: #ebecee;
     --code-button-hover-color: #eff1f3;
-    --shadow-block-color: linear-gradient(0deg, rgba(236, 240, 241, 0), #3a7ab4 50px);
+    --shadow-block-color: linear-gradient(0deg, rgba(236, 240, 241, 0), #ecf0f1 50px);
 }
 
 * {

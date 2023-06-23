@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const aside = document.querySelector('aside');
-    const sections = document.querySelector('.sections');
+    const sections = document.querySelector('main');
     function toggleAside(asideIsOpen) {
         if (!asideIsOpen) {
             aside.classList.add('animate', 'open');

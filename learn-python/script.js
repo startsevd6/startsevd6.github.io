@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </button>`;
 
 
-    // Функция подгрузки блока после загрузки всей страницы
+    // Функция загрузки блока после загрузки всей страницы
     function loadContent(includeBlock, content) {
         const includeContent = document.getElementById('include-' + includeBlock);
         if (currentArticleNumber === -1 && includeBlock == 'nav') {
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // Функция подгрузки блока с навигацией в конце урока
+    // Функция загрузки блока с навигацией в конце урока
     let isNavLoaded = false;
     let messageSent = false;
 
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // если сайдбар сжат, то расширяем, если нет, то сжимаем
+    // если aside сжат, то расширяем, если нет, то сжимаем
 
     let asideIsOpen = false;
 
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <button class="copy-code-lesson" id="button-copy-code-${i}" data-clipboard-target="#code-${i}" data-before>
             <img class="copy-code-img visible" id="code-${i}-img" src="/learn-python/img/icon-copy.svg" alt="copy code">
             <img class="copy-code-img-success" id="code-${i}-success" src="/learn-python/img/icon-success.svg" alt="successful copy code">
-            <img class="copy-code-img-unsuccess" id="code-${i}-unsuccess" src="/learn-python/img/icon-unsuccess.svg" alt="unseccessful copy code">
+            <img class="copy-code-img-unsuccess" id="code-${i}-unsuccess" src="/learn-python/img/icon-unsuccess.svg" alt="unsuccessful copy code">
             <img class="copy-code-img dark" id="code-${i}-img" src="/learn-python/img/icon-copy-dark.svg" alt="copy code">
         </button>
         `;

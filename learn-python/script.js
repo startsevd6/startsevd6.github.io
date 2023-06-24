@@ -13,11 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <aside class="sidebar">
         <div class="lessons">
     `;
-    try {
-        activeClass = '';
-    } catch {
-        var activeClass = '';
-    }
+    let activeClass = '';
 
     const rangeOfArticles = Math.floor((window.innerHeight - 180) / 60);
 
@@ -217,44 +213,50 @@ document.addEventListener('DOMContentLoaded', () => {
         debounceTimeout = setTimeout(() => {
             // При ширине экрана более 1200px aside всегда развёрнут
             setFontSize(getFontSize());
-            if (window.innerWidth >= 1200) {
-                aside.classList.remove('animate');
-                sections.classList.remove('animate');
-            } else if (window.innerWidth >= 950 && window.innerWidth <= 1200) {
-                if (asideIsOpen) {
+            switch (true) {
+                case (window.innerWidth >= 1200):
                     aside.classList.remove('animate');
-                    aside.classList.add('open');
-                    setTimeout(() => {
-                        aside.classList.add('animate');
-                    }, 500);
-                } else {
-                    aside.classList.remove('animate', 'open');
-                    setTimeout(() => {
-                        aside.classList.add('animate');
-                    }, 500);
-                }
-            } else if (window.innerWidth <= 950) {
-                if (!isOpenMenuLoaded) {
-                    loadContent('open-menu', openMenuContent); // Загружаем кнопку открытия меню, если ширина экрана изменилась
-                    isOpenMenuLoaded = true;
-                    if (isOpenMenuLoaded && window.innerWidth <= 950) {
-                        const elementOpenMenu = document.querySelector('button.open-menu');
-                        if (elementOpenMenu != null) {
-                            // Функция открытия меню для мобильных устройств
-                            elementOpenMenu.addEventListener('click', () => {
-                                asideIsOpen = toggleAside(asideIsOpen);
-                            });
+                    sections.classList.remove('animate');
+                    break;
+
+                case (window.innerWidth >= 950 && window.innerWidth <= 1200):
+                    if (asideIsOpen) {
+                        aside.classList.remove('animate');
+                        aside.classList.add('open');
+                        setTimeout(() => {
+                            aside.classList.add('animate');
+                        }, 500);
+                    } else {
+                        aside.classList.remove('animate', 'open');
+                        setTimeout(() => {
+                            aside.classList.add('animate');
+                        }, 500);
+                    }
+                    break;
+
+                case (window.innerWidth <= 950):
+                    if (!isOpenMenuLoaded) {
+                        loadContent('open-menu', openMenuContent); // Загружаем кнопку открытия меню, если ширина экрана изменилась
+                        isOpenMenuLoaded = true;
+                        if (isOpenMenuLoaded && window.innerWidth <= 950) {
+                            const elementOpenMenu = document.querySelector('button.open-menu');
+                            if (elementOpenMenu != null) {
+                                // Функция открытия меню для мобильных устройств
+                                elementOpenMenu.addEventListener('click', () => {
+                                    asideIsOpen = toggleAside(asideIsOpen);
+                                });
+                            }
                         }
                     }
-                }
-                if (!asideIsOpen) {
-                    aside.classList.remove('animate');
-                    aside.classList.add('open');
-                    sections.classList.remove('aside-open');
-                    setTimeout(() => {
-                        aside.classList.add('animate');
-                    }, 500);
-                }
+                    if (!asideIsOpen) {
+                        aside.classList.remove('animate');
+                        aside.classList.add('open');
+                        sections.classList.remove('aside-open');
+                        setTimeout(() => {
+                            aside.classList.add('animate');
+                        }, 500);
+                    }
+                    break;
             }
         }, 100);
     });
@@ -300,6 +302,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }, messageVisibilityTime);
     };
 
+    function getCopyButtonIcons(selectedSiteTheme, codeImg) {
+        let imgId = `${codeImg}-img`;
+        if (selectedSiteTheme === 'dark') {
+            imgId += '.dark';
+        }
+        return document.querySelector(imgId);
+    }
+
     copyCodeButtons.forEach((button) => {
         new ClipboardJS(button, {
             text: (trigger) => {
@@ -309,12 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     let copyCodeImg;
                     try {
                         const codeElement = trigger.getAttribute('data-clipboard-target');
-
-                        if (selectedSiteTheme == 'light') {
-                            copyCodeImg = document.querySelector(`${codeElement}-img`);
-                        } else if (selectedSiteTheme === 'dark') {
-                            copyCodeImg = document.querySelector(`${codeElement}-img.dark`);
-                        }
+                        copyCodeImg = getCopyButtonIcons(selectedSiteTheme, codeElement);
 
                         if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber === codeElement.substring(codeElement.length - 1)) {
                             showResultBlock(lastCopiedBlockNumber, 'Скопировано!', 2750);
@@ -330,7 +335,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         lastCopyTime = Date.now();
                         lastCopiedBlockNumber = codeElement.substring(codeElement.length - 1);
-                        copyCodeImg = document.querySelector(`${codeElement}-img`);
                         let copyCodeImgSuccess = document.querySelector(`${codeElement}-success`);
                         lastCopyCodeImg = copyCodeImg;
                         lastCopyCodeImgSuccess = copyCodeImgSuccess;
@@ -347,11 +351,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         return document.querySelector(codeElement).innerText;
                     } catch {
                         const codeButton = '#' + button.getAttribute('id').substring(12);
-                        if (selectedSiteTheme === 'light') {
-                            copyCodeImg = document.querySelector(`${codeButton}-img`);
-                        } else if (selectedSiteTheme === 'dark') {
-                            copyCodeImg = document.querySelector(`${codeButton}-img.dark`);
-                        }
+                        copyCodeImg = getCopyButtonIcons(selectedSiteTheme, codeButton);
+
                         const copyCodeImgSuccess = document.querySelector(`${codeButton}-success`);
                         const copyCodeImgUnsuccess = document.querySelector(`${codeButton}-unsuccess`);
                         const copiedBlockNumber = codeButton.substring(6);
@@ -498,37 +499,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функция получения темы сайта из cookie
     function getSiteTheme() {
         const themeCookie = getCookie('theme');
-        if (themeCookie !== null) {
-            setSiteTheme(themeCookie);
-            return themeCookie;
+        if (themeCookie === null || themeCookie === undefined) {
+            setSiteTheme('light');
+            return 'light';
         }
-        setSiteTheme('light');
-        return 'light';
+        setSiteTheme(themeCookie);
+        return themeCookie;
     }
     getSiteTheme(); // Переопределяем значения темы сайта сразу после загрузки страницы
 
     // Функция установки размера текста на сайте
     function setFontSize(fontSize) {
-        if (1200 < window.innerWidth && window.innerWidth <= 1700 && fontSize >= 48) {
-            fontSize = 48;
-        } else if (1000 < window.innerWidth && window.innerWidth <= 1200 && fontSize >= 32) {
-            fontSize = 32;
-        } else if (650 < window.innerWidth && window.innerWidth <= 1000 && fontSize >= 24) {
-            fontSize = 24;
-        } else if (window.innerWidth <= 650 && fontSize >= 16) {
-            fontSize = 16;
+        switch (true) {
+            case (1200 < window.innerWidth && window.innerWidth <= 1700 && fontSize >= 48):
+                fontSize = 48;
+                break;
+            case (1000 < window.innerWidth && window.innerWidth <= 1200 && fontSize >= 32):
+                fontSize = 32;
+                break;
+            case (650 < window.innerWidth && window.innerWidth <= 1000 && fontSize >= 24):
+                fontSize = 24;
+                break;
+            case (window.innerWidth <= 650 && fontSize >= 16):
+                fontSize = 16;
+                break;
         }
         if (fontSize < 8) {
             fontSize = 8;
         }
-        fontSize = fontSize / 16;
+        let remFontSize = fontSize / 16;
         let cssVariablesFontSize = [
-            { key: 'h1-font-size', value: 1.875 * fontSize },
-            { key: 'h2-font-size', value: 1.625 * fontSize },
-            { key: 'nav-theme-font-size', value: 1.125 * fontSize },
-            { key: 'p-font-size', value: fontSize },
-            { key: 'figcaption-font-size', value: 0.875 * fontSize },
-            { key: 'code-font-size', value: 0.875 * fontSize },
+            { key: 'h1-font-size', value: 1.875 * remFontSize },
+            { key: 'h2-font-size', value: 1.625 * remFontSize },
+            { key: 'nav-theme-font-size', value: 1.125 * remFontSize },
+            { key: 'p-font-size', value: remFontSize },
+            { key: 'figcaption-font-size', value: 0.875 * remFontSize },
+            { key: 'code-font-size', value: 0.875 * remFontSize },
         ];
         for (let i = 0; i < cssVariablesFontSize.length; i++) {
             const key = cssVariablesFontSize[i].key;
@@ -540,27 +546,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // Функция получения размера текста из cookie
     function getFontSize() {
         const fontSizeCookie = getCookie('font-size');
-        if (fontSizeCookie !== null && fontSizeCookie !== undefined) {
-            setFontSize(fontSizeCookie);
-            return fontSizeCookie;
+        if (fontSizeCookie === null || fontSizeCookie === undefined) {
+            setFontSize(16);
+            return 16;
         }
-        setFontSize(16);
-        return 16;
+        setFontSize(fontSizeCookie);
+        return fontSizeCookie;
     }
     getFontSize(); // Переопределяем значения размера текста сразу после загрузки страницы
 
     // Функция получения максимального размера текста из cookie
     function getMaxFontSize() {
         let fontSize = 64;
-        fontSize = 64;
-        if (1200 < window.innerWidth && window.innerWidth <= 1700) {
-            fontSize = 48;
-        } else if (1000 < window.innerWidth && window.innerWidth <= 1200) {
-            fontSize = 32;
-        } else if (650 < window.innerWidth && window.innerWidth <= 1000) {
-            fontSize = 24;
-        } else if (window.innerWidth <= 650) {
-            fontSize = 16;
+        switch (true) {
+            case (1200 < window.innerWidth && window.innerWidth <= 1700):
+                fontSize = 48;
+                break;
+            case (1000 < window.innerWidth && window.innerWidth <= 1200):
+                fontSize = 32;
+                break;
+            case (650 < window.innerWidth && window.innerWidth <= 1000):
+                fontSize = 24;
+                break;
+            case (window.innerWidth <= 650):
+                fontSize = 16;
+                break;
+
+            default:
+                fontSize = 64;
+                break;
         }
         return fontSize;
     }
@@ -579,11 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let settingsOpened = false;
     settingsButton.addEventListener('click', () => {
         if (!settingsLoaded) {
-            try {
-                selectedSiteTheme = getSiteTheme();
-            } catch {
-                var selectedSiteTheme = getSiteTheme();
-            }
+            let selectedSiteTheme = getSiteTheme();
             let settingsContent = `
             <span class="settings-title">Настройки</span>
             <button class="close-settings">

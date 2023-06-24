@@ -373,6 +373,11 @@ h2 {
     border-radius: 10px;
 }
 
+ol,
+ul {
+    padding-inline-start: 40px;
+}
+
 table,
 th,
 td {
@@ -739,7 +744,7 @@ input[type="range"] {
     aside .active-lesson {
         background-color: var(--body-color);
     }
-    
+
     aside.open .active-lesson {
         width: 290px;
     }

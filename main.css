@@ -64,6 +64,7 @@ img {
 
 .div-project {
     max-width: 440px;
+    height: max-content;
     transition: all .3s ease-in-out;
     background-color: #38495E;
     border-radius: 15px;

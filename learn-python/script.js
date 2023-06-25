@@ -92,12 +92,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Функция загрузки блока после загрузки всей страницы
     function loadContent(includeBlock, content) {
-        const includeContent = document.getElementById('include-' + includeBlock);
+        const includeELement = document.getElementById('include-' + includeBlock);
         if (currentArticleNumber === -1 && includeBlock == 'nav') {
             return;
         }
         try {
-            includeContent.innerHTML = content;
+            if (includeELement) {
+                includeELement.innerHTML = content;
+            } else {
+                console.log('Ошибка: Загрузка блока', includeELement, 'не удалась, так как блок не найден');
+            }
         } catch (error) {
             console.log('Ошибка: Загрузка блока', includeBlock, 'не удалась');
         }
@@ -190,6 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (target) {
             asideIsOpen = toggleAside(asideIsOpen);
+        } else {
+            console.log('Ошибка: не удалось изменить положение боковой панели, так как нет');
         }
     });
     // Та же функция, но для мобильных устройств

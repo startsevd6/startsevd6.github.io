@@ -16,11 +16,11 @@
     --h1-font-color: #000000;
     --h2-font-color: #0d0d0d;
     --p-font-color: #1a1a1a;
-    --a-font-color: #2B5B87;
+    --a-font-color: #2b5b87;
     --a-hover-font-color: rgba(58, 122, 180, 0.2);
     --code-block-color: #ebecee;
     --code-button-hover-color: #eff1f3;
-    --shadow-block-color: linear-gradient(0deg, rgba(236, 240, 241, 0), #ecf0f1 50px);
+    --shadow-block-color: linear-gradient(0deg, rgba(236, 240, 241, 1), #ecf0f1 50px);
 }
 
 * {
@@ -248,7 +248,7 @@ header {
 
 .shadow-header {
     display: flex;
-    background-color: var(--shadow-block-color);
+    background: var(--shadow-block-color);
 }
 
 .container-header {

@@ -194,8 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (target) {
             asideIsOpen = toggleAside(asideIsOpen);
-        } else {
-            console.log('Ошибка: не удалось изменить положение боковой панели, так как нет');
         }
     });
     // Та же функция, но для мобильных устройств
@@ -682,6 +680,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const lightThemeButton = document.querySelector('#light-theme');
             const darkThemeButton = document.querySelector('#dark-theme');
             const fontSizeInput = document.querySelector('#font-size');
+            let selectedSiteTheme = getSiteTheme();
             fontSizeInput.value = getFontSize();
             lightThemeButton.addEventListener('click', () => {
                 selectedSiteTheme = 'light';
@@ -721,20 +720,15 @@ document.addEventListener('DOMContentLoaded', () => {
     smoothScrollLinks.forEach((link) => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
-            let target = document.querySelector(this.getAttribute('href'));
-            let windowHeightTop;
+            const target = document.querySelector(link.getAttribute('href'));
+            let windowHeightTop = 100;
 
-            if (window.innerWidth > 950) {
-                windowHeightTop = 100;
-            } else {
+            if (window.innerWidth <= 950) {
                 windowHeightTop = 50;
             }
 
             if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - windowHeightTop,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: target.offsetTop - windowHeightTop, behavior: 'smooth' });
             }
         });
     });

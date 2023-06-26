@@ -1,5 +1,5 @@
 .lesson {
-    width: calc(100% - 100px);
+    width: 100%;
     overflow-x: hidden;
 }
 
@@ -64,12 +64,6 @@
     font-size: var(--figcaption-font-size);
     line-height: 1.5;
     color: var(--p-font-color);
-}
-
-@media (max-width: 750px) {
-    .lesson {
-        width: calc(100% - 50px);
-    }
 }
 
 @media (max-width: 715px) {

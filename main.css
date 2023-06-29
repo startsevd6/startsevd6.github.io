@@ -43,7 +43,6 @@ h1 {
 }
 
 a {
-    display: block;
     color: #fff;
     text-decoration: none;
 }
@@ -75,9 +74,12 @@ img {
 }
 
 a.project {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 20px;
     max-width: 440px;
-    height: max-content;
+    height: auto;
     transition: all .3s ease-in-out;
     background-color: #38495E;
     border-radius: 15px;
@@ -85,6 +87,17 @@ a.project {
 
 a.project:hover {
     background-color: #4C5B6E;
+}
+
+a.project img {
+    width: 440px;
+    height: 225px;
+    transition: all 0.333s ease-in-out;
+}
+
+a.project:hover img {
+    transform: scale(1.1) translateY(12px);
+    border-radius: 0 0 15px 15px;
 }
 
 footer {

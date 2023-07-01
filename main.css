@@ -2,36 +2,22 @@
     margin: 0;
     padding: 0;
     transition: all 0.5s ease-in-out;
+    box-sizing: border-box;
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     margin: 0;
-    height: 100%;
+    min-height: calc(100vh - 30px);
     background-color: #2E3C4E;
-    color: #fff;
+    color: #ffffff;
 }
 
 .wrapper {
-    margin: 0 auto;
+    margin: 0 auto 50px;
     max-width: 1865px;
-}
-
-@media (max-width: 1865px) {
-    .wrapper {
-        max-width: 1390px;
-    }
-}
-
-@media (max-width: 1390px) {
-    .wrapper {
-        max-width: 915px;
-    }
-}
-
-@media (max-width: 915px) {
-    .wrapper {
-        max-width: 440px;
-    }
 }
 
 h1 {
@@ -43,7 +29,7 @@ h1 {
 }
 
 a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -65,6 +51,8 @@ img {
     max-width: 400px;
     border-radius: 5px;
 }
+
+/* projects */
 
 .wrapper-projects {
     display: flex;
@@ -89,9 +77,11 @@ a.project:hover {
     background-color: #4C5B6E;
 }
 
+a.project:active {
+    background-color: #626E7E;
+}
+
 a.project img {
-    width: 440px;
-    height: 225px;
     transition: all 0.333s ease-in-out;
 }
 
@@ -100,13 +90,59 @@ a.project:hover img {
     border-radius: 0 0 15px 15px;
 }
 
+/* footer */
+
 footer {
-    height: 106px;
+    display: flex;
+    gap: 10px;
+    margin: 0 auto;
+    padding: 0 30px;
+    background-color: #38495E;
+    border-radius: 20px;
 }
 
-@media (max-width: 960px) {
+footer a {
+    font-family: 'Montserrat', sans-serif;
+    height: 40px;
+    padding: 10px 20px;
+    border-radius: 50vh;
+    transition: background-color 0.25s ease-in-out;
+}
+
+footer a:hover {
+    background-color: #4C5B6E;
+}
+
+footer a:active {
+    background-color: #626E7E;
+}
+
+/* media queries */
+
+@media (max-width: 1865px) {
+    .wrapper {
+        max-width: 1390px;
+    }
+}
+
+@media (max-width: 1390px) {
+    .wrapper {
+        max-width: 915px;
+    }
+}
+
+@media (max-width: 915px) {
     a {
         margin: 0 auto;
+    }
+
+    .wrapper {
+        max-width: 440px;
+    }
+
+    footer {
+        flex-wrap: wrap;
+        max-width: 440px;
     }
 }
 
@@ -115,10 +151,20 @@ footer {
         margin: 40px auto;
     }
 
+    footer {
+        width: calc(100vw - 55px);
+        border-radius: 15px;
+    }
+
     h1,
     h2,
-    a,
-    img {
-        width: calc(100vw - 55px);
+    p,
+    a.project img {
+        width: calc(100vw - 95px);
+    }
+
+    a.project:hover img {
+        transform: none;
+        border-radius: 5px;
     }
 }

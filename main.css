@@ -9,7 +9,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0;
     min-height: calc(100vh - 30px);
     background-color: #2E3C4E;
     color: #ffffff;
@@ -34,7 +33,6 @@ a {
 }
 
 h2 {
-    margin: 0;
     width: 400px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;

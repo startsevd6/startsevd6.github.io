@@ -14,7 +14,7 @@ body {
     color: #ffffff;
 }
 
-.wrapper {
+section {
     margin: 0 auto 50px;
     max-width: 1865px;
 }
@@ -117,14 +117,20 @@ footer a:active {
 
 /* media queries */
 
+@media (max-width: 2340px) {
+    section {
+        max-width: 1865px;
+    }
+}
+
 @media (max-width: 1865px) {
-    .wrapper {
+    section {
         max-width: 1390px;
     }
 }
 
 @media (max-width: 1390px) {
-    .wrapper {
+    section {
         max-width: 915px;
     }
 }
@@ -134,7 +140,7 @@ footer a:active {
         margin: 0 auto;
     }
 
-    .wrapper {
+    section {
         max-width: 440px;
     }
 

@@ -640,14 +640,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         <legend>Выберите размер текста:</legend>
                         <input type="range" min="8" max="${getMaxFontSize()}" value="${getFontSize()}" class="slider" id="font-size">
                         <div class="div-font-size-value">
-                        <span class="p-lesson font-size-value">${getFontSize()}</span>
+                            <span class="p-lesson font-size-value">${getFontSize()}</span>
                         <div>
                     </fieldset>
                 </div>
                 <div class="div-button-apply-changes">
-                <button class="button-apply-changes">
-                    <span class="button-text">Применить изменения</span>
-                </button>
+                    <button class="button-apply-changes">
+                        <span class="button-text">Применить изменения</span>
+                    </button>
                 </div>
             </div>`;
             popupSettings.classList.add('popup-settings');

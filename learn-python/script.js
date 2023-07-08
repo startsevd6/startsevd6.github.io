@@ -186,19 +186,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // если aside сжат, то расширяем, если нет, то сжимаем
-
     let asideIsOpen = false;
 
     document.addEventListener('click', (event) => {
-        let target = event.target.closest('button.button-menu');
+        let target = event.getElementsByClassName('button-menu');
 
         if (target) {
             asideIsOpen = toggleAside(asideIsOpen);
         }
     });
+
     // Та же функция, но для мобильных устройств
     if (isOpenMenuLoaded && window.innerWidth <= 950) {
-        const elementOpenMenu = document.querySelector('button.open-menu');
+        const elementOpenMenu = document.getElementsByClassName('open-menu');
         if (elementOpenMenu != null) {
             // Функция открытия меню для мобильных устройств
             elementOpenMenu.addEventListener('click', () => {

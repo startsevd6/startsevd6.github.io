@@ -97,9 +97,9 @@ a.project:hover img {
     border-radius: 0 0 15px 15px;
 }
 
-/* footer */
+/* header and footer */
 
-footer {
+header, footer {
     display: flex;
     gap: 10px;
     margin: 0 auto;
@@ -108,7 +108,7 @@ footer {
     border-radius: 20px;
 }
 
-footer a {
+header a, footer a {
     font-family: 'Montserrat', sans-serif;
     height: 40px;
     padding: 10px 20px;
@@ -116,11 +116,11 @@ footer a {
     transition: background-color 0.25s ease-in-out;
 }
 
-footer a:hover {
+header a:hover, footer a:hover {
     background-color: var(--3-color);
 }
 
-footer a:active {
+header a:active, footer a:active {
     background-color: var(--4-color);
 }
 

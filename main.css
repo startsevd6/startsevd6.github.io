@@ -102,7 +102,7 @@ a.project:hover img {
 header, footer {
     display: flex;
     gap: 10px;
-    margin: 0 auto;
+    margin: 50px auto;
     padding: 0 30px;
     background-color: var(--2-color);
     border-radius: 20px;

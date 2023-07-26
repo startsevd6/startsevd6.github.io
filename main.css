@@ -153,6 +153,10 @@ header a:active, footer a:active {
         max-width: 440px;
     }
 
+    .wrapper-projects {
+        width: 440px;
+    }
+
     footer {
         flex-wrap: wrap;
         max-width: 440px;

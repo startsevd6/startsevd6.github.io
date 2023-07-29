@@ -1,11 +1,14 @@
+/* colors */
+
 :root {
-    /* colors */
     --white-color: #ffffff;
     --1-color: #2E3C4E;
     --2-color: #38495E;
     --3-color: #4C5B6E;
     --4-color: #626E7E;
 }
+
+/* basic styles */
 
 * {
     margin: 0;

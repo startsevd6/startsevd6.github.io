@@ -590,6 +590,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
     }
 
+    // Оповещаем пользователя о том, что будет использовать cookie-файлы
+    if(!getCookie('message-cookie')) {
+        alert('Мы используем только необходимые cookie-файлы, без которых не будут работать настройки на сайте');
+        setCookie('message-cookie', 1, 3650);
+    }
+
     const popupSettings = document.createElement('div');
     const html = document.querySelector('html');
     const body = document.querySelector('body');

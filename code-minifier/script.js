@@ -13,14 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (inComment) {
                 if (currentChar === '*' && nextChar === '/') {
                     inComment = false;
-                    i++; // Skip the '/' character
+                    i++; // Пропускаем символ '/'
                 }
                 continue;
             }
 
             if (currentChar === '/' && nextChar === '*') {
                 inComment = true;
-                i++; // Skip the '*' character
+                i++; // Пропускаем символ '*'
                 continue;
             }
 
@@ -29,6 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     compressedCSS += ' ';
                     inWhitespace = true;
                 }
+                continue;
+            }
+
+            if (/[\,\:\;\}]/.test(currentChar)) {
+                console.log(currentChar, nextChar);
+                // Пропускаем пробелы после , : ; }
+                i++; // Пропускаем символ пробела
+                compressedCSS += currentChar;
+                inWhitespace = false;
                 continue;
             }
 

@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-
     function compressAndDisplay() {
         const textareaOriginal = document.getElementById('original-code');
         if (!textareaOriginal) {

@@ -41,19 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 continue;
             }
 
-            if (currentChar === '{') {
-                compressedCSS = compressedCSS.replace(/\s+$/, ''); // Убираем пробелы перед '{'
-                compressedCSS += '{';
-                continue;
-            }
-
-            if (currentChar === '}') {
-                compressedCSS = compressedCSS.replace(/\s+$/, ''); // Убираем пробелы перед '}'
-                compressedCSS += '}';
-                if (nextChar === ' ') {
-                    i++;
+            if (currentChar === '{' || currentChar === '}') {
+                compressedCSS = compressedCSS.replace(/\s+$/, ''); // Убираем пробелы перед '{' и '}'
+                compressedCSS += currentChar;
+                if (currentChar === '}') {
+                    if (nextChar === ' ') {
+                        i++;
+                    }
+                    inWhitespace = false;
                 }
-                inWhitespace = false;
                 continue;
             }
 

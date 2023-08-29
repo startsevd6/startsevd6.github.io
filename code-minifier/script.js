@@ -53,18 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 continue;
             }
 
-            if (currentChar === ':' && nextChar === ' ') {
-                compressedCSS += ':';
+            if ((currentChar === ':' || currentChar === ';') && nextChar === ' ') {
+                compressedCSS += currentChar;
                 i++;
                 continue;
             }
-
-            if (currentChar === ';' && nextChar === ' ') {
-                compressedCSS += ';';
-                i++;
-                continue;
-            }
-
+            
             inWhitespace = false;
             compressedCSS += currentChar;
         }

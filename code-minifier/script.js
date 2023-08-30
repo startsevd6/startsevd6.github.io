@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (/[\,\:\;\}]/.test(currentChar)) {
                 console.log(currentChar, nextChar);
-                // Пропускаем пробелы после , : ; }
+                // Пропускаем пробелы после ',', ':', ';', '}'
                 i++; // Пропускаем символ пробела
                 compressedCSS += currentChar;
                 inWhitespace = false;
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 i++;
                 continue;
             }
-            
+
             inWhitespace = false;
             compressedCSS += currentChar;
         }

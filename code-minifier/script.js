@@ -2,10 +2,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     function removeCommentsAndWhitespace(css) {
-        // Регулярные выражения для удаления комментариев и лишних пробелов
-        css = css.replace(/\/\*[\s\S]*?\*\//g, ''); // Удаление комментариев
-        css = css.replace(/\s+/g, ' '); // Удаление лишних пробелов
-        css = css.replace(/;\s*}/g, '}'); // Удаление пробелов перед '}' после ';'
+        // Regular expressions to remove comments and extra spaces
+        css = css.replace(/\/\*[\s\S]*?\*\//g, ''); // Deleting comments
+        css = css.replace(/\s+/g, ' '); // Removing extra spaces
+        css = css.replace(/;\s*}/g, '}'); // Removing spaces before '}' after ';'
 
         return css.trim();
     }

@@ -20,17 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const labelMinified = document.querySelector('label.minified.code');
 
         if (!textareaOriginal) {
-            console.error('text area for uncompressed code not found');
+            console.error('Text area for uncompressed code not found');
             return;
         }
 
         if (!textareaCompressed) {
-            console.error('text area for compressed code not found');
+            console.error('Text area for compressed code not found');
             return;
         }
 
         if (!labelMinified) {
-            console.error('the label above the text area for the compressed code was not found')
+            console.error('The label above the text area for the compressed code was not found')
             return;
         }
 

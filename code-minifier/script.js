@@ -37,8 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const originalCSS = textareaOriginal.value;
         const compressedCSS = compressCSS(removeCommentsAndWhitespace(originalCSS));
         textareaCompressed.value = compressedCSS;
-
-        labelMinified.innerHTML = `Сжатый код (Сжато на ${originalCSS.length - compressedCSS.length} байт(ов), это ${Math.trunc(100 - (compressedCSS.length / originalCSS.length * 100))}%)`;
+        
+        compressionSize = originalCSS.length - compressedCSS.length;
+        compressionSizeInPercentage = Math.trunc(100 - (compressedCSS.length / originalCSS.length * 100))
+        labelMinified.innerHTML = `Сжатый код (Сжато на ${compressionSize} байт(ов), это ${compressionSizeInPercentage}%)`;
     }
 
     const button = document.querySelector('button');

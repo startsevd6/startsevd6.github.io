@@ -1,11 +1,15 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
+    const commentRegex = /\/\*[\s\S]*?\*\//g;
+    const spaceRegex = /\s+/g;
+    const closingBraceRegex = /;\s*}/g;
+
     function removeCommentsAndWhitespace(css) {
         // Regular expressions to remove comments and extra spaces
-        css = css.replace(/\/\*[\s\S]*?\*\//g, ''); // Deleting comments
-        css = css.replace(/\s+/g, ' '); // Removing extra spaces
-        css = css.replace(/;\s*}/g, '}'); // Removing spaces before '}' after ';'
+        css = css.replace(commentRegex, ''); // Deleting comments
+        css = css.replace(spaceRegex, ' '); // Removing extra spaces
+        css = css.replace(closingBraceRegex, '}'); // Removing spaces before '}' after ';'
 
         return css.trim();
     }
@@ -37,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const originalCSS = textareaOriginal.value;
         const compressedCSS = compressCSS(removeCommentsAndWhitespace(originalCSS));
         textareaCompressed.value = compressedCSS;
-        
+
         compressionSize = originalCSS.length - compressedCSS.length;
         compressionSizeInPercentage = Math.trunc(100 - (compressedCSS.length / originalCSS.length * 100))
         labelMinified.innerHTML = `Сжатый код (Сжато на ${compressionSize} байт(ов), это ${compressionSizeInPercentage}%)`;

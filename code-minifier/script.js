@@ -37,10 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const originalCSS = textareaOriginal.value;
         const compressedCSS = compressCSS(removeCommentsAndWhitespace(originalCSS));
-        textareaCompressed.value = compressedCSS;
-
-        compressionSize = originalCSS.length - compressedCSS.length;
-        compressionSizeInPercentage = Math.trunc(100 - (compressedCSS.length / originalCSS.length * 100))
+        let compressionSize = originalCSS.length - compressedCSS.length;
+        let compressionSizeInPercentage = Math.trunc(100 - (compressedCSS.length / originalCSS.length * 100));
         labelMinified.innerHTML = `Сжатый код (Сжато на ${compressionSize} байт(ов), это ${compressionSizeInPercentage}%)`;
     }
 

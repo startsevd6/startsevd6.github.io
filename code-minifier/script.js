@@ -5,28 +5,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const spaceRegex = /\s+/g;
     const closingBraceRegex = /;\s*}/g;
 
-    function removeCommentsAndWhitespace(css) {
-        // Regular expressions to remove comments and extra spaces
-        css = css.replace(commentRegex, ''); // Deleting comments
-        css = css.replace(spaceRegex, ' '); // Removing extra spaces
-        css = css.replace(closingBraceRegex, '}'); // Removing spaces before '}' after ';'
+    function removeComments(css) {
+        return css.replace(commentRegex, '');
+    }
 
-        return css.trim();
+    function removeExtraSpaces(css) {
+        return css.replace(spaceRegex, ' ');
+    }
+
+    function removeSpacesBeforeClosingBrace(css) {
+        return css.replace(closingBraceRegex, '}');
     }
 
     function compressCSS(css) {
         return css.trim();
     }
 
-    function compressAndDisplay() {
+    function getOriginalCSS() {
         const textareaOriginal = document.getElementById('original-code');
-        const textareaCompressed = document.getElementById('minified-code');
-        const labelMinified = document.querySelector('label.minified.code');
-
         if (!textareaOriginal) {
             throw new Error('Text area for uncompressed code not found');
         }
+        return textareaOriginal.value;
+    }
 
+    function displayCompressedCSS() {
+        const textareaCompressed = document.getElementById('minified-code');
+        const labelMinified = document.querySelector('label.minified.code');
+        
         if (!textareaCompressed) {
             throw new Error('Text area for compressed code not found');
         }
@@ -35,8 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
             throw new Error('The label above the text area for the compressed code was not found');
         }
 
-        const originalCSS = textareaOriginal.value;
-        const compressedCSS = compressCSS(removeCommentsAndWhitespace(originalCSS));
+        const originalCSS = getOriginalCSS();
+        const compressedCSS = compressCSS(
+            removeSpacesBeforeClosingBrace(
+                removeExtraSpaces(
+                    removeComments(originalCSS)
+                )
+            )
+        );
         let compressionSize = originalCSS.length - compressedCSS.length;
         let compressionSizeInPercentage = Math.trunc(100 - (compressedCSS.length / originalCSS.length * 100));
         labelMinified.innerHTML = `Сжатый код (Сжато на ${compressionSize} байт(ов), это ${compressionSizeInPercentage}%)`;
@@ -45,6 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const button = document.querySelector('button');
 
     if (button) {
-        button.addEventListener('click', compressAndDisplay);
+        button.addEventListener('click', displayCompressedCSS);
     }
 });

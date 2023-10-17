@@ -404,7 +404,7 @@ td {
 .pre-code-lesson {
     display: inline-block;
     margin-bottom: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     background-color: var(--code-block-color);
 }
 
@@ -426,7 +426,8 @@ code {
 .copy-code-lesson {
     float: right;
     position: relative;
-    padding: 10px;
+    margin: 5px;
+    padding: 5px;
     width: 42px;
     height: 42px;
     border-radius: 10px;

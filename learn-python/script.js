@@ -189,16 +189,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let asideIsOpen = false;
 
     document.addEventListener('click', (event) => {
-        let target = event.getElementsByClassName('button-menu');
-
-        if (target) {
+        if (event.target.classList === "open-menu-img") {
             asideIsOpen = toggleAside(asideIsOpen);
         }
     });
 
     // Та же функция, но для мобильных устройств
     if (isOpenMenuLoaded && window.innerWidth <= 950) {
-        const elementOpenMenu = document.getElementsByClassName('open-menu');
+        const elementOpenMenu = document.getElementsByClassName('open-menu')[0];
         if (elementOpenMenu != null) {
             // Функция открытия меню для мобильных устройств
             elementOpenMenu.addEventListener('click', () => {

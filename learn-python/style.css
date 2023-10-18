@@ -967,3 +967,37 @@ input[type="range"] {
         float: left;
     }
 }
+
+@media (hover: none) {
+    .button-apply-changes,
+    aside.animate {
+        transition: none;
+    }
+    .a-lesson:hover .number-lesson,
+    .a-lesson:hover .name-lesson,
+    .a-python:hover .name-settings,
+    .button-settings:hover .name-settings,
+    .button-menu:hover .name-menu {
+        color: var(--name-font-color);
+    }
+
+    .a-python:hover .img-python-hover,
+    .button-settings:hover .img-settings-hover,
+    .button-menu:hover .img-menu-hover {
+        display: none;
+    }
+
+    a-python:hover .img-python,
+    .button-settings:hover .img-settings,
+    .button-menu:hover .img-menu {
+        display: block;
+    }
+
+    .email-a:hover {
+        color: var(--a-font-color);
+    }
+
+    .button-apply-changes:hover {
+        background-color: var(--input-color);
+    }
+}

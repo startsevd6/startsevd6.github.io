@@ -193,8 +193,18 @@ document.addEventListener('DOMContentLoaded', () => {
             asideIsOpen = toggleAside(asideIsOpen);
         }
     });
+    // для планшетов (ширина от 950 до 1200 пикселей)
+    if (950 < window.innerWidth <= 1200) {
+        const buttonMenu = document.getElementsByClassName('button-menu')[0];
+        if (buttonMenu != null) {
+            // Функция открытия меню для мобильных устройств
+            buttonMenu.addEventListener('click', () => {
+                asideIsOpen = toggleAside(asideIsOpen);
+            });
+        }
+    }
 
-    // Та же функция, но для мобильных устройств
+    // Та же функция, но для мобильных устройств (ширина до 950 пикселей)
     if (isOpenMenuLoaded && window.innerWidth <= 950) {
         const elementOpenMenu = document.getElementsByClassName('open-menu')[0];
         if (elementOpenMenu != null) {
@@ -589,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Оповещаем пользователя о том, что будет использовать cookie-файлы
-    if(!getCookie('message-cookie')) {
+    if (!getCookie('message-cookie')) {
         alert('Мы используем только необходимые cookie-файлы, без которых не будут работать настройки на сайте');
         setCookie('message-cookie', 1, 3650);
     }

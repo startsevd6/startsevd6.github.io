@@ -629,9 +629,14 @@ fieldset {
 }
 
 legend {
+    margin: 0 10px;
     font-family: 'Montserrat';
     color: var(--p-font-color);
     font-size: var(--p-font-size);
+}
+
+.radio-buttons {
+    margin: 10px;
 }
 
 .radio-buttons li {
@@ -655,6 +660,7 @@ label,
 }
 
 input[type="range"] {
+    margin: 15px 0 0 10px;
     appearance: none;
     background: none;
     cursor: pointer;
@@ -969,10 +975,21 @@ input[type="range"] {
 }
 
 @media (hover: none) {
+
+    .nav-a-left:hover,
+    .nav-a-right:hover {
+        background-color: var(--block-color);
+    }
+
+    .header-a:hover {
+        background-color: #3a7ab4;
+    }
+
     .button-apply-changes,
     aside.animate {
         transition: none;
     }
+
     .a-lesson:hover .number-lesson,
     .a-lesson:hover .name-lesson,
     .a-python:hover .name-settings,
@@ -987,7 +1004,7 @@ input[type="range"] {
         display: none;
     }
 
-    a-python:hover .img-python,
+    .a-python:hover .img-python,
     .button-settings:hover .img-settings,
     .button-menu:hover .img-menu {
         display: block;
@@ -999,5 +1016,11 @@ input[type="range"] {
 
     .button-apply-changes:hover {
         background-color: var(--input-color);
+    }
+
+    .a-python:hover .img-python.not-visible,
+    .div-img-settings .img-settings.not-visible:hover,
+    .div-img-menu .img-menu.not-visible:hover {
+        display: none;
     }
 }

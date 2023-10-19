@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'Переменные',
         'Вывод и ввод текста',
         'Условный оператор',
-        'Циклы'
+        'Циклы',
+        'Списки'
     ];
     // Переменная aside, которая будет заполняться
     let asideContent = `
@@ -329,15 +330,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     let selectedSiteTheme = getSiteTheme();
                     let messageVisibilityTime = 2750;
                     let copyCodeImg;
+                    let copiedBlockNumber;
                     try {
                         const codeElement = trigger.getAttribute('data-clipboard-target');
+                        if (codeElement.substring(codeElement.length - 2, codeElement.length - 1) !== '-') {
+                            copiedBlockNumber = codeElement.substring(codeElement.length - 2);
+                        } else {
+                            copiedBlockNumber = codeElement.substring(codeElement.length - 1);
+                        }
                         copyCodeImg = getCopyButtonIcons(selectedSiteTheme, codeElement);
 
-                        if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber === codeElement.substring(codeElement.length - 1)) {
+                        if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber === copiedBlockNumber) {
                             showResultBlock(lastCopiedBlockNumber, 'Скопировано!', 2750);
                             lastCopyTime = Date.now();
                             return;
-                        } else if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber != codeElement.substring(codeElement.length - 1)) {
+                        } else if (Date.now() - lastCopyTime < 2750 && lastCopiedBlockNumber != copiedBlockNumber) {
                             const copyCodeResultBlock = document.querySelectorAll('.copy-code-lesson')[lastCopiedBlockNumber - 1];
                             copyCodeResultBlock.classList.remove('visible-message');
                             lastCopyCodeImgSuccess.classList.remove('visible');
@@ -346,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
 
                         lastCopyTime = Date.now();
-                        lastCopiedBlockNumber = codeElement.substring(codeElement.length - 1);
+                        lastCopiedBlockNumber = copiedBlockNumber;
                         let copyCodeImgSuccess = document.querySelector(`${codeElement}-success`);
                         lastCopyCodeImg = copyCodeImg;
                         lastCopyCodeImgSuccess = copyCodeImgSuccess;
@@ -425,6 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { key: 'header-font-color', value: '#ffffff' },
             { key: 'h1-font-color', value: '#000000' },
             { key: 'h2-font-color', value: '#0d0d0d' },
+            { key: 'h3-font-color', value: '#1a1a1a' },
             { key: 'p-font-color', value: '#1a1a1a' },
             { key: 'a-font-color', value: '#2b5b87' },
             { key: 'a-hover-font-color', value: 'rgba(58, 122, 180, 0.2)' },
@@ -442,6 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { key: 'header-font-color', value: '#000000' },
             { key: 'h1-font-color', value: '#ffffff' },
             { key: 'h2-font-color', value: '#f2f2f2' },
+            { key: 'h2-font-color', value: '#e4e4e4' },
             { key: 'p-font-color', value: '#e5e5e5' },
             { key: 'a-font-color', value: '#78a2d4' },
             { key: 'a-hover-font-color', value: 'rgba(157, 188, 217, 0.2)' },
@@ -543,6 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let cssVariablesFontSize = [
             { key: 'h1-font-size', value: 1.875 * remFontSize },
             { key: 'h2-font-size', value: 1.625 * remFontSize },
+            { key: 'h3-font-size', value: 1.375 * remFontSize },
             { key: 'nav-theme-font-size', value: 1.125 * remFontSize },
             { key: 'p-font-size', value: remFontSize },
             { key: 'figcaption-font-size', value: 0.875 * remFontSize },

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Список (List) в Python - это упорядоченная коллекция элементов, которые могут
+        быть различных типов данных. Списки очень полезны, так как они позволяют хранить множество
+        переменных в одной структуре данных, делая код более организованным и удобным.">
+    <link rel="shortcut icon" href="/learn-python/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/learn-python/style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500;700&family=Source+Code+Pro&display=swap"
+        rel="stylesheet">
+    <script type="text/javascript" src="../../learn-python/clipboard.min.js"></script>
+    <script type="text/javascript" src="../../learn-python/script.js" defer></script>
+    <title>Условный оператор</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <include id="include-aside"></include>
+
+        <main>
+            <header>
+                <div class="top-header"></div>
+                <div class="shadow-header">
+                    <div class="container-header">
+                        <div class="header-p">
+                            <p class="theme-p">Тема: Списки</p>
+                        </div>
+                        <div class="div-a">
+                            <a href="#creation" class="header-a">Создание</a>
+                            <a href="#interaction" class="header-a">Взаимодействия</a>
+                        </div>
+                    </div>
+                    <div class="account-button"> <!-- Сейчас авторизация не работает -->
+                        <img src="/learn-python/img/icon-account.svg" alt="account icon" class="img-icon-account">
+                    </div>
+                </div>
+            </header>
+
+            <section class="lesson">
+                <article>
+                    <h1>Списки</h1>
+                    <p class="p-lesson">Привет! Сегодня мы поговорим о списках в Python.</p>
+                    <p class="p-lesson">Список (List) в Python - это упорядоченная коллекция элементов, которые могут
+                        быть различных типов данных. Списки очень полезны, так как они позволяют хранить множество
+                        переменных в одной структуре данных, делая код более организованным и удобным.</p>
+
+                    <h2 id="creation">Создание</h2>
+                    <p class="p-lesson">Создать пустой список можно с помощью пустых квадратных скобок.</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-1">my_list = []</code>
+                        <include id="include-copy-code-button-1"></include>
+                    </div>
+                    <p class="p-lesson">Чтобы создать список с начальными значениями, можно перечислить элементы,
+                        разделяя их запятыми внутри квадратных скобок.</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-2">my_list = [1, 2, 3]</code>
+                        <include id="include-copy-code-button-2"></include>
+                    </div>
+                    <p class="p-lesson">Список может содержать элементы разных типов данных, включая числа, строки, и
+                        даже другие списки.</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-3">my_list = [1, 1.1, 'abc', [1, 2, 3]]</code>
+                        <include id="include-copy-code-button-3"></include>
+                    </div>
+
+                    <h2 id="interaction">Взаимодействия</h2>
+                    <h3>Методы списков</h3>
+                    <ol>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод append() добавляет переменную (число, строка и т.д.) в конец
+                                списка</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-4">a = [1, 2, 3]
+my_list.append(4)
+# a = [1, 2, 3, 4]</code>
+                                <include id="include-copy-code-button-4"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод extend() добавляет элементы коллекции (список, кортеж и т.д.) в
+                                конец списка</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-5">a = [1, 2, 3]
+a.extend([4, 5, 6])
+# a = [1, 2, 3, 4, 5, 6]</code>
+                                <include id="include-copy-code-button-5"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод insert() добавляет элемент по индексу (первый аргумент метода -
+                                элемент, второй - индекс)</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-6">a = [1, 2, 3, 5]
+a.insert(4, 3)
+# a = [1, 2, 3, 4, 5]</code>
+                                <include id="include-copy-code-button-6"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод remove() удаляет элемент по значению</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-7">a = [1, 2, 3, 4, 5]
+a.remove(3)
+# a = [1, 2, 4, 5]</code>
+                                <include id="include-copy-code-button-7"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод pop() удаляет элемент по индексу (если не указать индекс, то
+                                удалится последний элемент)</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-8">a = [1, 2, 3, 4]
+a.pop(1)
+# a = [1, 3, 4]
+a.pop()
+# a = [1, 3]</code>
+                                <include id="include-copy-code-button-8"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод index() выполняет поиск индекса элемента в списке</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-9">a = [1, 2, 3, 4]
+a.index(2) # 1</code>
+                                <include id="include-copy-code-button-9"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод reverse() изменяет порядок элементов на обратный</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-10">a = [1, 2, 3, 4]
+a.reverse(2)
+# a = [4, 3, 2, 1]</code>
+                                <include id="include-copy-code-button-10"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод count() считает сколько раз элемент встречается в списке</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-11">a = [1, 2, 2, 2, 3]
+a.count(2) # 3</code>
+                                <include id="include-copy-code-button-11"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод clear() очищает список</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-12">a = [1, 2, 3]
+a.clear()
+# a = []</code>
+                                <include id="include-copy-code-button-12"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод sort() сортирует список</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-13">a = [4, 1, 3, 2]
+a.sort()
+# a = [1, 2, 3, 4]
+b = ['г', 'а', 'в', 'б']
+b.sort()
+# b = ['а', 'б', 'в', 'г']</code>
+                                <include id="include-copy-code-button-13"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод split() разделяет строку на список (по умолчанию разделителем
+                                считается пробел)
+                            </p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-14">a = '1 2 3 4'.split()
+# a = ['1', '2', '3', '4']
+b = '1, 2, 3, 4'.split(', ')
+# b = ['1', '2', '3', '4']</code>
+                                <include id="include-copy-code-button-14"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод join() создаёт строку из списка</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-15">a = [1, 2, 3, 4]
+s = ' '.join(a)
+# s = '1 2 3 4'</code>
+                                <include id="include-copy-code-button-15"></include>
+                            </div>
+                        </li>
+                    </ol>
+                    <h3>Срез списка</h3>
+                    <p class="p-lesson">Списки это итерируемые объекты, то есть вы можете взять список не полностью, я
+                        частично, это
+                        называется срез списка. С помощью срезов можно получать подсписки из списка, указывая начальный,
+                        конечный и шаг индексов, как в функции range</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-16">a = [1, 2, 3, 4, 5]
+# вывод части списка при помощи цикла с функцией range
+for i in range(1, 4):
+    print(a[i])
+# 2 3 4
+
+# тот же код, но записанный короче при помощи среза
+print(a[1, 4]) # 2 3 4</code>
+                        <include id="include-copy-code-button-16"></include>
+                    </div>
+                    <h3>Функции списков</h3>
+                    <p class="p-lesson">Функция len() возвращает длину списка</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-17">a = [1, 2, 3, 4]
+print(len(a)) # 4</code>
+                        <include id="include-copy-code-button-17"></include>
+                    </div>
+                    <p class="p-lesson">Функция sum() возвращает сумму элементов списка (если в списке есть не числа, то
+                        будет ошибка)</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-18">a = [1, 2, 3, 4]
+print(sum(a)) # 10</code>
+                        <include id="include-copy-code-button-18"></include>
+                    </div>
+                    <p class="p-lesson">Функция min() возвращает наименьший элемент списка (если в списке есть
+                        переменные разных типов данных, то будет ошибка)</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-19">a = [1, 2, 3, 4]
+print(min(a)) # 1
+b = ['a', 'b', 'c', 'd']
+print(min(b)) # a</code>
+                        <include id="include-copy-code-button-19"></include>
+                    </div>
+                    <p class="p-lesson">Функция max() возвращает наибольший элемент списка (если в списке есть
+                        переменные разных типов данных, то будет ошибка)</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-20">a = [1, 2, 3, 4]
+print(max(a)) # 4
+b = ['a', 'b', 'c', 'd']
+print(max(b)) # d</code>
+                        <include id="include-copy-code-button-20"></include>
+                    </div>
+                    <h3>Оператор in</h3>
+                    <p class="p-lesson">Оператор списка in работает точно также как и в цикле с функцией range проверяет
+                        есть ли данный элемент в списке</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-21">a = [1, 2, 3, 4]
+print(2 in a) # True
+print(12 in a) # False</code>
+                        <include id="include-copy-code-button-21"></include>
+                    </div>
+                    <h3>Генератор списка</h3>
+                    <p class="p-lesson">Генераторы списков позволяют создавать списки в одну строку на основе цикла.</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-22">squared_numbers = [x**2 for x in range(1, 6)]</code>
+                        <include id="include-copy-code-button-22"></include>
+                    </div>
+                    <p class="p-lesson">В генератор списка можно добавить условие добавления элемента в список.</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre"
+                            id="code-23">even_squared_numbers = [x**2 for x in range(1, 6) if x % 2 == 0]</code>
+                        <include id="include-copy-code-button-23"></include>
+                    </div>
+                    <h3>Вывод элементов списка</h3>
+                    <p class="p-lesson">При выводе списка его можно "распаковать" при помощи символа *, то есть убрать
+                        из вывода символы, которые дают нам понять что это список: квадратные скобки, запятые и кавычки
+                        ([],'')</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-24">a = [1, 2, 3, 'a']
+print(a) # [1, 2, 3, 'a']
+print(*a) # 1 2 3 a</code>
+                        <include id="include-copy-code-button-24"></include>
+                    </div>
+                    <p class="p-lesson">В <a href="/learn-python/6/" class="a-in-lesson">следующем уроке</a> мы
+                        рассмотрим кортежи и узнаем чем они отличаются от списков в Python.</p>
+                </article>
+                <script>let currentArticleNumber = 5;</script>
+                <include id="include-nav"></include>
+            </section>
+
+            <include id="include-footer"></include>
+
+        </main>
+    </div>
+    <include id="include-open-menu">
+    </include>
+</body>
+
+</html>

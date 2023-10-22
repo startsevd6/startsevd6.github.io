@@ -171,24 +171,56 @@ b.sort()
                             </div>
                         </li>
                         <li class="p-lesson">
+                            <p class="p-lesson">Метод replace() заменяет элементы списка (первый аргумент - элемент, который будет заменён, а второй аргумент - элемент, на который будет заменён)</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-14">a = [4, 1, 3, 2, 1]
+a.replace(1, 12)
+# a = [4, 12, 3, 2, 12]
+b = ['г', 'а', 'б', 'в', 'б']
+b.replace('б', 'д')
+# b = ['г', 'а', 'д', 'в', 'д']</code>
+                                <include id="include-copy-code-button-14"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Методы find() находит первое вхождение элемента в список</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-15">a = [4, 1, 3, 2, 1]
+print(a.find(1)) # 1
+b = ['г', 'а', 'б', 'в', 'б']
+print(a.find('б')) # 2</code>
+                                <include id="include-copy-code-button-15"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод rfind() находит последнее вхождение элемента в список</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-16">a = [4, 1, 3, 2, 1]
+print(a.rfind(1)) # 4
+b = ['г', 'а', 'б', 'в', 'б']
+print(a.rfind('б')) # 4</code>
+                                <include id="include-copy-code-button-16"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
                             <p class="p-lesson">Метод split() разделяет строку на список (по умолчанию разделителем
                                 считается пробел)
                             </p>
                             <div class="pre-code-lesson">
-                                <code class="pre" id="code-14">a = '1 2 3 4'.split()
+                                <code class="pre" id="code-17">a = '1 2 3 4'.split()
 # a = ['1', '2', '3', '4']
 b = '1, 2, 3, 4'.split(', ')
 # b = ['1', '2', '3', '4']</code>
-                                <include id="include-copy-code-button-14"></include>
+                                <include id="include-copy-code-button-17"></include>
                             </div>
                         </li>
                         <li class="p-lesson">
                             <p class="p-lesson">Метод join() создаёт строку из списка</p>
                             <div class="pre-code-lesson">
-                                <code class="pre" id="code-15">a = [1, 2, 3, 4]
+                                <code class="pre" id="code-18">a = [1, 2, 3, 4]
 s = ' '.join(a)
 # s = '1 2 3 4'</code>
-                                <include id="include-copy-code-button-15"></include>
+                                <include id="include-copy-code-button-18"></include>
                             </div>
                         </li>
                     </ol>
@@ -198,7 +230,7 @@ s = ' '.join(a)
                         называется срез списка. С помощью срезов можно получать подсписки из списка, указывая начальный,
                         конечный и шаг индексов, как в функции range</p>
                     <div class="pre-code-lesson">
-                        <code class="pre" id="code-16">a = [1, 2, 3, 4, 5]
+                        <code class="pre" id="code-19">a = [1, 2, 3, 4, 5]
 # вывод части списка при помощи цикла с функцией range
 for i in range(1, 4):
     print(a[i])
@@ -206,70 +238,70 @@ for i in range(1, 4):
 
 # тот же код, но записанный короче при помощи среза
 print(a[1, 4]) # 2 3 4</code>
-                        <include id="include-copy-code-button-16"></include>
+                        <include id="include-copy-code-button-19"></include>
                     </div>
                     <h3>Функции списков</h3>
                     <p class="p-lesson">Функция len() возвращает длину списка</p>
                     <div class="pre-code-lesson">
-                        <code class="pre" id="code-17">a = [1, 2, 3, 4]
+                        <code class="pre" id="code-20">a = [1, 2, 3, 4]
 print(len(a)) # 4</code>
-                        <include id="include-copy-code-button-17"></include>
+                        <include id="include-copy-code-button-20"></include>
                     </div>
                     <p class="p-lesson">Функция sum() возвращает сумму элементов списка (если в списке есть не числа, то
                         будет ошибка)</p>
                     <div class="pre-code-lesson">
-                        <code class="pre" id="code-18">a = [1, 2, 3, 4]
+                        <code class="pre" id="code-21">a = [1, 2, 3, 4]
 print(sum(a)) # 10</code>
-                        <include id="include-copy-code-button-18"></include>
+                        <include id="include-copy-code-button-21"></include>
                     </div>
                     <p class="p-lesson">Функция min() возвращает наименьший элемент списка (если в списке есть
                         переменные разных типов данных, то будет ошибка)</p>
                     <div class="pre-code-lesson">
-                        <code class="pre" id="code-19">a = [1, 2, 3, 4]
+                        <code class="pre" id="code-22">a = [1, 2, 3, 4]
 print(min(a)) # 1
 b = ['a', 'b', 'c', 'd']
 print(min(b)) # a</code>
-                        <include id="include-copy-code-button-19"></include>
+                        <include id="include-copy-code-button-22"></include>
                     </div>
                     <p class="p-lesson">Функция max() возвращает наибольший элемент списка (если в списке есть
                         переменные разных типов данных, то будет ошибка)</p>
                     <div class="pre-code-lesson">
-                        <code class="pre" id="code-20">a = [1, 2, 3, 4]
+                        <code class="pre" id="code-23">a = [1, 2, 3, 4]
 print(max(a)) # 4
 b = ['a', 'b', 'c', 'd']
 print(max(b)) # d</code>
-                        <include id="include-copy-code-button-20"></include>
+                        <include id="include-copy-code-button-23"></include>
                     </div>
                     <h3>Оператор in</h3>
                     <p class="p-lesson">Оператор списка in работает точно также как и в цикле с функцией range проверяет
                         есть ли данный элемент в списке</p>
                     <div class="pre-code-lesson">
-                        <code class="pre" id="code-21">a = [1, 2, 3, 4]
+                        <code class="pre" id="code-24">a = [1, 2, 3, 4]
 print(2 in a) # True
 print(12 in a) # False</code>
-                        <include id="include-copy-code-button-21"></include>
+                        <include id="include-copy-code-button-24"></include>
                     </div>
                     <h3>Генератор списка</h3>
                     <p class="p-lesson">Генераторы списков позволяют создавать списки в одну строку на основе цикла.</p>
                     <div class="pre-code-lesson">
-                        <code class="pre" id="code-22">squared_numbers = [x**2 for x in range(1, 6)]</code>
-                        <include id="include-copy-code-button-22"></include>
+                        <code class="pre" id="code-25">squared_numbers = [x**2 for x in range(1, 6)]</code>
+                        <include id="include-copy-code-button-25"></include>
                     </div>
                     <p class="p-lesson">В генератор списка можно добавить условие добавления элемента в список.</p>
                     <div class="pre-code-lesson">
                         <code class="pre"
-                            id="code-23">even_squared_numbers = [x**2 for x in range(1, 6) if x % 2 == 0]</code>
-                        <include id="include-copy-code-button-23"></include>
+                            id="code-26">even_squared_numbers = [x**2 for x in range(1, 6) if x % 2 == 0]</code>
+                        <include id="include-copy-code-button-26"></include>
                     </div>
                     <h3>Вывод элементов списка</h3>
                     <p class="p-lesson">При выводе списка его можно "распаковать" при помощи символа *, то есть убрать
                         из вывода символы, которые дают нам понять что это список: квадратные скобки, запятые и кавычки
                         ([],'')</p>
                     <div class="pre-code-lesson">
-                        <code class="pre" id="code-24">a = [1, 2, 3, 'a']
+                        <code class="pre" id="code-27">a = [1, 2, 3, 'a']
 print(a) # [1, 2, 3, 'a']
 print(*a) # 1 2 3 a</code>
-                        <include id="include-copy-code-button-24"></include>
+                        <include id="include-copy-code-button-27"></include>
                     </div>
                     <p class="p-lesson">В <a href="/learn-python/6/" class="a-in-lesson">следующем уроке</a> мы
                         рассмотрим кортежи и узнаем чем они отличаются от списков в Python.</p>

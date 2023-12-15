@@ -59,20 +59,33 @@
                     </div>
                     <p class="p-lesson">Здесь мы передали строку "Hello, world!" в качестве аргумента функции print().
                         Она отобразит эту строку на экране.</p>
+                    <p class="p-lesson"></p>
                     <p class="p-lesson">Функция input() используется для получения ввода от пользователя. Например:</p>
                     <div class="pre-code-lesson">
                         <code class="pre" id="code-2">name = input()
 print('Привет, ' + name + '!')</code>
                         <include id="include-copy-code-button-2"></include>
                     </div>
+                    <p class="p-lesson">В этом примере мы вставили переменную в строку, разделив её на две части. При
+                        помощи f-строк можно вставлять переменные в строки, не разделяя их</p>
+                    <p class="p-lesson"></p>
+                    <p class="p-lesson">Пример f-строки:</p>
+                    <div class="code-lesson">
+                        <code class="pre" id="code-3">apples = int(input())
+print(f'У меня есть {apples} яблок.')</code>
+                        <include id="include-copy-code-button-3"></include>
+                    </div>
+                    <p class="p-lesson">В этом примере мы используем f-строку, чтобы вставить значение переменной apples
+                        в строку</p>
+                    <p class="p-lesson"></p>
                     <p class="p-lesson">Помимо этого, функция print() имеет дополнительные параметры, такие как sep и
                         end. Параметр sep позволяет указать разделитель между значениями, которые нужно вывести.
                         Параметр end позволяет указать, какой символ должен быть добавлен в конце строки вывода. По
-                        умолчанию sep равен пробелу, а end равен символу новой строки.</p>
-                    <p class="p-lesson">Пример с параметрами sep и end:</p>
+                        умолчанию sep равен пробелу, а end равен символу новой строки. Пример с параметрами sep и end:
+                    </p>
                     <div class="code-lesson">
-                        <code id="code-3">print('Hello', 'world', sep=', ', end='!')</code>
-                        <include id="include-copy-code-button-3"></include>
+                        <code id="code-4">print('Hello', 'world', sep=', ', end='!')</code>
+                        <include id="include-copy-code-button-4"></include>
                     </div>
                     <p class="p-lesson">В этом примере мы используем разделитель ", " между словами "Hello" и "world", а
                         в конце строки добавляем восклицательный знак.</p>
@@ -81,28 +94,31 @@ print('Привет, ' + name + '!')</code>
                     <p class="p-lesson">Функция input() также может принимать строку-приглашение для пользователя. Эта
                         строка отображается перед ожиданием ввода. Например:</p>
                     <div class="code-lesson">
-                        <code id="code-4">age = input('Введите ваш возраст: ')</code>
-                        <include id="include-copy-code-button-4"></include>
+                        <code id="code-5">age = input('Введите ваш возраст: ')</code>
+                        <include id="include-copy-code-button-5"></include>
                     </div>
                     <p class="p-lesson">Здесь мы использовали функцию input() для запроса имени у пользователя. Функция
                         input() ожидает ввода от пользователя, который затем сохраняется в переменной name. Затем мы
                         использовали эту переменную для вывода приветствия на экран.</p>
+                    <p class="p-lesson"></p>
                     <p class="p-lesson">Чтобы принять ввод в разных типах данных, мы можем использовать функции
                         преобразования типов, такие как int(), float(), и str(). Например:</p>
                     <div class="code-lesson">
-                        <code id="code-5">age = int(input('Введите ваш возраст: '))</code>
-                        <include id="include-copy-code-button-5"></include>
+                        <code id="code-6">age = int(input('Введите ваш возраст: '))</code>
+                        <include id="include-copy-code-button-6"></include>
                     </div>
                     <p class="p-lesson">В этом примере мы сначала принимаем возраст от пользователя с помощью функции
                         input(), а затем преобразуем полученное значение в целое число с помощью функции int().</p>
+                    <p class="p-lesson"></p>
                     <p class="p-lesson">Также мы можем присваивать значения нескольким переменным сразу, используя метод
                         .split(). Например:</p>
                     <div class="code-lesson">
-                        <code id="code-6">name, age = input('Введите ваше имя и возраст через пробел: ').split()</code>
-                        <include id="include-copy-code-button-6"></include>
+                        <code id="code-7">name, age = input('Введите ваше имя и возраст через пробел: ').split()</code>
+                        <include id="include-copy-code-button-7"></include>
                     </div>
                     <p class="p-lesson">В этом примере мы принимаем имя и возраст от пользователя, разделенные пробелом,
                         и присваиваем их соответственно переменным name и age.</p>
+                    <p class="p-lesson"></p>
                     <p class="p-lesson">В <a href="/learn-python/3/" class="a-in-lesson">следующем уроке</a> мы
                         рассмотрим условные операторы и научимся выполнять различные действия в зависимости от условий.
                     </p>

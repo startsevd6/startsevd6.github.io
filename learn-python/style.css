@@ -736,11 +736,11 @@ input[type="range"] {
     border-radius: 5px;
 }
 
-@media (hover: hover) and (pointer: fine) {
+/* @media (hover: hover) and (pointer: fine) {
     *:hover { 
         color: inherit;
     }
-  }
+  } */
 
 @media (max-width: 1700px) {
     aside {
@@ -997,7 +997,7 @@ input[type="range"] {
     }
 }
 
-@media (hover: none) {
+/* @media (hover: none) {
 
     .nav-a-left:hover,
     .nav-a-right:hover {
@@ -1046,4 +1046,4 @@ input[type="range"] {
     .div-img-menu .img-menu.not-visible:hover {
         display: none;
     }
-}
+} */

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Кортеж (Tuple) в Python - это упорядоченная неизменяемая коллекция элементов, которые могут
+        быть различных типов данных. Кортежи очень полезны, так как они позволяют хранить множество
+        переменных в одной структуре данных, делая код более организованным и удобным.">
+    <link rel="shortcut icon" href="/learn-python/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/learn-python/style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500;700&family=Source+Code+Pro&display=swap"
+        rel="stylesheet">
+    <script type="text/javascript" src="../../learn-python/clipboard.min.js"></script>
+    <script type="text/javascript" src="../../learn-python/script.js" defer></script>
+    <title>Условный оператор</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <include id="include-aside"></include>
+
+        <main>
+            <header>
+                <div class="top-header"></div>
+                <div class="shadow-header">
+                    <div class="container-header">
+                        <div class="header-p">
+                            <p class="theme-p">Тема: Множества</p>
+                        </div>
+                        <div class="div-a">
+                            <a href="#creation" class="header-a">Создание</a>
+                            <a href="#interaction" class="header-a">Взаимодействия</a>
+                        </div>
+                    </div>
+                    <div class="account-button"> <!-- Сейчас авторизация не работает -->
+                        <img src="/learn-python/img/icon-account.svg" alt="account icon" class="img-icon-account">
+                    </div>
+                </div>
+            </header>
+
+            <section class="lesson">
+                <article>
+                    <h1>Списки</h1>
+                    <p class="p-lesson">Привет! Сегодня мы поговорим о множествах в Python.</p>
+                    <p class="p-lesson">Множество (set) в Python - это неупорядоченная коллекция уникальных элементов. В
+                        отличие от списка или кортежа, множество не может содержать одинаковые элементы. Множества часто
+                        используются для выполнения операций над уникальными значениями.</p>
+
+                    <h2 id="creation">Создание</h2>
+                    <p class="p-lesson">Множество можно создать при помощи функции set() или используя фигурные скобки
+                        {}. Однако, если вы используете пустые фигурные скобки, будет создан словарь, а не множество.
+                        Пустое множество создается только с помощью set(). Как и в списках и кортежах, элементы
+                        множества могут быть разных типов данных.</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-1">my_set = set() # {}
+filled_set = {1, 2, 3} # {1, 2, 3}
+filled_set_2 = {1, '2', 3} # {1, '2', 3}
+from_list = set([4, 5, 6]) # {4, 5, 6}
+from_string = set("hello") # {'h', 'e', 'l', 'o'}
+from_tuple = set((7, 8, 9)) # {7, 8, 9}
+from_range = set(range(1, 5)) # {1, 2, 3, 4} 
+set_generator = {x for x in range(0, 5, 2)} # {0, 2, 4}</code>
+                        <include id="include-copy-code-button-1"></include>
+                    </div>
+                    <p class="p-lesson">Множество не может содержать списки или другие множества, но может содержать
+                        кортежи.</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-2">set_list = {[1, 2, 3]} # будет ошибка
+set_list = {{1, 2, 3}} # тоже будет ошибка
+set_list = {(1, 2, 3)} # {(1, 2, 3)}</code>
+                        <include id="include-copy-code-button-2"></include>
+                    </div>
+                    <p class="p-lesson">Множества не поддерживают индексацию, поэтому они не имеют порядка элементов.
+                        При выводе множества порядок элементов может быть произвольным.</p>
+
+                    <h2 id="interaction">Взаимодействия</h2>
+                    <h3>Сравнение множеств</h3>
+                    <p class="p-lesson">Множества поддерживают операции сравнения, такие как проверка на равенство (==),
+                        неравенство (!=), подмножество (<=, <), надмножество (>=, >), а также различные операции над
+                            множествами.</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-3">my_set1 = {1, 2, 3, 3, 3, 3}
+my_set2 = {2, 1, 3}
+my_set3 = {1, 2, 3, 4}
+
+print(my_set1 == my_set2) # True
+print(my_set1 == my_set3) # False
+print(my_set1 != my_set3) # True
+print(my_set1 > my_set3) # True
+print(my_set1 < my_set2) # False</code>
+                        <include id="include-copy-code-button-3"></include>
+                    </div>
+                    <h3>Методы кортежей</h3>
+                    <ol>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод add() добавляет элемент в множество</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-4">a = {1, 2, 3, 4}
+a.add(5)
+print(a) # {1, 2, 3, 4, 5}</code>
+                                <include id="include-copy-code-button-4"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод clear() очищает множество</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-5">a = {1, 2, 3}
+a.clear()
+print(a) # {}</code>
+                                <include id="include-copy-code-button-5"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод difference() возвращает разность двух множеств</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-6">a = {1, 2, 3}
+b = {3, 4, 5}
+print(a.difference(b)) # {1, 2}</code>
+                                <include id="include-copy-code-button-6"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод discard() удаляет элемент из множества, если такого элемента нет в множестве не вызывает ошибку</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-7">a = {1, 2, 3}
+a.discard(2)
+print(a) # {1, 3}
+a.discard(6)
+print(a) # {1, 3}</code>
+                                <include id="include-copy-code-button-7"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод intersection() возвращает пересечение двух множеств</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-8">a = {1, 2, 3}
+b = {3, 4, 5}
+print(a.intersection(b)) # {3}</code>
+                                <include id="include-copy-code-button-8"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод issubset() проверяет, является ли одно множество подмножеством другого</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-9">a = {1, 2, 3, 4, 5}
+b = {2, 3, 4}
+print(b.issubset(a)) # True</code>
+                                <include id="include-copy-code-button-9"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод issuperset() проверяет, является ли одно множество надмножеством другого</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-10">a = {1, 2, 3, 4, 5}
+b = {2, 3, 4}
+print(a.issuperset(b)) # True</code>
+                                <include id="include-copy-code-button-10"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод pop() удаляет случайный элемент из множества</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-11">a = {1, 2, 3}
+a.pop()
+print(a) # {1, 2}</code>
+                                <include id="include-copy-code-button-11"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод remove() удаляет элемент из множества, если такого элемента нет в множестве вызывает ошибку</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-12">a = {1, 2, 3}
+a.remove(3)
+print(a) # {1, 2}
+a.remove(6) # вызывает ошибку</code>
+                                <include id="include-copy-code-button-12"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод symmetric_difference() возвращает симметричную разность (всё, кроме пересечения) двух множеств</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-13">a = {1, 2, 3}
+b = {3, 4, 5}
+print(a.symmetric_difference(b)) # {1, 2, 4, 5}</code>
+                                <include id="include-copy-code-button-13"></include>
+                            </div>
+                        </li>
+                        <li class="p-lesson">
+                            <p class="p-lesson">Метод union() возвращает объединение двух множеств</p>
+                            <div class="pre-code-lesson">
+                                <code class="pre" id="code-14">a = {1, 2, 3}
+b = {3, 4, 5}
+print(a.union(b)) # {1, 2, 3, 4, 5}</code>
+                                <include id="include-copy-code-button-14"></include>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <h3>Функции списков</h3>
+                    <p class="p-lesson">Функция len() возвращает длину множества</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-15">a = {1, 2, 3, 4}
+print(len(a)) # 4</code>
+                        <include id="include-copy-code-button-15"></include>
+                    </div>
+                    <p class="p-lesson">Функция sum() возвращает сумму элементов множества (если в списке есть не числа, то
+                        будет ошибка)</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-15">a = {1, 2, 3, 4}
+print(sum(a)) # 10</code>
+                        <include id="include-copy-code-button-15"></include>
+                    </div>
+                    <p class="p-lesson">Функция min() возвращает наименьший элемент множества (если в множестве есть
+                        переменные разных типов данных, то будет ошибка)</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-16">a = {1, 2, 3, 4}
+print(min(a)) # 1
+
+b = {'a', 'b', 'c', 'd'}
+print(min(b)) # a</code>
+                        <include id="include-copy-code-button-16"></include>
+                    </div>
+                    <p class="p-lesson">Функция max() возвращает наибольший элемент множества (если в множестве есть
+                        переменные разных типов данных, то будет ошибка)</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-7">a = {1, 2, 3, 4}
+print(max(a)) # 4
+
+b = {'a', 'b', 'c', 'd'}
+print(max(b)) # d</code>
+                        <include id="include-copy-code-button-17"></include>
+                    </div>
+                    <h3>Оператор in</h3>
+                    <p class="p-lesson">Оператор списка in работает точно также как и в цикле с функцией range. Он
+                        проверяет есть ли данный элемент в множестве</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-18">a = {1, 2, 3, 4}
+print(2 in a) # True
+print(12 in a) # False</code>
+                        <include id="include-copy-code-button-18"></include>
+                    </div>
+                    <h3>Вывод элементов списка</h3>
+                    <p class="p-lesson">При выводе множества его можно "распаковать" при помощи символа *, то есть убрать
+                        из вывода символы, которые дают нам понять что это множество: фигурные скобки, запятые и кавычки
+                        ([],'')</p>
+                    <div class="pre-code-lesson">
+                        <code class="pre" id="code-19">a = {1, 2, 3, 'a'}
+print(a) # (1, 2, 3, 'a')
+print(*a) # 1 2 3 a</code>
+                        <include id="include-copy-code-button-19"></include>
+                    </div>
+                    <p class="p-lesson">В <a href="/learn-python/8/" class="a-in-lesson">следующем уроке</a> мы
+                        рассмотрим словари и их применение в Python.</p>
+                </article>
+                <script>let currentArticleNumber = 7;</script>
+                <include id="include-nav"></include>
+            </section>
+
+            <include id="include-footer"></include>
+
+        </main>
+    </div>
+    <include id="include-open-menu">
+    </include>
+</body>
+
+</html>

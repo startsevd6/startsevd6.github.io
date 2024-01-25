@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'Условный оператор',
         'Циклы',
         'Списки',
-        'Кортежи'
+        'Кортежи',
+        'Множества'
     ];
     // Переменная aside, которая будет заполняться
     let asideContent = `

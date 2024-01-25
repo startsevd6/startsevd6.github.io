@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'Вывод и ввод текста',
         'Условный оператор',
         'Циклы',
-        'Списки'
+        'Списки',
+        'Кортежи'
     ];
     // Переменная aside, которая будет заполняться
     let asideContent = `

@@ -350,6 +350,14 @@ h3 {
     padding-bottom: 0;
 }
 
+.p-lesson-li {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: var(--p-font-size);
+    line-height: 1.5;
+    color: var(--p-font-color);
+}
+
 .a-in-lesson {
     background-color: var(--block-color);
     color: var(--a-font-color);
@@ -727,6 +735,12 @@ input[type="range"] {
     width: 100%;
     border-radius: 5px;
 }
+
+@media (hover: hover) and (pointer: fine) {
+    *:hover { 
+        color: inherit;
+    }
+  }
 
 @media (max-width: 1700px) {
     aside {

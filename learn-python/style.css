@@ -310,7 +310,7 @@ header {
 
 .lesson {
     display: inline-block;
-    margin-top: 60px;
+    margin: 60px 0 60px;
     padding: 50px;
     background-color: var(--block-color);
     border-radius: 12px;

@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     loadContent('aside', asideContent); // Загружаем aside
-    loadContent('footer', footerContent); // Загружаем footer
+    // loadContent('footer', footerContent); // Загружаем footer
     let isOpenMenuLoaded = false;
     if (!isOpenMenuLoaded && window.innerWidth <= 950) {
         loadContent('open-menu', openMenuContent); // Загружаем кнопку открытия меню

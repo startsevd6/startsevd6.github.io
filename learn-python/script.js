@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'Циклы',
         'Списки',
         'Кортежи',
-        'Множества',
-        'Словари'
+        'Множества'//,
+        //'Словари'
     ];
     // Переменная aside, которая будет заполняться
     let asideContent = `
@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (includeButtonCopyCode) {
             includeButtonCopyCode.innerHTML = codeBlock;
         } else {
-            alert(`Ошибка: Кнопка копирования кода с идентификатором #${buttonId} не найдена.`);
+            //alert(`Ошибка: Кнопка копирования кода с идентификатором #${buttonId} не найдена.`);
         }
     }
 

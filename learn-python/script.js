@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'Циклы',
         'Списки',
         'Кортежи',
-        'Множества'
+        'Множества',
+        'Словари'
     ];
     // Переменная aside, которая будет заполняться
     let asideContent = `

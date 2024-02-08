@@ -453,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { key: 'header-font-color', value: '#000000' },
             { key: 'h1-font-color', value: '#ffffff' },
             { key: 'h2-font-color', value: '#f2f2f2' },
-            { key: 'h2-font-color', value: '#e4e4e4' },
+            { key: 'h3-font-color', value: '#e4e4e4' },
             { key: 'p-font-color', value: '#e5e5e5' },
             { key: 'a-font-color', value: '#78a2d4' },
             { key: 'a-hover-font-color', value: 'rgba(157, 188, 217, 0.2)' },

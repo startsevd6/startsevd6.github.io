@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', function () {
         'Вывод и ввод текста',
         'Условный оператор',
         'Циклы',
-        'Списки'
+        'Списки',
+        'Кортежи',
+        'Множества'
     ];
     const articleTags = [
         {theme: articleThemes[0], tag1: 'Установка Python', tag2: 'print()'},
@@ -14,7 +16,9 @@ document.addEventListener('DOMContentLoaded', function () {
         {theme: articleThemes[2], tag1: 'Вывод', tag2: 'Ввод'},
         {theme: articleThemes[3], tag1: 'Синтаксис', tag2: 'Операторы'},
         {theme: articleThemes[4], tag1: 'while', tag2: 'for'},
-        {theme: articleThemes[5], tag1: 'Создание', tag2: 'Взаимодействия'}
+        {theme: articleThemes[5], tag1: 'Создание', tag2: 'Взаимодействия'},
+        {theme: articleThemes[6], tag1: 'Создание', tag2: 'Взаимодействия'},
+        {theme: articleThemes[7], tag1: 'Создание', tag2: 'Взаимодействия'},
     ];
 
     let articleBlockContent = '';

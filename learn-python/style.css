@@ -255,7 +255,8 @@ header {
 
 .container-header {
     display: inline-flex;
-    width: max(calc(100% - 85px), 700px);
+    /* width: max(calc(100% - 85px), 700px); */
+    width: max(100%, 700px);
     background-color: #3a7ab4;
     border-radius: 7px;
 }
@@ -294,6 +295,7 @@ header {
 }
 
 .account-button {
+    display: none;
     float: right;
     height: 50px;
     width: 50px;
@@ -832,7 +834,8 @@ input[type="range"] {
     }
 
     .container-header {
-        border-radius: 0 7px 7px;
+        /* border-radius: 0 7px 7px; */
+        border-radius: 0 0 7px 7px;
     }
 
     .account-button {

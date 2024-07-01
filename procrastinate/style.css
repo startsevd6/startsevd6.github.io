@@ -118,6 +118,7 @@ body {
         width: calc(100% - 72px);
         position: absolute;
         top: 36px;
+        left: 36px;
     }
 
     .image {

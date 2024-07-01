@@ -71,6 +71,19 @@ img {
     flex-wrap: wrap;
 }
 
+a.main-project {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a.main-project:hover {
+    font-size: 60px;
+}
+
 a.project {
     display: flex;
     flex-direction: column;
@@ -102,7 +115,8 @@ a.project:hover img {
 
 /* header and footer */
 
-header, footer {
+header,
+footer {
     display: flex;
     gap: 10px;
     margin: 50px auto;
@@ -111,7 +125,8 @@ header, footer {
     border-radius: 20px;
 }
 
-header a, footer a {
+header a,
+footer a {
     font-family: 'Montserrat', sans-serif;
     height: 40px;
     padding: 10px 20px;
@@ -119,11 +134,13 @@ header a, footer a {
     transition: background-color 0.25s ease-in-out;
 }
 
-header a:hover, footer a:hover {
+header a:hover,
+footer a:hover {
     background-color: var(--3-color);
 }
 
-header a:active, footer a:active {
+header a:active,
+footer a:active {
     background-color: var(--4-color);
 }
 
@@ -170,7 +187,7 @@ header a:active, footer a:active {
     h1 {
         margin: 40px auto;
     }
-    
+
     h1,
     h2,
     p,

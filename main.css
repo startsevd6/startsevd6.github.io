@@ -144,6 +144,10 @@ footer a:active {
     background-color: var(--4-color);
 }
 
+header {
+    display: none;
+}
+
 /* media queries */
 
 @media (max-width: 2340px) {

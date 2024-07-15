@@ -150,6 +150,12 @@ header {
 
 /* media queries */
 
+@media (max-height: 700px) {
+    header {
+        display: flex;
+    }
+}
+
 @media (max-width: 2340px) {
     section {
         max-width: 1865px;

@@ -70,4 +70,7 @@ h2 {
     font-optical-sizing: auto;
     font-weight: 700;
     font-style: normal;
+    font-size: 48px;
+    padding: 10% 240px;
+    color: #fff;
 }

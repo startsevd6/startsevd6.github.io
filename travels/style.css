@@ -49,6 +49,16 @@ a, button {
     text-decoration: none;
     line-height: 19px;
     color: #fff;
+
+    background-image: linear-gradient(#fff, #fff);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .3s;
+}
+
+a:hover {
+    background-size: 100% 2px;
 }
 
 button {

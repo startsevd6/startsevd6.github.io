@@ -85,6 +85,12 @@ h2 {
     font-weight: 700;
     font-style: normal;
     font-size: 48px;
-    padding: 10% 240px;
+    padding: 10% 0 0 240px;
     color: #fff;
+}
+
+div.parameters {
+    display: flex;
+    margin-left: 10%;
+    background-color: #fff;
 }

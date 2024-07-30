@@ -92,5 +92,30 @@ h2 {
 div.parameters {
     display: flex;
     margin-left: 10%;
+    width: 1261px;
     background-color: #fff;
+}
+
+.period, .days, .price {
+    padding: 20px 42px;
+}
+
+span.title {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #5A5A5A;
+}
+
+span.parameter {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #000000;
+}
+
+.select {
+    width: 22px;
+    height: 22px;
+    border: #5A5A5A 1px solid;
 }
